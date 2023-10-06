@@ -3,11 +3,31 @@
 	<head>
 		<meta charset="utf-8">
 		<title>My first three.js app</title>
-		<style>
-			body { margin: 0; }
-		</style>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<h1 style="text-align: center;">TEoG experimental</h1>
+	
+		<div id="container">
+
+		</div>
+		<div id="lowerBar">
+			<button class="btn">Save</button>
+			<button class="btn">Inventory</button>
+			<button class="btn">Looks</button>
+			<button class="btn">Settings</button>
+
+		</div>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
+				}
+			}
+		</script>		
 		<script type="module" src="/main.js"></script>
+
 	</body>
 </html>
