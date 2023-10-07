@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { Move } from './Move';
+import { player } from './Scripts/Player';
 
 const container = document.getElementById('container');
 
