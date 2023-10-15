@@ -1,12 +1,11 @@
 import * as THREE from 'three';
-import { controls } from './main';
+import { controls } from '../main';
 
-let moveForward = false;
-let moveBackward = false;
-let moveLeft = false;
-let moveRight = false;
+let moveForward = false, moveBackward = false;
+let moveLeft = false, moveRight = false;
 let canJump = true;
-let direction = new THREE.Vector3();
+let sprinting = false;
+const direction = new THREE.Vector3();
 const velocity = new THREE.Vector3();
 const onKeyDown = function (event) {
     switch (event.code) {
@@ -33,6 +32,9 @@ const onKeyDown = function (event) {
         case 'Space':
             Jump();
             break;
+        case 'ShiftLeft':
+            sprinting = true;
+            break;
     }
 };
 const onKeyUp = function (event) {
@@ -53,6 +55,9 @@ const onKeyUp = function (event) {
         case 'KeyD':
             moveRight = false;
             break;
+        case 'ShiftLeft':
+            sprinting = false;
+            break;
     }
 };
 document.addEventListener('keydown', onKeyDown);
@@ -62,8 +67,8 @@ let autoRun = false;
 document.addEventListener('mousedown', function (event) {
     if (event.button === 0 && controls.isLocked) {
         controls.unlock();
-    }
-    else if (event.button === 1) {
+        autoRun = false;
+    } else if (event.button === 1) {
         autoRun = !autoRun;
     } else if (event.button === 2) {
         Jump();
@@ -73,9 +78,21 @@ document.addEventListener('mousedown', function (event) {
 
 function Jump() {
     if (canJump === true)
-        velocity.y += 40;
+        velocity.y += 50;
     canJump = false;
 }
+
+
+
+export function playerCollisions(interactables) {
+    interactables.forEach(interactable => {
+
+        if (controls.getObject().position.distanceTo(interactable.cube.position) < 1.5)
+            interactable.interact();
+    });
+}
+
+
 
 export function Move(delta) {
 
@@ -89,7 +106,10 @@ export function Move(delta) {
     direction.x = Number(moveLeft) - Number(moveRight);
     direction.normalize();
 
-    const accSpeed = 60 * delta;
+    let accSpeed = 200 * delta;
+    if (sprinting)
+        accSpeed *= 2;
+
     if (moveForward || moveBackward || autoRun) 
         velocity.z -= direction.z * accSpeed;
     if (moveLeft || moveRight)
@@ -100,10 +120,12 @@ export function Move(delta) {
     controls.moveForward(-velocity.z * delta);
 
     // Move the player up/down
+
+
     controls.getObject().position.y += (velocity.y * delta);
-    if (controls.getObject().position.y < 0) {
-        velocity.y = 0;
-        controls.getObject().position.y = 0;
+    if (controls.getObject().position.y < 0.5) {
+        velocity.y = 0.5;
+        controls.getObject().position.y = 0.5;
         canJump = true;
     }
 }

@@ -8,15 +8,106 @@
 	<body>
 		<h1 style="text-align: center;">TEoG experimental</h1>
 	
-		<div id="container">
-
+		<div id="FreePlay">
+			<div id="container">
+		
+			</div>
+		
+			<div id="lowerBar">
+				<button id="OpenSaveMenu" class="btn">Save</button>
+				<button class="btn">Inventory</button>
+				<button class="btn">Looks</button>
+				<button class="btn">Settings</button>
+			</div>
 		</div>
-		<div id="lowerBar">
-			<button class="btn">Save</button>
-			<button class="btn">Inventory</button>
-			<button class="btn">Looks</button>
-			<button class="btn">Settings</button>
 
+
+		<div id="Battle">
+			<div id="battlePlayer" class="left charPortrait">
+				<h1>Player</h1>
+				<div id="playerCanvas" class="battleCanvas"></div>
+				<p>HP: <span id="playerHP">100</span></p>
+				<p>WP: <span id="playerWP">100</span> </p>
+			</div>
+			<div id="battleLog">
+				<h1>Battle Log</h1>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde laborum veniam asperiores. Blanditiis molestias, itaque magnam optio dolores iusto quasi esse, voluptate tenetur incidunt aliquam, saepe obcaecati illo! Accusamus, doloribus.</p>
+			</div>
+			<div id="battleEnemy" class="right charPortrait">
+				<h1>Enemy</h1>
+				<div id="enemyCanvas" class="battleCanvas"></div>
+				<p>HP: <span id="enemyHP">100</span></p>
+				<p>WP: <span id="enemyWP">100</span> </p>
+			</div>
+			<div class="btnBar">
+				<button id="attack" class="btn">Attack</button>
+				<button id="defend" class="btn">Defend</button>
+				<button id="item" class="btn">Item</button>
+				<button id="run" class="btn">Run</button>
+			</div>
+		</div>
+
+		<div id ="AfterBattle">
+			<div id="afterPlayer" class="left"></div>
+			<div id="afterLog">
+				<h1>Sex Log</h1>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde laborum veniam asperiores. Blanditiis molestias, itaque magnam optio dolores iusto quasi esse, voluptate tenetur incidunt aliquam, saepe obcaecati illo! Accusamus, doloribus.</p>
+			</div>
+			<div id="afterEnemy" class="right"></div>
+			<div id="afterBattleBtns" class="btnBar">
+				<button id="afterAttack" class="btn">Attack</button>
+				<button id="afterDefend" class="btn">Defend</button>
+				<button id="afterItem" class="btn">Item</button>
+				<button id="afterRun" class="btn">Run</button>
+			</div>
+		</div>
+
+		<div id="SaveMenu" class="Menu">
+			<h1>Save Menu</h1>
+			<div id="SaveButtons">
+
+			</div>
+			<button id="SaveToFile" >Save to file</button>
+			<button id="LoadFromFile" >Load from file
+				<input type="file" id="fileInput" accept=".json">
+			</button>
+			<button id="SaveBack" >Back</button>
+		</div>
+
+		<div id="Options" class="Menu">
+			<h1>Options</h1>
+			<div id="OptionsButtons">
+
+			</div>
+			<button id="OptionsBack" >Back</button>
+		</div>
+
+		<div id="Inventory" class="Menu">
+			<h1>Inventory</h1>
+			<div id="InventoryButtons">
+
+			</div>
+			<button id="InventoryBack">Back</button>
+		</div>
+
+		<div id="LevelMenu" class="Menu">
+			<h1>Level Menu</h1>
+			<div>
+				<button id="levelStats" >Stats</button>
+				<button id="levelPerks" >Perks</button>
+			</div>
+			<div id="LevelStatsBtns">
+				<button id="lvlStr" >Strength</button>
+				<button id="lvlDex" >Dexterity</button>
+				<button id="lvlCon" >Constitution</button>
+				<button id="lvlInt" >Intelligence</button>
+				<button id="lvlWis" >Wisdom</button>
+				<button id="lvlCha" >Charisma</button>
+			</div>
+			<div id="levelPerksBtns">
+
+			</div>
+			<button id="LevelBack" >Back</button>
 		</div>
 
 		<script type="importmap">

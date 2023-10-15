@@ -5,6 +5,7 @@
 body {
     background-color: #fff;
     color: #444;
+    overflow-x: hidden;
 }
 h1{
     font-size: em;
@@ -41,6 +42,54 @@ h1{
     background-color: rgba(0,0,0,0.5);
 }
 
+.right {
+    float: right;
+    right: 0;
+}
+.left {
+    float: left;
+    left: 0;
+}
+
+#battleLog{
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    overflow-y: auto;
+    background-color: #53453d;
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    padding: 0.5em;
+    flex-grow: 1;
+}
+
+.btnBar{
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    background-color: #444;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+
+}
+.charPortrait{
+    height: 80%;
+    width: 30%;
+    text-align: center;
+    background-color: gainsboro;
+    position: fixed;
+    top: 0;
+}
+.battleCanvas{
+    height: 80%;
+}
+.Menu{
+    display: none;
+}
+
 #instructions {
     width: 100%;
     height: 80%;
@@ -53,4 +102,13 @@ h1{
     text-align: center;
     font-size: 14px;
     cursor: pointer;
+}
+#Battle {
+    width: 100%;
+    height: 80%;
+
+    display: none;
+}
+#AfterBattle{
+    display: none;
 }
