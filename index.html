@@ -15,7 +15,7 @@
 		
 			<div id="lowerBar">
 				<button id="OpenSaveMenu" class="btn">Save</button>
-				<button class="btn">Inventory</button>
+				<button id="OpenInventoryMenu" class="btn">Inventory</button>
 				<button class="btn">Looks</button>
 				<button class="btn">Settings</button>
 			</div>
@@ -65,29 +65,48 @@
 		<div id="SaveMenu" class="Menu">
 			<h1>Save Menu</h1>
 			<div id="SaveButtons">
-
+				<div class="SaveBtnDiv">
+					<button id="Save1" class="SaveBtn">Save 1</button>
+					<button id="ClearSave1" class="ClearBtn">Clear Save</button>
+				</div>
+				<div class="SaveBtnDiv">
+					<button id="Save2" class="SaveBtn">Save 2</button>
+					<button id="ClearSave2" class="ClearBtn">Clear Save</button>
+				</div>				
+				<div class="SaveBtnDiv">
+					<button id="Save3" class="SaveBtn">Save 3</button>
+					<button id="ClearSave3" class="ClearBtn">Clear Save</button>
+				</div>				
+				<div class="SaveBtnDiv">
+					<button id="Save4" class="SaveBtn">Save 4</button>
+					<button id="ClearSave4" class="ClearBtn">Clear Save</button>
+				</div>	
+				<div class="SaveBtnDiv">
+					<button id="Save5" class="SaveBtn">Save 5</button>
+					<button id="ClearSave5" class="ClearBtn">Clear Save</button>
+				</div>			
 			</div>
-			<button id="SaveToFile" >Save to file</button>
-			<button id="LoadFromFile" >Load from file
-				<input type="file" id="fileInput" accept=".json">
-			</button>
-			<button id="SaveBack" >Back</button>
+			<div id="SaveToFileDiv">
+				<button id="SaveToFile" >Save to file</button>
+				<input type="file" id="fileInput" accept=".json" >
+			</div>
+			<button id="SaveBack" class="backBtn">Back</button>
 		</div>
 
-		<div id="Options" class="Menu">
+		<div id="OptionsMenu" class="Menu">
 			<h1>Options</h1>
 			<div id="OptionsButtons">
 
 			</div>
-			<button id="OptionsBack" >Back</button>
+			<button id="OptionsBack" class="backBtn">Back</button>
 		</div>
 
-		<div id="Inventory" class="Menu">
+		<div id="InventoryMenu" class="Menu">
 			<h1>Inventory</h1>
-			<div id="InventoryButtons">
+			<div id="InventoryBag">
 
 			</div>
-			<button id="InventoryBack">Back</button>
+			<button id="InventoryBack" class="backBtn">Back</button>
 		</div>
 
 		<div id="LevelMenu" class="Menu">
@@ -107,7 +126,7 @@
 			<div id="levelPerksBtns">
 
 			</div>
-			<button id="LevelBack" >Back</button>
+			<button id="LevelBack" class="backBtn">Back</button>
 		</div>
 
 		<script type="importmap">

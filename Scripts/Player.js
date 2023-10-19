@@ -125,5 +125,5 @@ class Character {
 }
 
 
-const player = new Character();
-export { player };
+const Player = new Character();
+export { Player };

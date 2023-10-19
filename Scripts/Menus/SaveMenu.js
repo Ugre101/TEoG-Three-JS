@@ -5,18 +5,23 @@ close.addEventListener("click", function () {
     saveMenu.style.display = "none";
 });
 
-const openSaveMenu = document.getElementById("OpenSaveMenu");
-openSaveMenu.addEventListener("click", function () {
+const openSaveMenuBtn = document.getElementById("OpenSaveMenu");
+openSaveMenuBtn.addEventListener("click", function () {
+    OpenSaveMenu();
+});
+
+export function OpenSaveMenu() {
     saveMenu.style.display = "block";
     ShowSaves();
-});
+}
 
 function ShowSaves(){
 
 }
 
-import { Player } from "../Player.js";
 
+
+import { Player } from "../Player.js";
 const saveToFile = document.getElementById("SaveToFile");
 saveToFile.addEventListener("click", function () {
     // Save player to textfile
@@ -28,11 +33,6 @@ saveToFile.addEventListener("click", function () {
         console.log('Hello World > helloworld.txt');
     });
 
-});
-const LoadFromFile = document.getElementById("LoadFromFile");
-LoadFromFile.addEventListener("click", function () {
-    // Load player from textfile
-    fileInput.style.display = "block";
 });
 const fileInput = document.getElementById("fileInput");
 fileInput.onchange = e => {

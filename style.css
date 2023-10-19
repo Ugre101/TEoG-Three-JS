@@ -50,7 +50,98 @@ h1{
     float: left;
     left: 0;
 }
+.backBtn {
+    position: absolute;
+    width: 20%;
+    height: 5%;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #aa7f62;
+    border-radius: 0.5em;
+    border: 0.25em solid #53453d;
+    color: #000000;
+    font-size: 1.2  em;
+}
 
+#SaveButtons{
+    height: 75%;
+}
+.SaveBtnDiv{
+    width: 90%;
+    height: 10%;
+    margin: auto auto 2em auto; 
+    border-radius: 1em;
+    border: 0.25em solid #53453d;
+    background-color: #dbb195;
+    color: #000000;
+    font-size: 100%;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    flex-direction: row;
+}
+.SaveBtn {
+    width: 75%;
+    height:100%;
+    border: hidden;
+    border-radius: 0.75em 0em 0em 0.75em;
+    background-color: #dbb195;
+    color: #000000;
+    font-size: 100%;
+    cursor: pointer;    
+}
+.SaveBtn:hover{
+    background-color: #d68753;
+}
+.ClearBtn{
+    height: 100%;
+    width: 25%;
+    font-size: 1rem;
+    background-color: #bb8b7f;
+    border: 0.25em solid #53453d;
+    border-top: hidden;
+    border-bottom: hidden;
+    border-right: hidden;
+    border-radius: 0 0.6em 0.6em 0;
+    cursor: pointer ;
+    color: white;
+}
+.ClearBtn:hover{
+    background-color: #921d1d;
+}
+#SaveToFileDiv{
+    width: 60%;
+    height: 4%;
+    margin: auto;
+    font-size: 100%;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    flex-direction: row;
+}
+#SaveToFileDiv button{
+    height: 100%;
+    width: 50%;
+    margin: auto;
+    border: solid 0.15em #53453d;
+    border-radius: 0.25em 0em 0em 0.25em;
+    background-color: #dbb195;
+    color: #000000;
+    font-size: 100%;
+    cursor: pointer;    
+}
+#SaveToFileDiv input{
+    height: 100%;
+    width: 35%;
+    margin: auto;
+    border: solid 0.15em #53453d;
+    border-radius: 0.25em 0em 0em 0.25em;
+    background-color: #dbb195;
+    color: #000000;
+    font-size: 100%;
+    cursor: pointer;    
+}
 #battleLog{
     margin-left: auto;
     margin-right: auto;
@@ -88,6 +179,28 @@ h1{
 }
 .Menu{
     display: none;
+    height: 70%;
+    width: 50%;
+    background-color: #d69e78;
+    text-align: center;
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 45%;
+    border: 0.5em solid;
+    border-color:  #925839 ;
+    padding: 1em;
+    transform: translate(-50%, -50%);
+}
+.Menu::before{
+    content: " ";
+    position: absolute;
+    z-index: -1;
+    top: 0.01%;
+    bottom: 0.01%;
+    left: 0.01%;
+    right: 0.01%;
+    border: 0.45em solid #a77356;
 }
 
 #instructions {
@@ -111,4 +224,47 @@ h1{
 }
 #AfterBattle{
     display: none;
+}
+#InventoryBag{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 0.3em;
+    grid-row-gap: 0.3em;
+
+
+    height: 70%;
+    width: 85%;
+    background-color: #d69e78;
+    position:absolute;
+    border: solid 0.5em;
+    border-color:  #925839 ;
+    padding: 1em;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 45%;
+
+}
+.Item{
+    border: solid 0.5em;
+    border-color:  #925839 ;
+    background-color: #d69e78;
+    width: 100%;
+    height: 100%;
+}
+.Item button{
+    width: 96%;
+    height: 12%;
+    margin-bottom: 0.4em;
+    background-color: #ac6332;
+    cursor: pointer;
+}
+.UpperRightNumber{
+    position: relative;
+    bottom: 50%;
+    left: 75%;
+    font-size: 1.5em;
+    color: #000000;
+    height: 2em;
+    width: 2em;
 }

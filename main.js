@@ -2,9 +2,10 @@ import * as THREE from 'three';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { Move, playerCollisions } from './Scripts/Move';
-import { player } from './Scripts/Player';
+import { Player } from './Scripts/Player';
 import { StartBattle } from './Scripts/StartBattle';
-
+import { OpenSaveMenu } from './Scripts/Menus/SaveMenu';
+import { OpenInventoryMenu } from './Scripts/Menus/InventoryMenu';
 
 const interactables = new Array();
 export const container = document.getElementById('container');
