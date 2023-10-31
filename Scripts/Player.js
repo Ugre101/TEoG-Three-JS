@@ -1,17 +1,22 @@
-import { Dicks } from "./Dicks";
+import { RaceSystem, Race } from "./RaceSystem";
+import { Dicks } from "./SexualOrgans/Dicks";
+import { Boobs } from "./SexualOrgans/Boobs";
+import { Stats, Stat } from "./Stats";
+import { EssenceDrain } from "./EssenceDrain";
+import { BodyStats } from "./Body/Body";
 
 class Age {
     constructor(age) {
-        this.dayOld = age * 365;
+        this.daysOld = age * 365;
     }
     /// Returns true if the age has changed
-    tickDay(days = 1){
+    tickDay(days = 1) {
         let was = this.age;
-        this.dayOld += days;
-        return this.age > was; 
+        this.daysOld += days;
+        return this.age > was;
     }
-    get age() {
-        return Math.floor(this.dayOld / 365);
+    get yearsOld() {
+        return Math.floor(this.daysOld / 365);
     }
     isAdult() {
         return this.age >= 18;
@@ -24,18 +29,18 @@ class Age {
     }
 }
 
-class Essence{
-    constructor(startingEssence){
+class Essence {
+    constructor(startingEssence) {
         this.essence = startingEssence;
     }
-    spendEssence(essenceCost){
-        if(this.essence < essenceCost){
+    spendEssence(essenceCost) {
+        if (this.essence < essenceCost) {
             return false;
         }
         this.essence -= essenceCost;
         return true;
     }
-    gainEssence(essenceGain){
+    gainEssence(essenceGain) {
         this.essence += essenceGain;
     }
 }
@@ -60,36 +65,36 @@ class Health {
 }
 
 class LevelSystem {
-    constructor(){
+    constructor() {
         this.level = 1;
         this.exp = 0;
         this.statPoints = 0;
         this.perkPoints = 0;
     }
-    neededExp(){
+    neededExp() {
         return 100 * this.level;
     }
-    gainExp(exp){
+    gainExp(exp) {
         this.exp += exp;
-        while(this.exp >= this.neededExp()){
+        while (this.exp >= this.neededExp()) {
             this.exp -= this.neededExp();
             this.levelUp();
         }
     }
-    levelUp(){
+    levelUp() {
         this.level++;
         this.statPoints += 5;
         this.perkPoints += 1;
     }
-    useStatPoint(){
-        if(this.statPoints > 0){
+    useStatPoint() {
+        if (this.statPoints > 0) {
             this.statPoints--;
             return true;
         }
         return false;
     }
-    usePerkPoint(cost = 1){
-        if(this.perkPoints >= cost){
+    usePerkPoint(cost = 1) {
+        if (this.perkPoints >= cost) {
             this.perkPoints -= cost;
             return true;
         }
@@ -101,29 +106,56 @@ const genders = {
     Doll: "Doll",
     Male: "Male",
     Female: "Female",
+    Futanari: "Futanari",
+    Dickgirl: "Dickgirl",
+};
+
+function CheckGender(Character) {
+    let hasDick = Character.Dicks.List.length > 0;
+    let hasBreasts = Character.Boobs.List.length > 0;
+    if (hasDick) {
+        if (hasBreasts) return genders.Dickgirl;
+        return genders.Male;
+    }
+    if (hasBreasts) {
+        return genders.Female;
+    }
+    return genders.Doll;
 }
 
-function CheckGender(Character){
-    if (true)
-        return genders.Doll;
-}
-
-
-class Character {
+export class Character {
     constructor() {
-        this.firstName = "";
-        this.lastName = "";
-        this.age = new Age(18);
+        this.firstName = "Steve";
+        this.lastName = "Testsson";
+        this.Age = new Age(18);
         this.Health = new Health(100);
         this.Dicks = new Dicks();
+        this.Boobs = new Boobs();
         this.LevelSystem = new LevelSystem();
+        this.Masc = new Essence(0);
+        this.Femi = new Essence(0);
+        this.StableEssence = new Stat(30);
+        this.EssenceDrain = new EssenceDrain(30);
+        this.Stats = new Stats();
+        this.RaceSystem = new RaceSystem(Race.Human);
+        this.BodyStats = new BodyStats(20, 30, 160);
     }
-    fullName() {
+    get fullName() {
         return `${this.firstName} ${this.lastName}`;
     }
-    
+    drainMasc(from) {
+        let drain = this.EssenceDrain.drainAmount();
+        let drainAmount = Math.min(drain, from.Masc.essence);
+        if (drainAmount < drain) {
+            let dAmount = from.Dicks.List.Sum((x) => x.size);
+        }
+        from.Masc.essence -= drainAmount;
+        this.Masc.essence += drainAmount;
+        return drainAmount;
+    }
 }
 
-
-const Player = new Character();
-export { Player };
+export let Player = new Character();
+export function LoadPlayer(newPlayer) {
+    Player = newPlayer;
+}

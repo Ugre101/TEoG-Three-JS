@@ -1,70 +1,72 @@
-import * as THREE from 'three';
-import { controls } from '../main';
+import * as THREE from "three";
+import { controls } from "../main";
 
-let moveForward = false, moveBackward = false;
-let moveLeft = false, moveRight = false;
+let moveForward = false,
+    moveBackward = false;
+let moveLeft = false,
+    moveRight = false;
 let canJump = true;
 let sprinting = false;
 const direction = new THREE.Vector3();
 const velocity = new THREE.Vector3();
 const onKeyDown = function (event) {
     switch (event.code) {
-        case 'ArrowUp':
-        case 'KeyW':
+        case "ArrowUp":
+        case "KeyW":
             moveForward = true;
             autoRun = false;
             break;
-        case 'ArrowLeft':
-        case 'KeyA':
+        case "ArrowLeft":
+        case "KeyA":
             moveLeft = true;
             autoRun = false;
             break;
-        case 'ArrowDown':
-        case 'KeyS':
+        case "ArrowDown":
+        case "KeyS":
             moveBackward = true;
             autoRun = false;
             break;
-        case 'ArrowRight':
-        case 'KeyD':
+        case "ArrowRight":
+        case "KeyD":
             moveRight = true;
             autoRun = false;
             break;
-        case 'Space':
+        case "Space":
             Jump();
             break;
-        case 'ShiftLeft':
+        case "ShiftLeft":
             sprinting = true;
             break;
     }
 };
 const onKeyUp = function (event) {
     switch (event.code) {
-        case 'ArrowUp':
-        case 'KeyW':
+        case "ArrowUp":
+        case "KeyW":
             moveForward = false;
             break;
-        case 'ArrowLeft':
-        case 'KeyA':
+        case "ArrowLeft":
+        case "KeyA":
             moveLeft = false;
             break;
-        case 'ArrowDown':
-        case 'KeyS':
+        case "ArrowDown":
+        case "KeyS":
             moveBackward = false;
             break;
-        case 'ArrowRight':
-        case 'KeyD':
+        case "ArrowRight":
+        case "KeyD":
             moveRight = false;
             break;
-        case 'ShiftLeft':
+        case "ShiftLeft":
             sprinting = false;
             break;
     }
 };
-document.addEventListener('keydown', onKeyDown);
-document.addEventListener('keyup', onKeyUp);
+document.addEventListener("keydown", onKeyDown);
+document.addEventListener("keyup", onKeyUp);
 
 let autoRun = false;
-document.addEventListener('mousedown', function (event) {
+document.addEventListener("mousedown", function (event) {
     if (event.button === 0 && controls.isLocked) {
         controls.unlock();
         autoRun = false;
@@ -73,29 +75,25 @@ document.addEventListener('mousedown', function (event) {
     } else if (event.button === 2) {
         Jump();
     }
-})
-
+});
 
 function Jump() {
-    if (canJump === true)
-        velocity.y += 50;
+    if (canJump === true) velocity.y += 50;
     canJump = false;
 }
 
-
-
 export function playerCollisions(interactables) {
-    interactables.forEach(interactable => {
-
-        if (controls.getObject().position.distanceTo(interactable.cube.position) < 1.5)
+    interactables.forEach((interactable) => {
+        if (
+            controls
+                .getObject()
+                .position.distanceTo(interactable.cube.position) < 1.5
+        )
             interactable.interact();
     });
 }
 
-
-
 export function Move(delta) {
-
     const decAccSpeed = 10 * delta;
     velocity.x -= velocity.x * decAccSpeed;
     velocity.z -= velocity.z * decAccSpeed;
@@ -107,13 +105,11 @@ export function Move(delta) {
     direction.normalize();
 
     let accSpeed = 200 * delta;
-    if (sprinting)
-        accSpeed *= 2;
+    if (sprinting) accSpeed *= 2;
 
-    if (moveForward || moveBackward || autoRun) 
+    if (moveForward || moveBackward || autoRun)
         velocity.z -= direction.z * accSpeed;
-    if (moveLeft || moveRight)
-        velocity.x -= direction.x * accSpeed;
+    if (moveLeft || moveRight) velocity.x -= direction.x * accSpeed;
 
     // Move the player forard/backward/left/right
     controls.moveRight(velocity.x * delta);
@@ -121,8 +117,7 @@ export function Move(delta) {
 
     // Move the player up/down
 
-
-    controls.getObject().position.y += (velocity.y * delta);
+    controls.getObject().position.y += velocity.y * delta;
     if (controls.getObject().position.y < 0.5) {
         velocity.y = 0.5;
         controls.getObject().position.y = 0.5;
