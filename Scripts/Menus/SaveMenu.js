@@ -1,5 +1,6 @@
 import { Menu, MenuManagerInstance } from "../Menu.js";
 import { Player, LoadPlayer } from "../Player.js";
+import { Save } from "../Save.js";
 
 const saveMenu = new Menu("SaveMenu");
 const close = document.getElementById("SaveBack");
@@ -42,13 +43,6 @@ function overWriteSave(id){
     let save = JSON.stringify(new Save(Player, new Date()));
     localStorage.setItem("TEoGsave" + id, save);
     ShowSaves();
-}
-
-class Save {
-    constructor(player, date) {
-        this.player = player;
-        this.date = date;
-    }
 }
 
 class SaveBtn {

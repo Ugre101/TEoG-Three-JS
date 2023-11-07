@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { controls } from "../main";
+import {controls} from "../main";
 
 let moveForward = false,
     moveBackward = false;
@@ -82,14 +82,12 @@ function Jump() {
     canJump = false;
 }
 
-export function playerCollisions(interactables) {
-    interactables.forEach((interactable) => {
-        if (
-            controls
-                .getObject()
-                .position.distanceTo(interactable.cube.position) < 1.5
-        )
-            interactable.interact();
+export function playerCollisions(intractables) {
+    intractables.forEach(intractable => {
+        let distanceTo = controls.getObject()
+            .position.distanceTo(intractable.obj.position);
+        if (distanceTo < 2)
+            intractable.interact();
     });
 }
 
@@ -123,4 +121,5 @@ export function Move(delta) {
         controls.getObject().position.y = 0.5;
         canJump = true;
     }
+
 }

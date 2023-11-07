@@ -47,7 +47,7 @@ export class Stat {
     }
     removeMod(from) {
         for (let mod of this.mods) {
-            if (mod.from == from) {
+            if (mod.from === from) {
                 this.mods.splice(this.mods.indexOf(mod), 1);
                 this.dirty = true;
                 return true;
@@ -97,10 +97,10 @@ export class Stats {
     }
 
     addStatMod(mod) {
-        if (mod instanceof StatMod == false) {
+        if (mod instanceof StatMod) {
+            this.getStatByType(mod.stat).addMod(mod);
+        } else {
             console.error("Not a stat mod");
-            return;
         }
-        this.getStatByType(mod.stat).addMod(mod);
     }
 }

@@ -185,14 +185,18 @@ h1{
 }
 .fillBar{
     position: relative;
+    height: 2.5em;
     background-color: #cfc2ba;
     border-radius: 0.5em;
-    border: 0.15em solid #53453d;
+    border: 0.15em solid #282b1d;
     color: #000000;
     font-size: 1.2em;
 }
 .fillBar p {
-    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 33%;
+    margin: 0;  
     padding: 0;
     text-align: center;
     line-height: 2em;
@@ -200,8 +204,7 @@ h1{
 .fillBarFill{
     height: 100%;
     background-color: #53453d;
-    border-radius: 0.5em;
-    border: 0.15em solid #53453d;
+    border-radius: 0.25em;
     color: #000000;
     font-size: 1.2em;
     text-align: center;

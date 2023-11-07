@@ -22,7 +22,7 @@ export class EssenceDrain {
 
     removeDrainMod(from) {
         for (let mod of this.drainMods) {
-            if (mod.from == from) {
+            if (mod.from === from) {
                 this.drainMods.splice(this.drainMods.indexOf(mod), 1);
                 return true;
             }

@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 const container = document.getElementById("MiniMap");
-function constainerSize() {
+function containerSize() {
     return {
         width: container.offsetWidth,
         height: container.offsetHeight,
@@ -12,7 +12,7 @@ function constainerSize() {
 const miniScene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
     75,
-    constainerSize().aspect,
+    containerSize().aspect,
     0.1,
     1000
 );
@@ -28,7 +28,7 @@ testCube.scale.set(15, 15, 15);
 miniScene.add(testCube);
 
 const renderer = new THREE.WebGLRenderer({ container });
-renderer.setSize(constainerSize().width, constainerSize().height);
+renderer.setSize(containerSize().width, containerSize().height);
 container.appendChild(renderer.domElement);
 
 const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);

@@ -43,7 +43,11 @@ class statBtn {
     }
 }
 
-class perkBtn {}
+class perkBtn {
+    constructor(btnId) {
+
+    }
+}
 
 const lvlStr = new statBtn("lvlStr", StatType.Str);
 

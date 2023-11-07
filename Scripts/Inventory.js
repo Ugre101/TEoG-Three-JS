@@ -1,6 +1,13 @@
 import { Player } from "./Player";
 
 class Item {
+    /**
+     *
+     * @param {string} name
+     * @param {string} description
+     * @param {function} onUse
+     * @param {number} amount
+     */
     constructor(name, description, onUse, amount = 1) {
         this.name = name;
         this.description = description;
@@ -16,7 +23,7 @@ class Inventory {
     addItem(item) {
         if (item instanceof Item)
             if (this.hasItem(item)) {
-                this.items.find((i) => i.name == item.name).amount++;
+                this.items.find(i => i.name === item.name).amount++;
             } else this.items.push(item);
         else console.error("Not an item");
     }
@@ -28,7 +35,7 @@ class Inventory {
     hasItem(item) {
         if (item instanceof Item) {
             for (let i of this.items) {
-                if (i.name == item.name) return true;
+                if (i.name === item.name) return true;
             }
             return false;
         } else console.error("Not an item");
@@ -44,7 +51,7 @@ class Inventory {
 
 export const PlayerInventory = new Inventory();
 PlayerInventory.addItem(
-    new Item("Test", "Test", (onCharacter) => {
+    new Item("Test", "Test", onCharacter => {
         console.log("Test " + onCharacter.firstName);
     })
 );

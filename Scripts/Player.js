@@ -1,13 +1,16 @@
-import { RaceSystem, Race } from "./RaceSystem";
-import { Dicks } from "./SexualOrgans/Dicks";
-import { Boobs } from "./SexualOrgans/Boobs";
-import { Stats, Stat } from "./Stats";
-import { EssenceDrain } from "./EssenceDrain";
-import { BodyStats } from "./Body/Body";
+import {Race, RaceSystem} from "./RaceSystem";
+import {Dicks} from "./SexualOrgans/Dicks";
+import {Boobs} from "./SexualOrgans/Boobs";
+import {Stat, Stats} from "./Stats";
+import {EssenceDrain} from "./EssenceDrain";
+import {BodyStats} from "./Body/Body";
 
 class Age {
     constructor(age) {
         this.daysOld = age * 365;
+    }
+    get age() {
+        return Math.floor(this.daysOld / 365);
     }
     /// Returns true if the age has changed
     tickDay(days = 1) {
@@ -47,20 +50,20 @@ class Essence {
 
 class Health {
     constructor(maxHealth) {
-        this.maxHealth = maxHealth;
-        this.currentHealth = maxHealth;
+        this.max = maxHealth;
+        this.current = maxHealth;
     }
     damage(damageAmount) {
-        this.currentHealth -= damageAmount;
+        this.current -= damageAmount;
     }
     heal(healAmount) {
-        this.currentHealth += healAmount;
+        this.current += healAmount;
     }
     isAlive() {
-        return this.currentHealth > 0;
+        return this.current > 0;
     }
     restore() {
-        this.currentHealth = this.maxHealth;
+        this.current = this.max;
     }
 }
 
@@ -102,29 +105,8 @@ class LevelSystem {
     }
 }
 
-const genders = {
-    Doll: "Doll",
-    Male: "Male",
-    Female: "Female",
-    Futanari: "Futanari",
-    Dickgirl: "Dickgirl",
-};
-
-function CheckGender(Character) {
-    let hasDick = Character.Dicks.List.length > 0;
-    let hasBreasts = Character.Boobs.List.length > 0;
-    if (hasDick) {
-        if (hasBreasts) return genders.Dickgirl;
-        return genders.Male;
-    }
-    if (hasBreasts) {
-        return genders.Female;
-    }
-    return genders.Doll;
-}
-
 export class Character {
-    constructor() {
+    constructor(startRace) {
         this.firstName = "Steve";
         this.lastName = "Testsson";
         this.Age = new Age(18);
@@ -137,17 +119,23 @@ export class Character {
         this.StableEssence = new Stat(30);
         this.EssenceDrain = new EssenceDrain(30);
         this.Stats = new Stats();
-        this.RaceSystem = new RaceSystem(Race.Human);
+        this.RaceSystem = new RaceSystem(startRace);
         this.BodyStats = new BodyStats(20, 30, 160);
     }
     get fullName() {
         return `${this.firstName} ${this.lastName}`;
     }
+
+    /**
+     *
+     * @param {Character} from
+     * @returns {number} The amount of essence drained
+     */
     drainMasc(from) {
         let drain = this.EssenceDrain.drainAmount();
         let drainAmount = Math.min(drain, from.Masc.essence);
         if (drainAmount < drain) {
-            let dAmount = from.Dicks.List.Sum((x) => x.size);
+            let dAmount = from.Dicks.List.reduce((a, b) => a + b.size, 0);
         }
         from.Masc.essence -= drainAmount;
         this.Masc.essence += drainAmount;
@@ -155,7 +143,7 @@ export class Character {
     }
 }
 
-export let Player = new Character();
+export let Player = new Character(Race.Human);
 export function LoadPlayer(newPlayer) {
     Player = newPlayer;
 }
