@@ -1,6 +1,6 @@
 import { Menu, MenuManagerInstance } from "../Menu.js";
-import { Player, LoadPlayer } from "../Player.js";
 import { Save } from "../Save.js";
+import {LoadPlayer, Player} from "../Player.js";
 
 const saveMenu = new Menu("SaveMenu");
 const close = document.getElementById("SaveBack");

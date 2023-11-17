@@ -1,4 +1,4 @@
-import { Character } from "../Player";
+import {Character} from "../Character/Character.js";
 
 class DormManager{
     constructor(){

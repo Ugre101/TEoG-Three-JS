@@ -1,6 +1,6 @@
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
-import {CheckGender, FemGenders, Genders, IsFeminine, MascGenders} from "../Genders";
-import {Race} from "../RaceSystem";
+import {CheckGender, FemGenders, Genders, IsFeminine, MascGenders} from "../Character/Genders.js";
+import {Race} from "../Character/RaceSystem.js";
 import * as THREE from "three";
 
 class Avatar{
@@ -23,16 +23,16 @@ class Avatar{
             return null;
         });
         res.scene.traverse(n => {
-            if (n.isMesh) {
-                n.castShadow = true;
-                n.receiveShadow = true;
-                if (n.material.map) {
-                    n.material.vertexColors = false;
-                    n.material.map.anisotropy = 16;
-                    n.material.map.minFilter = THREE.LinearFilter;
-                    n.material.map.maxFilter = THREE.LinearFilter;
-                }
-
+            if (!n.isMesh) {
+                return;
+            }
+            n.castShadow = true;
+            n.receiveShadow = true;
+            if (n.material.map) {
+                n.material.vertexColors = false;
+                n.material.map.anisotropy = 16;
+                n.material.map.minFilter = THREE.LinearFilter;
+                n.material.map.maxFilter = THREE.LinearFilter;
             }
         });
         return res.scene;

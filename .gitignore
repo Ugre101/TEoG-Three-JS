@@ -1,4 +1,6 @@
 node_modules/
 dist/nginx-1.25.2/
-dist/Resources/Characters/OrcMale.glb
+dist/html/Resources/Characters/OrcMale.glb
 Resources/Characters/Bovine.glb
+dist/html/Resources/Characters/
+dist.7z

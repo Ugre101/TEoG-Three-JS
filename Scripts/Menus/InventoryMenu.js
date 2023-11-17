@@ -1,7 +1,8 @@
-import { Player } from "../Player";
-import { controls } from "../../main";
+import { Character } from "../Character/Character.js";
+import { controls } from "../../main.js";
 import { Menu, MenuManagerInstance } from "../Menu";
 import { PlayerInventory } from "../Inventory";
+import {Player} from "../Player.js";
 
 const OpenInventoryMenuBtn = document.getElementById("OpenInventoryMenu");
 OpenInventoryMenuBtn.addEventListener("click", () => {

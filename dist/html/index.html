@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		
+		<script type="module" crossorigin src="./assets/index-36ff002c.js"></script>
+		<link rel="stylesheet" href="./assets/index-f90680ca.css">
+	</head>
+	<body>
+		<h1 style="text-align: center;">TEoG experimental</h1>
+	
+		<div id="FreePlay">
+			<div id="container">
+		
+			</div>
+		
+			<div id="lowerBar">
+				<div id="MiniMap"></div>
+				<div id="lowerBarBtns">
+					<button id="OpenSaveMenu" class="btn">Save</button>
+					<button id="OpenInventoryMenu" class="btn">Inventory</button>
+					<button id="LevelMenuBtn" class="btn">Level</button>
+					<button id="OpenLooksMenu" class="btn">Looks</button>
+					<button id="OpenOptionsMenu" class="btn">Settings</button>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="Battle">
+			<div id="battlePlayer" class="left charPortrait">
+				<h1>Character</h1>
+				<div id="playerCanvas" class="battleCanvas"></div>
+				<div class="fillBars">
+					<div class="fillBar">
+						<div id="playerHPBar" class="fillBarFill">
+							<p>HP: <span id="playerHP">100</span></p>
+						</div>
+					</div>
+					<div class="fillBar">
+						<div id="playerWPBar" class="fillBarFill">
+							<p>WP: <span id="playerWP">100</span> </p>
+						</div>
+					</div>
+					<div class="fillBar">
+						<div id="playerSPBar" class="fillBarFill">
+							<p>SP: <span id="playerSP">100</span> </p>
+						</div>
+					</div>
+					<div class="fillBar">
+						<div id="playerMPBar" class="fillBarFill">
+							<p>MP: <span id="playerMP">100</span> </p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="battleLog">
+				<h1>Battle Log</h1>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde laborum veniam asperiores. Blanditiis molestias, itaque magnam optio dolores iusto quasi esse, voluptate tenetur incidunt aliquam, saepe obcaecati illo! Accusamus, doloribus.</p>
+			</div>
+			<div id="battleEnemy" class="right charPortrait">
+				<h1>Enemy</h1>
+				<div id="enemyCanvas" class="battleCanvas"></div>
+				<div class="fillBars">
+
+					<div class="fillBar">
+						<div id="enemyHPBar" class="fillBarFill">
+							<p>HP: <span id="enemyHP">100</span></p>
+						</div>
+					</div>
+					<div class="fillBar">
+						<div id="enemyWPBar" class="fillBarFill">
+							<p>WP: <span id="enemyWP">100</span> </p>
+						</div>
+					</div>
+					<div class="fillBar">
+						<div id="enemySPBar" class="fillBarFill">
+							<p>SP: <span id="enemySP">100</span> </p>
+						</div>
+					</div>
+					<div class="fillBar">
+						<div id="enemyMPBar" class="fillBarFill">
+							<p>MP: <span id="enemyMP">100</span> </p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="btnBar">
+				<button id="attack" class="btn">Attack</button>
+				<button id="item" class="btn">Item</button>
+				<button id="run" class="btn">Run</button>
+			</div>
+		</div>
+
+		<div id ="AfterBattle">
+			<div id="afterPlayer" class="left">
+				<h1>Character</h1>
+				<div id="playerAfterCanvas" class="afterCanvas"></div>
+				<div class="fillBars">
+					<div class="fillBar">
+						<div id="playerLustBar" class="fillBarFill">
+							<p>Arousal: <span id="playerLust">100</span></p>
+						</div>
+					</div>
+					<p>Times orgasmed: <span id="playerOrgasmCounter">0</span></p>
+				</div>
+
+			</div>
+			<div id="afterLog">
+				<h1>Sex Log</h1>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde laborum veniam asperiores. Blanditiis molestias, itaque magnam optio dolores iusto quasi esse, voluptate tenetur incidunt aliquam, saepe obcaecati illo! Accusamus, doloribus.</p>
+			</div>
+			<div id="afterEnemy" class="right">
+
+			</div>
+			<div id="afterBattleBtns" class="btnBar">
+
+			</div>
+		</div>
+
+		
+		<div id="SaveMenu" class="Menu">
+			<h1>Save Menu</h1>
+			<div id="SaveButtons">
+				<div class="SaveBtnDiv">
+					<button id="OverwriteSave1" class="OverWriteBtn">Overwrite</button>
+					<button id="Save1" class="SaveBtn">Save 1</button>
+					<button id="ClearSave1" class="ClearBtn">Clear Save</button>
+				</div>
+				<div class="SaveBtnDiv">
+					<button id="OverwriteSave2" class="OverWriteBtn">Overwrite</button>
+					<button id="Save2" class="SaveBtn">Save 2</button>
+					<button id="ClearSave2" class="ClearBtn">Clear Save</button>
+				</div>				
+				<div class="SaveBtnDiv">
+					<button id="OverwriteSave3" class="OverWriteBtn">Overwrite</button>
+					<button id="Save3" class="SaveBtn">Save 3</button>
+					<button id="ClearSave3" class="ClearBtn">Clear Save</button>
+				</div>				
+				<div class="SaveBtnDiv">
+					<button id="OverwriteSave4" class="OverWriteBtn">Overwrite</button>
+					<button id="Save4" class="SaveBtn">Save 4</button>
+					<button id="ClearSave4" class="ClearBtn">Clear Save</button>
+				</div>	
+				<div class="SaveBtnDiv">
+					<button id="OverwriteSave5" class="OverWriteBtn">Overwrite</button>
+					<button id="Save5" class="SaveBtn">Save 5</button>
+					<button id="ClearSave5" class="ClearBtn">Clear Save</button>
+				</div>			
+			</div>
+			<div id="SaveToFileDiv">
+				<button id="SaveToFile" >Save to file</button>
+				<input type="file" id="fileInput" accept=".json" >
+			</div>
+			<button id="SaveBack" class="backBtn">Back</button>
+		</div>
+
+		<div id="OptionsMenu" class="Menu">
+			<h1>Options</h1>
+			<div id="OptionsButtons">
+				<div>
+					<h2>Options Content</h2>
+					<div>
+						<button id="VoreToggle">Vore enabled</button>
+					</div>
+				</div>
+			</div>
+			<button id="OptionsBack" class="backBtn">Back</button>
+		</div>
+
+		<div id="LooksMenu" class="Menu">
+			<h1>Looks</h1>
+			<div>
+				<p id="LooksGeneralInfo"></p>
+			</div>
+			<button id="LooksBack" class="backBtn">Back</button>
+		</div>
+
+		
+		<div id="InventoryMenu" class="Menu">
+			<h1>Inventory</h1>
+			<div id="InventoryBag">
+
+			</div>
+			<button id="InventoryBack" class="backBtn">Back</button>
+		</div>
+
+		
+		<div id="LevelMenu" class="Menu">
+			<h1>Level Menu</h1>
+			<p id="StatPoints" class="left">Stat Points: 0</p>
+			<p id="PerkPoints" class="right">Perk Points: 0</p>
+			<div id="levelNavBtns">
+				<button id="levelStats" >Stats</button>
+				<button id="levelPerks" >Perks</button>
+			</div>
+			<div id="LevelStatsBtns">
+				<button id="lvlStr" >Strength</button>
+				<button id="lvlDex" >Dexterity</button>
+				<button id="lvlCon" >Constitution</button>
+				<button id="lvlInt" >Intelligence</button>
+				<button id="lvlWis" >Wisdom</button>
+				<button id="lvlCha" >Charisma</button>
+			</div>
+			<div id="levelPerksBtns">
+
+			</div>
+			<button id="LevelBack" class="backBtn">Back</button>
+		</div>
+
+		<div id="VoreMenu" class="Menu">
+			<h1>Vore Menu</h1>
+			<div id="VoreButtons">	
+				<button id="openVorePerks">Vore Perks</button>
+				<button id="openVoreStats">Vore Stats</button>
+				<button id="openVorePreys">Vore Preys</button>
+			</div>
+			<div id="VorePerks">
+
+			</div>
+			<div id="VoreStats">
+
+			</div>
+			<div id="VorePreys">
+				<div id="StomachPreys">
+
+				</div>
+				<div id="BallsPreys">
+
+				</div>
+				<div id="WombPreys">
+
+				</div>
+				<div id="AnalPreys">
+
+				</div>
+				<div id="BreastPreys">
+
+				</div>
+			</div>
+			<button id="VoreBack" class="backBtn">Back</button>
+		</div>
+
+		
+
+	</body>
+</html>

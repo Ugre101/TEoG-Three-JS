@@ -1,11 +1,9 @@
 import * as THREE from "three";
 import { PointerLockControls } from "three/addons/controls/PointerLockControls.js";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { Move, playerCollisions } from "./Scripts/Move";
-import { Player, Character } from "./Scripts/Player";
-import { Mod } from "./Scripts/Stats";
-import { Race } from "./Scripts/RaceSystem";
-import { SetupBattle } from "./Scripts/Battle/SetupBattle";
+import { Character } from "./Scripts/Character/Character.js";
+import { Mod } from "./Scripts/Character/Stats.js";
+import { Race } from "./Scripts/Character/RaceSystem.js";
 import * as SaveMenu from "./Scripts/Menus/SaveMenu";
 import * as InventoryMenu from "./Scripts/Menus/InventoryMenu";
 import * as LevelMenu from "./Scripts/Menus/LevelMenu";
@@ -16,11 +14,14 @@ import * as OptionsMenu from "./Scripts/Menus/OptionsMenu";
 export const interactables = [];
 export const container = document.getElementById("container");
 import { AnimateBattle } from "./Scripts/Battle/SetupBattle";
-import { drawFistMap } from "./Scripts/Maps/FirstMap";
 import { inBattle } from "./Scripts/Battle/BattleManager";
 import {AvatarManager} from "./Scripts/Avatar/AvatarHandler";
-import {EnemyAvatar} from "./Scripts/Avatar/EnemyAvatar";
+import {CharacterAvatar} from "./Scripts/Avatar/CharacterAvatar";
 import {MenuManagerInstance} from "./Scripts/Menu";
+import {Morphs} from "./Scripts/Avatar/Morphs";
+import {MapManagerInstance} from "./Scripts/Maps/MapManager";
+import {EnemyAvatar} from "./Scripts/Enemy/EnemyAvatar.js";
+import {TestStuff} from "./Scripts/TestingGround.js";
 
 export function containerSize() {
     return {
@@ -49,9 +50,6 @@ const renderer = new THREE.WebGLRenderer({ container });
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.setSize(containerSize().width, containerSize().height);
 container.appendChild(renderer.domElement);
-
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 
 camera.position.set(0, 1.5, 5);
 
@@ -97,15 +95,30 @@ controls.addEventListener("unlock", function () {
     //    blocker.style.display = 'block';
     //    instructions.style.display = '';
 });
-drawFistMap();
 
-let testAvatar = new EnemyAvatar(new Character(Race.Human));
+console.log(MapManagerInstance.firstMap);
+
+MapManagerInstance.firstMap.loadTexture();
+
+
+TestStuff();
+
+const testAvatar = new EnemyAvatar(new Character(Race.Human));
+const testAvatar2 = new CharacterAvatar(new Character(Race.Human));
+async function loadTestAvatar(){
+    await testAvatar.LoadAndSetPos({x:2,y:-1,z:-4});
+    await testAvatar2.LoadAndSetPos({x:4,y:-1,z:-4});
+    testAvatar.obj.scale.set(1.5,1.5,1.5);
+    testAvatar2.obj.scale.set(1.5,1.5,1.5);
+    interactables.push(testAvatar);
+    interactables.push(testAvatar2);
+    scene.add(testAvatar.obj);
+    scene.add(testAvatar2.obj);
+}
+
 animate();
 
-let loaded = await testAvatar.LoadAndSetPos({x:2,y:-1,z:-4});
-interactables.push(testAvatar);
-scene.add(loaded);
-
+await loadTestAvatar();
 
 function animate() {
     requestAnimationFrame(animate);
@@ -114,7 +127,7 @@ function animate() {
         return;
     }
 
-    // If a menu is open, don't animate the player
+    // If a menu is open, pause everything below this point
     if (MenuManagerInstance.isOpen){
         return;
     }
@@ -129,12 +142,16 @@ function animate() {
         playerCollisions(interactables);
     }
     renderer.render(scene, camera);
+
+    // Render the minimap every 10 frames
     frame++;
     if (frame % 10 === 0)
     {
+        testAvatar.morphs.tryChangeMorph(Morphs.Fat, Math.random());
+        testAvatar2.morphs.tryChangeMorph(Morphs.Muscle, Math.random());
+
         let pos = controls.getObject().position;
         MiniMap.renderMiniMap(pos.x, pos.z);
     }
-    //controls.getObject().position.y += (velocity.y * delta);
 }
 

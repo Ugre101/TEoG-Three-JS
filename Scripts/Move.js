@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import {controls} from "../main";
+import {controls} from "../main.js";
 
 let moveForward = false,
     moveBackward = false;

@@ -1,6 +1,6 @@
-import { Player } from "../Player";
-import { StatType } from "../Stats";
+import { StatType } from "../Character/Stats.js";
 import { MenuManagerInstance, Menu } from "../Menu";
+import {Player} from "../Player.js";
 
 const LevelMenu = new Menu("LevelMenu");
 

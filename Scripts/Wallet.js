@@ -1,3 +1,4 @@
+
 class Wallet{
     constructor(startGold){
         this.gold = startGold;

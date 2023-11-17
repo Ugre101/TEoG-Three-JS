@@ -28,7 +28,7 @@
 
 		<div id="Battle">
 			<div id="battlePlayer" class="left charPortrait">
-				<h1>Player</h1>
+				<h1>Character</h1>
 				<div id="playerCanvas" class="battleCanvas"></div>
 				<div class="fillBars">
 					<div class="fillBar">
@@ -93,17 +93,28 @@
 		</div>
 
 		<div id ="AfterBattle">
-			<div id="afterPlayer" class="left"></div>
+			<div id="afterPlayer" class="left">
+				<h1>Character</h1>
+				<div id="playerAfterCanvas" class="afterCanvas"></div>
+				<div class="fillBars">
+					<div class="fillBar">
+						<div id="playerLustBar" class="fillBarFill">
+							<p>Arousal: <span id="playerLust">100</span></p>
+						</div>
+					</div>
+					<p>Times orgasmed: <span id="playerOrgasmCounter">0</span></p>
+				</div>
+
+			</div>
 			<div id="afterLog">
 				<h1>Sex Log</h1>
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde laborum veniam asperiores. Blanditiis molestias, itaque magnam optio dolores iusto quasi esse, voluptate tenetur incidunt aliquam, saepe obcaecati illo! Accusamus, doloribus.</p>
 			</div>
-			<div id="afterEnemy" class="right"></div>
+			<div id="afterEnemy" class="right">
+
+			</div>
 			<div id="afterBattleBtns" class="btnBar">
-				<button id="afterAttack" class="btn">Attack</button>
-				<button id="afterDefend" class="btn">Defend</button>
-				<button id="afterItem" class="btn">Item</button>
-				<button id="afterRun" class="btn">Run</button>
+
 			</div>
 		</div>
 
@@ -230,14 +241,6 @@
 			<button id="VoreBack" class="backBtn">Back</button>
 		</div>
 
-		<script type="importmap">
-			{
-				"imports": {
-					"three": "../build/three.module.js",
-					"three/addons/": "./jsm/"
-				}
-			}
-		</script>		
 		<script type="module" src="/main.js"></script>
 
 	</body>

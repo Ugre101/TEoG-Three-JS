@@ -1,4 +1,5 @@
-import { Player } from "../Player";
+import { Character } from "../Character/Character.js";
+import {Player} from "../Player.js";
 export let inBattle = false;
 
 
@@ -38,10 +39,15 @@ attack.addEventListener("click", function () {
 const battleDoc = document.getElementById("Battle");
 const freePlay = document.getElementById("FreePlay");
 const runFromBattle = document.getElementById("run");
-runFromBattle.addEventListener("click", function () {
+
+function leaveCombat() {
     battleDoc.style.display = "none";
     freePlay.style.display = "block";
     inBattle = false;
+}
+
+runFromBattle.addEventListener("click", function () {
+    leaveCombat();
 });
 
 function basicAttack(Character){

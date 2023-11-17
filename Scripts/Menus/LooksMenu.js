@@ -1,6 +1,6 @@
 import { Menu, MenuManagerInstance } from "../Menu.js";
-import { Player } from "../Player.js";
 import { metricsOrImperials } from "../Settings.js";
+import {Player} from "../Player.js";
 
 const LooksMenu = new Menu("LooksMenu");
 

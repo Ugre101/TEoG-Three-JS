@@ -1,4 +1,5 @@
-import { Player } from "./Player";
+import { Character } from "./Character/Character.js";
+import {Player} from "./Player.js";
 
 class Item {
     /**
