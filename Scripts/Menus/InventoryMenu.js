@@ -20,7 +20,7 @@ export function OpenInventoryMenu() {
 function PrintInventory() {
     const inventory = document.getElementById("InventoryBag");
     inventory.innerHTML = "";
-    for (let item of PlayerInventory.items) {
+    for (let item of PlayerInventory.invItems) {
         const itemDiv = document.createElement("div");
         itemDiv.classList.add("Item");
         itemDiv.innerHTML = `<h3>${item.name}</h3><p>${item.description}</p><p class="UpperRightNumber">${item.amount}</p>`;

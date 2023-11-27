@@ -4,6 +4,7 @@ import {Boobs} from "./SexualOrgans/Boobs.js";
 import {Stat, Stats} from "./Stats.js";
 import {EssenceDrain} from "./EssenceDrain.js";
 import {BodyStats} from "./Body/Body.js";
+import {LevelSystem} from "./LevelSystem.js";
 
 class Age {
     constructor(age) {
@@ -81,44 +82,6 @@ class Health {
     }
 }
 
-class LevelSystem {
-    constructor() {
-        this.level = 1;
-        this.exp = 0;
-        this.statPoints = 0;
-        this.perkPoints = 0;
-    }
-    neededExp() {
-        return 100 * this.level;
-    }
-    gainExp(exp) {
-        this.exp += exp;
-        while (this.exp >= this.neededExp()) {
-            this.exp -= this.neededExp();
-            this.levelUp();
-        }
-    }
-    levelUp() {
-        this.level++;
-        this.statPoints += 5;
-        this.perkPoints += 1;
-    }
-    useStatPoint() {
-        if (this.statPoints > 0) {
-            this.statPoints--;
-            return true;
-        }
-        return false;
-    }
-    usePerkPoint(cost = 1) {
-        if (this.perkPoints >= cost) {
-            this.perkPoints -= cost;
-            return true;
-        }
-        return false;
-    }
-}
-
 export class Character {
     constructor(startRace) {
         this.firstName = "Steve";
@@ -154,6 +117,43 @@ export class Character {
         from.Masc.essence -= drainAmount;
         this.Masc.essence += drainAmount;
         return drainAmount;
+    }
+
+    /**
+     * @param {Perk} perk
+     * @returns {boolean}
+     */
+    canGainPerk(perk) {
+        if (this.LevelSystem.perks.includes(perk.name)) {
+            return false;
+        }
+        for (let req of perk.requisites) {
+            if (!this.LevelSystem.perks.includes(req)) {
+                return false;
+            }
+        }
+        for (let exclusive of perk.exclusives) {
+            if (this.LevelSystem.perks.includes(exclusive)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * @param {Perk} perk
+     * @returns {boolean} success
+     */
+    tryGainPerk( perk) {
+        if(!this.canGainPerk(perk)){
+            return false;
+        }
+        if (!this.LevelSystem.usePerkPoint(perk.cost)) {
+            return false;
+        }
+        this.LevelSystem.perks.push(perk.name);
+        perk.onGain(this);
+        return true;
     }
 }
 

@@ -1,103 +1,60 @@
-import { Character } from "./Character/Character.js";
 import {Player} from "./Player.js";
-
-class Item {
-    /**
-     *
-     * @param {string} name
-     * @param {string} description
-     * @param {function} onUse
-     * @param {number} amount
-     */
-    constructor(name, description, onUse, amount = 1) {
-        this.name = name;
-        this.description = description;
-        this.amount = amount;
-        this.onUse = onUse;
-    }
-}
+import {InventoryItem} from "./Items/InventoryItem.js";
+import {ItemData} from "./Items/ItemData.js";
+import {ItemDictionary} from "./Items/ItemDictionary.js";
 
 class Inventory {
     constructor() {
-        this.items = [];
+        this.invItems = [];
     }
+
+    /**
+     *
+     * @param {ItemData} item
+     */
     addItem(item) {
-        if (item instanceof Item)
-            if (this.hasItem(item)) {
-                this.items.find(i => i.name === item.name).amount++;
-            } else this.items.push(item);
-        else console.error("Not an item");
+        if (this.hasItem(item)) {
+            this.invItems.find(i => i.name === item.name).amount++;
+        } else this.invItems.push(item);
     }
+
+    /**
+     * @param{ItemData|InventoryItem} item
+     */
     removeItem(item) {
-        if (item instanceof Item)
-            this.items.splice(this.items.indexOf(item), 1);
+        if (item instanceof InventoryItem)
+            this.invItems.splice(this.invItems.indexOf(item), 1);
         else console.error("Not an item");
     }
+
+    /**
+     * @param {ItemData|InventoryItem} item
+     * @returns {boolean}
+     */
     hasItem(item) {
-        if (item instanceof Item) {
-            for (let i of this.items) {
-                if (i.name === item.name) return true;
-            }
-            return false;
-        } else console.error("Not an item");
+        for (let i of this.invItems) {
+            if (i.name === item.name) return true;
+        }
+        return false;
     }
+
+    /**
+     * @param {ItemData|InventoryItem} item
+     * @param {Character} onCharacter
+     */
     useItem(item, onCharacter = Player) {
         if (this.hasItem(item)) {
-            item.onUse(onCharacter);
-            item.amount--;
-            if (item.amount <= 0) this.removeItem(item);
-        } else console.error("Not an item");
+            if (ItemDictionary.hasOwnProperty(item.name)) {
+                ItemDictionary[item.name].use(onCharacter);
+                item.amount--;
+            }
+            if (item.amount <= 0)
+                this.removeItem(item);
+        } else {
+            console.error("Not an item");
+        }
     }
 }
 
 export const PlayerInventory = new Inventory();
-PlayerInventory.addItem(
-    new Item("Test", "Test", onCharacter => {
-        console.log("Test " + onCharacter.firstName);
-    })
-);
-PlayerInventory.addItem(
-    new Item("Test", "Test", () => {
-        console.log("Test");
-    })
-);
-PlayerInventory.addItem(
-    new Item("T5est", "Test", () => {
-        console.log("Test");
-    })
-);
-PlayerInventory.addItem(
-    new Item("Test", "Test", () => {
-        console.log("Test");
-    })
-);
-PlayerInventory.addItem(
-    new Item("Teast", "Test", () => {
-        console.log("Test");
-    })
-);
-PlayerInventory.addItem(
-    new Item("Test", "Test", () => {
-        console.log("Test");
-    })
-);
-PlayerInventory.addItem(
-    new Item("Test2", "Test", () => {
-        console.log("Test");
-    })
-);
-PlayerInventory.addItem(
-    new Item("Test3", "Test", () => {
-        console.log("Test");
-    })
-);
-PlayerInventory.addItem(
-    new Item("Test", "Test", () => {
-        console.log("Test");
-    })
-);
-PlayerInventory.addItem(
-    new Item("Test", "Test", () => {
-        console.log("Test");
-    })
-);
+
