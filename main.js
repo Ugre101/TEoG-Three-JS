@@ -11,7 +11,8 @@ import * as LooksMenu from "./Scripts/Menus/LooksMenu";
 import * as MiniMap from "./Scripts/MiniMap";
 import * as OptionsMenu from "./Scripts/Menus/OptionsMenu";
 
-export const interactables = [];
+export const autoIntractable = [];
+export const interactable = [];
 export const container = document.getElementById("container");
 import { AnimateBattle } from "./Scripts/Battle/SetupBattle";
 import { inBattle } from "./Scripts/Battle/BattleManager";
@@ -110,8 +111,8 @@ async function loadTestAvatar(){
     await testAvatar2.LoadAndSetPos({x:4,y:-1,z:-4});
     testAvatar.obj.scale.set(1.5,1.5,1.5);
     testAvatar2.obj.scale.set(1.5,1.5,1.5);
-    interactables.push(testAvatar);
-    interactables.push(testAvatar2);
+    autoIntractable.push(testAvatar);
+    autoIntractable.push(testAvatar2);
     scene.add(testAvatar.obj);
     scene.add(testAvatar2.obj);
 }
@@ -139,7 +140,8 @@ function animate() {
 
     if (controls.isLocked === true) {
         Move(clock.getDelta());
-        playerCollisions(interactables);
+        playerCollisions(autoIntractable ,true);
+        playerCollisions(interactable, false);
     }
     renderer.render(scene, camera);
 

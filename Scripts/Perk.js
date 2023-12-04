@@ -82,6 +82,10 @@ export const TierTwoPerks = {
         character.BodyStats.fat.mods.push(new Mod(10, "Powerlifter", ModType.Percent));
     }, [TierOnePerks.Muscular.name, TierOnePerks.Fat.name]),
 
+    // Essence
+    GenderBending: new Perk("Gender bending orgasms", "", 2, "Essence", character => {
+
+    },[],[TierOnePerks.EssenceFlow.name]),
 
 };
 

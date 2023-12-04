@@ -82,12 +82,18 @@ function Jump() {
     canJump = false;
 }
 
-export function playerCollisions(intractables) {
+export function playerCollisions(intractables,auto) {
     intractables.forEach(intractable => {
         let distanceTo = controls.getObject()
             .position.distanceTo(intractable.obj.position);
         if (distanceTo < 2)
-            intractable.interact();
+        {
+            if (auto)
+                intractable.interact();
+            else{
+
+            }
+        }
     });
 }
 

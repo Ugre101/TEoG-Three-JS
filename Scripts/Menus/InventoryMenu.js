@@ -3,6 +3,7 @@ import { controls } from "../../main.js";
 import { Menu, MenuManagerInstance } from "../Menu";
 import { PlayerInventory } from "../Inventory";
 import {Player} from "../Player.js";
+import {ItemDictionary} from "../Items/ItemDictionary.js";
 
 const OpenInventoryMenuBtn = document.getElementById("OpenInventoryMenu");
 OpenInventoryMenuBtn.addEventListener("click", () => {
@@ -21,9 +22,10 @@ function PrintInventory() {
     const inventory = document.getElementById("InventoryBag");
     inventory.innerHTML = "";
     for (let item of PlayerInventory.invItems) {
+        let ItemData = ItemDictionary[item.name];
         const itemDiv = document.createElement("div");
         itemDiv.classList.add("Item");
-        itemDiv.innerHTML = `<h3>${item.name}</h3><p>${item.description}</p><p class="UpperRightNumber">${item.amount}</p>`;
+        itemDiv.innerHTML = `<h3>${ItemData.name}</h3><p>${ItemData.description}</p><p class="UpperRightNumber">${item.amount}</p>`;
         const useButton = document.createElement("button");
         useButton.innerHTML = "Use";
         useButton.addEventListener("click", () => {

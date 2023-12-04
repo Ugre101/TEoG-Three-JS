@@ -15,7 +15,7 @@ class Inventory {
     addItem(item) {
         if (this.hasItem(item)) {
             this.invItems.find(i => i.name === item.name).amount++;
-        } else this.invItems.push(item);
+        } else this.invItems.push(new InventoryItem(item.name));
     }
 
     /**
@@ -45,7 +45,7 @@ class Inventory {
     useItem(item, onCharacter = Player) {
         if (this.hasItem(item)) {
             if (ItemDictionary.hasOwnProperty(item.name)) {
-                ItemDictionary[item.name].use(onCharacter);
+                ItemDictionary[item.name].onUse(onCharacter);
                 item.amount--;
             }
             if (item.amount <= 0)
@@ -58,3 +58,5 @@ class Inventory {
 
 export const PlayerInventory = new Inventory();
 
+PlayerInventory.addItem(ItemDictionary["Coin Purse"]);
+PlayerInventory.addItem(ItemDictionary["Basic Meal"]);

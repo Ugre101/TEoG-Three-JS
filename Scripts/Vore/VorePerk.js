@@ -1,4 +1,4 @@
-import {Perk} from "../TierOnePerks.js";
+import {Perk} from "../Perk.js";
 import {Mod, ModType} from "../Character/Stats.js";
 
 export class VorePerk extends Perk{

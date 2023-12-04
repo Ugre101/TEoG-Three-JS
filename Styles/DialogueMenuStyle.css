@@ -1,0 +1,15 @@
+#dialogueMenu {
+    display: none;
+    height: 70%;
+    width: 75%;
+    background-color: #d69e78;
+    text-align: center;
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 45%;
+    border: 0.5em solid;
+    border-color: #925839;
+    padding: 1em;
+    transform: translate(-50%, -50%);
+}
