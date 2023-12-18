@@ -25,7 +25,7 @@ export function OpenLooks() {
 
 const LooksGeneralInfo= document.getElementById("LooksGeneralInfo");
 function PrintLooks() {
-    let desc = `You are ${Player.fullName} an ${Player.Age.yearsOld} years old ${Player.RaceSystem.raceName(false)}.`;
-    desc += `<br>You are ${metricsOrImperials.cmOrInches(Player.BodyStats.height)} tall and weigh ${metricsOrImperials.kgOrLbs(Player.BodyStats.weight)}.`;
+    let desc = `You are ${Player.fullName} an ${Player.Age.yearsOld} years old ${Player.RaceSystem.raceName(false)}.
+    You are ${metricsOrImperials.cmOrInches(Player.BodyStats.height.value)} tall and weigh ${metricsOrImperials.kgOrLbs(Player.BodyStats.weight)}.`;
     LooksGeneralInfo.innerHTML = desc;
-}
+}   

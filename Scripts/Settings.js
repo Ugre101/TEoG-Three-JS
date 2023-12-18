@@ -7,6 +7,12 @@ class MetricsOrImperials {
         this.metric = !this.metric;
         return this.metric;
     }
+    /**
+     * 
+     * @param {Number} value 
+     * @param {Boolean} addText 
+     * @returns 
+     */
     kgOrLbs(value, addText = true) {
         if (this.metric) {
             if (!addText) {
@@ -43,6 +49,12 @@ class MetricsOrImperials {
             return value.toFixed() + "lbs";
         }
     }
+    /**
+     * 
+     * @param {Number} value 
+     * @param {Boolean} addText 
+     * @returns 
+     */
     cmOrInches(value, addText = true) {
         if (this.metric) {
             if (!addText) {
@@ -76,6 +88,12 @@ class MetricsOrImperials {
         }
         return `${value}in`;
     }
+    /**
+     * 
+     * @param {Number} value 
+     * @param {Boolean} addText 
+     * @returns 
+     */
     lOrG(value, addText = true) {
         if (this.metric) {
             if (!addText) {
