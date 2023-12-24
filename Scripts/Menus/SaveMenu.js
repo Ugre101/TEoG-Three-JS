@@ -1,6 +1,8 @@
 import { Menu, MenuManagerInstance } from "../Menu.js";
 import { Save } from "../Save.js";
 import {LoadPlayer, Player} from "../Player.js";
+import { DormManagerInstance } from "../Dorm/DormManager.js";
+import { BuildingsManagerInstance } from "../Dorm/DormBuildings/BuildingsManager.js";
 
 const saveMenu = new Menu("SaveMenu");
 const close = document.getElementById("SaveBack");
@@ -25,7 +27,13 @@ function saveOrLoad(id) {
         MenuManagerInstance.close();
         return;
     }
-    let save = JSON.stringify(new Save(Player, new Date()));
+    let save = JSON.stringify(new Save(
+        Player, 
+        new Date(),
+        DormManagerInstance.dormMates,
+        BuildingsManagerInstance.saveBuildings(),
+        ));
+    console.log(save);
     localStorage.setItem("TEoGsave" + id, save);
     ShowSaves();
 }
@@ -110,6 +118,8 @@ fileInput.onchange = (e) => {
         let content = readerEvent.target.result; // this is the content!
         let save = JSON.parse(content);
         LoadPlayer(save.player);
+        DormManagerInstance.load(save.dormMates);
+        BuildingsManagerInstance.loadBuildings(save.dormBuildings);
         MenuManagerInstance.close();
     };
 };

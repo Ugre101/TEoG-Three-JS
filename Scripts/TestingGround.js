@@ -3,6 +3,8 @@ import {Race} from "./Character/RaceSystem.js";
 import {Player} from "./Player.js";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
 import {scene} from "../main.js";
+import { DormManagerInstance } from "./Dorm/DormManager.js";
+import { Enemy } from "./Enemy/Enemy.js";
 
 export function TestStuff(){
     let enemy = new Character(Race.Orc);
@@ -26,5 +28,15 @@ export function TestStuff(){
         console.error(error);
     });
 
+    DormManagerInstance.addDormMate(enemy);
+    let e2 = new Enemy(Race.Human);
+    DormManagerInstance.addDormMate(e2);
+
+    let save = DormManagerInstance.save();
+    console.log(save);
+    DormManagerInstance.addDormMate(e2);
+    console.log(DormManagerInstance.dormMates.length);
+    DormManagerInstance.load(JSON.parse(save));
+    console.log(DormManagerInstance.dormMates.length);
 }
 

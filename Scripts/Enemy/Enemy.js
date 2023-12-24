@@ -1,9 +1,9 @@
 import {Character} from "../Character/Character.js";
 
-class Enemy extends Character{
+export class Enemy extends Character{
     constructor(startingRace) {
         super(startingRace);
-        
+        this.isSpecial = false;
     }
 
 }

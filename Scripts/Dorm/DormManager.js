@@ -1,34 +1,37 @@
 import {Character} from "../Character/Character.js";
+import { BuildingsManagerInstance } from "./DormBuildings/BuildingsManager.js";
+import { DormMate } from "./DormMate.js";
 
 class DormManager{
     constructor(){
-        this.dorms = [];
+        this.dormMates = [];
     }
     tick(ticks){
-        for(var i = 0; i < this.dorms.length; i++){
-            this.dorms[i].tick(ticks);
+        BuildingsManagerInstance.tickBuildings(ticks, this.dormMates);
+        for(var i = 0; i < this.dormMates.length; i++){
+            this.dormMates[i].tick(ticks);
         }
     }
     addDormMate(character){
         if (character instanceof Character){
-            this.dorms.push(new DormMate(character));
+            let dormMate = new DormMate();
+            Object.assign(dormMate,character);
+            this.dormMates.push(dormMate);
         } else {
             console.warn("Not a character");
         }
     }
     removeDormMate(index){
-        if (index < this.dorms.length)
-            return this.dorms.splice(index,1);
+        if (index < this.dormMates.length)
+            return this.dormMates.splice(index,1);
+    }
+    save (){
+        return JSON.stringify(this.dormMates);
+    }
+    load (data){
+        if (!data) return;
+        this.dormMates = data;
     }
 }
 
-class DormMate{
-    constructor(character){
-        this.character = character;
-    }
-    tick(ticks){
-
-    }
-}
-
-export let Dorm = new DormManager();
+export const DormManagerInstance = new DormManager();

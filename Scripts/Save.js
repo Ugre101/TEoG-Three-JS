@@ -1,6 +1,8 @@
 export class Save {
-    constructor(player, date) {
-        this.player = player;
-        this.date = date;
+    constructor() {
+        this.player;
+        this.date;
+        this.dormMates;
+        this.dormBuildings;
     }
 }
