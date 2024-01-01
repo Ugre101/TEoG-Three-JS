@@ -143,6 +143,8 @@ export class Stats {
                 return this.wis;
             case StatType.Cha:
                 return this.cha;
+            default:
+                throw console.error("Statty type not found");
         }
     }
 

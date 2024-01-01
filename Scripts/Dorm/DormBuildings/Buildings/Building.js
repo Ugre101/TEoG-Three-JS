@@ -8,11 +8,12 @@ class BuildingData{
     }
 }
 
+
+export class Building{
 /**
  * @param {BuildingData} buildingData
  * @param {String} description
  */
-export class Building{
     constructor(buildingData, description){
         this.data = buildingData;
         this.description = description;
@@ -28,8 +29,8 @@ export class Building{
     tryUpgrade(){
         if (this.data.tier >= this.costs.length)
             return false;
-        if (PlayerWallet.tryBuy(this.costs[this.tier])){
-            this.tier++;
+        if (PlayerWallet.tryBuy(this.costs[this.data.tier])){
+            this.data.tier++;
             return true;
         }
         return false;

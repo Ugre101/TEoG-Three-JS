@@ -3,9 +3,10 @@
  * @enum {string}
  * @readonly
  */
-const SexualFluids = {
+export const SexualFluids = {
     Cum: "Cum",
     Milk: "Milk",
+    VaginalDischarge: "Vaginal discharge",
 }
 
 
@@ -28,8 +29,8 @@ export class SexualFluid {
     constructor(name) {
         this.name = name;
         this.amount = 0;
-        this.maxAmount = 0;
-        this.regenRate = 0;
+        this.maxAmount = 100;
+        this.regenRate = 1;
     }
     getDesc() {
         return SexualFluidsDesc(this.name);

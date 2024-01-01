@@ -1,4 +1,5 @@
-import { BaseOrgans } from "./BaseOrgan.js";
+import { BaseOrgans } from "./BaseOrgans.js";
+import { SexualFluids } from "./SexualFluids/SexualFluid.js";
 
 class Dick {
     constructor(size) {
@@ -7,11 +8,9 @@ class Dick {
 }
 export class Dicks extends BaseOrgans {
     constructor() {
-        super();
+        super(SexualFluids.Cum);
     }
     addDick(size) {
-        let d = new Dick(size);
-        this.List.push(d);
-        return d;
+        this.List.push(new Dick(size));
     }
 }
