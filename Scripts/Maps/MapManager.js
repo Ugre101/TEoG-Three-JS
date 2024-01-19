@@ -15,8 +15,8 @@ const dist = scale * 20;
 class Map{
     /**
      *
-     * @param textureFile
-     * @param {[{x:number,y:number}]} cords
+     * @param {string} textureFile
+     * @param {{x:number,y:number}[]} cords
      */
     constructor(textureFile, cords){
         this.texturePath =  `/Resources/${textureFile}`;
@@ -30,7 +30,6 @@ class Map{
         loader.load(this.texturePath, function (gltf) {
                 gltf.scene.position.y = -1;
                 gltf.scene.scale.set(scale, scale, scale);
-                let first = true;
                 cords.forEach(c => {
                     gltf.scene.position.x = c.x * dist;
                     gltf.scene.position.z = c.y * dist;

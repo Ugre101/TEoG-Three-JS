@@ -1,7 +1,7 @@
 import { Character } from "../../../Character/Character";
 import {PlayerWallet} from "../../../Wallet";
 
-class BuildingData{
+export class BuildingData{
     constructor(name, tier){
         this.name = name;
         this.tier = tier;

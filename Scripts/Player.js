@@ -3,7 +3,7 @@ import {Character} from "./Character/Character.js";
 import {VoreSystem} from "./Vore/VoreSystem.js";
 
 
-class PlayerClass extends Character{
+export class PlayerClass extends Character{
     constructor(Race){
         super(Race);
         this.VoreSystem = new VoreSystem();

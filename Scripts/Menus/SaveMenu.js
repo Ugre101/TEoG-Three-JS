@@ -6,12 +6,12 @@ import { BuildingsManagerInstance } from "../Dorm/DormBuildings/BuildingsManager
 
 const saveMenu = new Menu("SaveMenu");
 const close = document.getElementById("SaveBack");
-close.addEventListener("click", function () {
+close?.addEventListener("click", function () {
     MenuManagerInstance.close();
 });
 
 const openSaveMenuBtn = document.getElementById("OpenSaveMenu");
-openSaveMenuBtn.addEventListener("click", function () {
+openSaveMenuBtn?.addEventListener("click", function () {
     OpenSaveMenu();
 });
 
@@ -19,6 +19,17 @@ export function OpenSaveMenu() {
     MenuManagerInstance.open(saveMenu);
     ShowSaves();
 }
+
+function createSave(){
+    let save = JSON.stringify(new Save(
+        Player, 
+        new Date(),
+        DormManagerInstance.dormMates,
+        BuildingsManagerInstance.saveBuildings(),
+        ));
+    return save;
+}
+
 function saveOrLoad(id) {
     let hasSave = localStorage.getItem("TEoGsave" + id);
     if (hasSave) {
@@ -27,12 +38,7 @@ function saveOrLoad(id) {
         MenuManagerInstance.close();
         return;
     }
-    let save = JSON.stringify(new Save(
-        Player, 
-        new Date(),
-        DormManagerInstance.dormMates,
-        BuildingsManagerInstance.saveBuildings(),
-        ));
+    let save = createSave();
     console.log(save);
     localStorage.setItem("TEoGsave" + id, save);
     ShowSaves();
@@ -48,7 +54,7 @@ function overWriteSave(id){
     if (!confirm("Are you sure you want to overwrite this save?")) {
         return;
     }
-    let save = JSON.stringify(new Save(Player, new Date()));
+    let save = createSave();
     localStorage.setItem("TEoGsave" + id, save);
     ShowSaves();
 }
@@ -59,13 +65,12 @@ class SaveBtn {
         this.saveBtn = document.getElementById("Save" + id);
         this.clearSaveBtn = document.getElementById("ClearSave" + id);
         this.overwriteSave = document.getElementById("OverwriteSave" + id);
-        this.saveBtn.addEventListener("click", () => saveOrLoad(id));
-        this.clearSaveBtn.addEventListener("click", () => clearSave(id));
-        this.overwriteSave.addEventListener("click", () => overWriteSave(id));
+        this.saveBtn?.addEventListener("click", () => saveOrLoad(id));
+        this.clearSaveBtn?.addEventListener("click", () => clearSave(id));
+        this.overwriteSave?.addEventListener("click", () => overWriteSave(id));
     }
     showSave() {
         let save = localStorage.getItem("TEoGsave" + this.id);
-
         if (save) {
             this.saveBtn.style.display = "block";
             let date = new Date(JSON.parse(save).date);
@@ -96,9 +101,9 @@ function ShowSaves() {
 }
 
 const saveToFile = document.getElementById("SaveToFile");
-saveToFile.addEventListener("click", function () {
+saveToFile?.addEventListener("click", function () {
     // Save player to textfile
-    let save = JSON.stringify(new Save(Player, new Date()));
+    let save = createSave();
     let blob = new Blob([save], { type: "application/json" });
     let url = URL.createObjectURL(blob);
     let link = document.createElement("a");
@@ -107,19 +112,24 @@ saveToFile.addEventListener("click", function () {
     link.click();
 });
 const fileInput = document.getElementById("fileInput");
-fileInput.onchange = (e) => {
-    // getting a hold of the file reference
-    let file = e.target.files[0];
-    // setting up the reader
-    let reader = new FileReader();
-    reader.readAsText(file, "UTF-8");
-    // here we tell the reader what to do when it's done reading...
-    reader.onload = (readerEvent) => {
-        let content = readerEvent.target.result; // this is the content!
-        let save = JSON.parse(content);
-        LoadPlayer(save.player);
-        DormManagerInstance.load(save.dormMates);
-        BuildingsManagerInstance.loadBuildings(save.dormBuildings);
-        MenuManagerInstance.close();
+if (fileInput != null){
+    fileInput.onchange = (e) => {
+        // getting a hold of the file reference
+        if (e.target == null)
+            return;
+        
+        let file = e.target.files[0];
+        // setting up the reader
+        let reader = new FileReader();
+        reader.readAsText(file, "UTF-8");
+        // here we tell the reader what to do when it's done reading...
+        reader.onload = (readerEvent) => {
+            let content = readerEvent.target.result; // this is the content!
+            let save = JSON.parse(content);
+            LoadPlayer(save.player);
+            DormManagerInstance.load(save.dormMates);
+            BuildingsManagerInstance.loadBuildings(save.dormBuildings);
+            MenuManagerInstance.close();
+        };
     };
-};
+}

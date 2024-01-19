@@ -1,5 +1,3 @@
-import {exp} from "three/nodes";
-
 export class LevelSystem {
     constructor() {
         this.level = 1;

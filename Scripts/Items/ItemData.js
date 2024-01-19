@@ -1,9 +1,11 @@
+import { Character } from "../Character/Character";
+
 export class ItemData {
     /**
      *
      * @param {string} name
      * @param {string} description
-     * @param {function(Character)} onUse
+     * @param {function(Character) : void} onUse
      */
     constructor(name, description, onUse) {
         this.name = name;

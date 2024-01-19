@@ -5,6 +5,7 @@ import {Stat, Stats} from "./Stats.js";
 import {EssenceDrain} from "./EssenceDrain.js";
 import {BodyStats} from "./Body/Body.js";
 import {LevelSystem} from "./LevelSystem.js";
+import { Perk } from "../Perk.js";
 
 class Age {
     constructor(age) {

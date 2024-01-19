@@ -1,14 +1,15 @@
 import {Mod, ModType, StatType} from "./Character/Stats.js";
-
-/**
- * class Perk
- * @param {string} name
- * @param {string} description
- * @param {number} cost
- * @param {string} type
- * @param {function(Character)} onGain
- */
+import { Character } from "./Character/Character.js";
 export class Perk {
+    /**
+     * @param {string} name
+    * @param {string} description
+    * @param {number} cost
+    * @param {string} type
+    * @param {function(Character) : void} onGain
+    * @param {string[]} requisites
+    * @param {string[]} exclusives
+    */
     constructor(name, description, cost, type, onGain,requisites = [], exclusives = []) {
         this.name = name;
         this.description = description;
@@ -59,16 +60,16 @@ export const TierOnePerks = {
 
     //Essence Perks
     EssenceFlow: new Perk("Essence Flow", "You have a sense for the flow of essence.", 1, "Essence", character => {
-        character.EssenceDrain.mods.push(new Mod(10, "Essence Flow", ModType.Flat));
-        character.EssenceDrain.mods.push(new Mod(5, "Essence Flow", ModType.Percent));
+        character.EssenceDrain.drainMods.push(new Mod(10, "Essence Flow", ModType.Flat));
+        character.EssenceDrain.drainMods.push(new Mod(5, "Essence Flow", ModType.Percent));
     }),
     EssenceHoarder: new Perk("Essence Hoarder", "You're a hoarder of essence.", 1, "Essence", character => {
         character.StableEssence.mods.push(new Mod(10, "Essence Hoarder", ModType.Flat));
         character.StableEssence.mods.push(new Mod(10, "Essence Hoarder", ModType.Percent));
     }),
     EssenceThief: new Perk("Essence Thief", "You're a thief of essence.", 1, "Essence", character => {
-        character.EssenceDrain.mods.push(new Mod(5, "Essence Flow", ModType.Flat));
-        character.EssenceDrain.mods.push(new Mod(15, "Essence Flow", ModType.Percent));
+        character.EssenceDrain.drainMods.push(new Mod(5, "Essence Flow", ModType.Flat));
+        character.EssenceDrain.drainMods.push(new Mod(15, "Essence Flow", ModType.Percent));
     }),
 };
 

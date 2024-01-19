@@ -21,7 +21,7 @@ class BuildingsManager {
     }
 
     saveBuildings(){
-        const data = buildings.map(b => b.data);
+        const data = this.buildings.map(b => b.data);
         return data;
     }
     loadBuildings(data) {
