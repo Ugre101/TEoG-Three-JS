@@ -2,6 +2,7 @@ import {Player} from "./Player.js";
 import {InventoryItem} from "./Items/InventoryItem.js";
 import {ItemData} from "./Items/ItemData.js";
 import {ItemDictionary} from "./Items/ItemDictionary.js";
+import { Character } from "./Character/Character.js";
 
 class Inventory {
     constructor() {
@@ -39,7 +40,7 @@ class Inventory {
     }
 
     /**
-     * @param {ItemData|InventoryItem} item
+     * @param {InventoryItem} item
      * @param {Character} onCharacter
      */
     useItem(item, onCharacter = Player) {
