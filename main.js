@@ -102,7 +102,7 @@ console.log(MapManagerInstance.firstMap);
 MapManagerInstance.firstMap.loadTexture();
 
 
-TestStuff();
+await TestStuff();
 
 const testAvatar = new EnemyAvatar(new Character(Race.Human));
 const testAvatar2 = new CharacterAvatar(new Character(Race.Human));
@@ -115,11 +115,17 @@ async function loadTestAvatar(){
     autoIntractable.push(testAvatar2);
     scene.add(testAvatar.obj);
     scene.add(testAvatar2.obj);
+
+    let clip = testAvatar2.animationsClips["Unbirth"];
+    clip.play();
+    console.log(clip);
 }
 
 animate();
 
 await loadTestAvatar();
+
+
 
 function animate() {
     requestAnimationFrame(animate);
@@ -145,6 +151,8 @@ function animate() {
     }
     renderer.render(scene, camera);
 
+    if (testAvatar2.loaded)
+        testAvatar2.mixer.update(clock.getDelta());
     // Render the minimap every 10 frames
     frame++;
     if (frame % 10 === 0)

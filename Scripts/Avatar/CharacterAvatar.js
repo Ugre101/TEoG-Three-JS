@@ -4,6 +4,8 @@ import {SetupBattle} from "../Battle/SetupBattle";
 import {controls} from "../../main.js";
 import * as THREE from "three";
 import {AvatarMorphs, Morphs} from "./Morphs";
+import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
+
 
 export class CharacterAvatar {
     /**
@@ -16,6 +18,9 @@ export class CharacterAvatar {
         this.loaded = false;
         this.avatar = null;
         this.morphs = new AvatarMorphs();
+        this.mixer = null;
+        this.animationsClips = [];
+
     }
     interact(){
         console.log("Interacting with character");
@@ -25,9 +30,25 @@ export class CharacterAvatar {
         let loaded = await this.avatar.load();
         loaded.position.set(position.x, position.y, position.z);
         this.obj = loaded;
+        this.mixer = new THREE.AnimationMixer(loaded);
+        console.log(this.mixer);
         this.findMorphs();
+        let res = await this.findAnimations();
+        this.sortAnimations(res);
         this.loaded = true;
         return loaded;
+    }
+    async findAnimations() {
+        const loader = new GLTFLoader();
+        let res = await loader.loadAsync("/Resources/Animations/VoreAnimations2.glb");    
+        return res;
+    }
+
+    sortAnimations(gltf){
+        gltf.animations.forEach((clip) => {
+            const animationsClip = this.mixer.clipAction(clip);
+            this.animationsClips[clip.name] = animationsClip;
+        });
     }
 
     findMorphs(){

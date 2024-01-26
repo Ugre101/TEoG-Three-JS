@@ -35,6 +35,8 @@ class Avatar{
                 n.material.map.maxFilter = THREE.LinearFilter;
             }
         });
+  
+
         return res.scene;
 
     }
