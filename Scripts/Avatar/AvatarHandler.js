@@ -2,6 +2,7 @@ import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
 import {CheckGender, FemGenders, Genders, IsFeminine, MascGenders} from "../Character/Genders.js";
 import {Race} from "../Character/RaceSystem.js";
 import * as THREE from "three";
+import { Character } from "../Character/Character.js";
 
 class Avatar{
     /**

@@ -1,3 +1,5 @@
+import { Character } from "./Character";
+
 export const Genders = {
     Doll: "Doll",
     Male: "Male",
@@ -30,10 +32,8 @@ export const FemGenders = [Genders.Dickgirl,Genders.Female,Genders.Futanari];
 export const MascGenders = [Genders.Male,Genders.Doll,Genders.Malefuta, Genders.Cuntboy];
 
 /**
- *
  * @param {Character} char
  * @returns {boolean} true is feminine or false if masculine
- * @constructor
  */
 export function  IsFeminine(char){
     let gender = CheckGender(char);
