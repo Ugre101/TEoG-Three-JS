@@ -1,3 +1,5 @@
+import { InDialogue } from "./Dialogue/DialogueMenu";
+
 export class Menu{
     constructor(id){
         this.obj = document.getElementById(id);
@@ -16,11 +18,17 @@ class MenuManager{
         this.isOpen = false;
     }
     open(menu){
+
+        if (InDialogue()){
+            return false;
+        }
+
         if (this.isOpen)
             this.currentMenu.close();
         this.currentMenu = menu;
         this.isOpen = true;
         this.currentMenu.open();
+        return true;
     }
     close(){
         this.currentMenu.close();

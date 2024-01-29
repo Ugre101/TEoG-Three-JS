@@ -7,6 +7,8 @@ import {scene} from "../main.js";
 import { DormManagerInstance } from "./Dorm/DormManager.js";
 import { Enemy } from "./Enemy/Enemy.js";
 import { EnemyAvatar } from "./Enemy/EnemyAvatar.js";
+import { startDialogue } from "./Dialogue/DialogueMenu.js";
+import { testDialogue } from "./Dialogue/TestDialogue.js";
 
 export async function TestStuff(){
     let enemy = new Character(Race.Human);
@@ -17,8 +19,7 @@ export async function TestStuff(){
 
     const loader = new GLTFLoader();
 
-
-
+    startDialogue(testDialogue);
     /*
     let mixer;
     const AnimationClips = [];

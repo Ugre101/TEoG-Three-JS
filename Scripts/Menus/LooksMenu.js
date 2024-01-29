@@ -19,8 +19,8 @@ function CloseLooks() {
 }
 
 export function OpenLooks() {
-    MenuManagerInstance.open(LooksMenu);
-    PrintLooks();
+    if (MenuManagerInstance.open(LooksMenu))
+        PrintLooks();
 }
 
 const LooksGeneralInfo= document.getElementById("LooksGeneralInfo");

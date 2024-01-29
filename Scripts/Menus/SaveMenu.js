@@ -16,7 +16,8 @@ openSaveMenuBtn?.addEventListener("click", function () {
 });
 
 export function OpenSaveMenu() {
-    MenuManagerInstance.open(saveMenu);
+    if (!MenuManagerInstance.open(saveMenu))
+        return;
     ShowSaves();
 }
 

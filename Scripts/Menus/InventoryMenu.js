@@ -13,7 +13,8 @@ OpenInventoryMenuBtn.addEventListener("click", () => {
 const InventoryMenu = new Menu("InventoryMenu");
 
 export function OpenInventoryMenu() {
-    MenuManagerInstance.open(InventoryMenu);
+    if (!MenuManagerInstance.open(InventoryMenu))
+        return;
     controls.unlock();
     PrintInventory();
 }

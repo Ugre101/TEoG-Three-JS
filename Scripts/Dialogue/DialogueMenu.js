@@ -1,6 +1,8 @@
 import {Dialogue} from "./Dialogue.js";
 
-
+export function InDialogue() {
+    return dialogueMenu.style.display === "block";
+}
 
 const dialogueMenu = document.getElementById("dialogueMenu");
 const dialogueText = document.getElementById("dialogueText");

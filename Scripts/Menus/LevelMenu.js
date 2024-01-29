@@ -9,7 +9,8 @@ LevelMenuBtn.addEventListener("click", () => {
     OpenLevelMenu();
 });
 export function OpenLevelMenu() {
-    MenuManagerInstance.open(LevelMenu);
+    if (!MenuManagerInstance.open(LevelMenu))
+        return;
     levelPerks.style.display = "block";
     levelStats.style.display = "none";
 

@@ -14,7 +14,8 @@ OptionsBack.addEventListener("click", function () {
 });
 
 export function OpenOptions() {
-    MenuManagerInstance.open(OptionsMenu);
+    if (!MenuManagerInstance.open(OptionsMenu))
+        return;
     VoreToggle.innerHTML = "Vore enabled: " + voreSettings.enabled;
 }
 

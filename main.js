@@ -23,6 +23,7 @@ import {Morphs} from "./Scripts/Avatar/Morphs";
 import {MapManagerInstance} from "./Scripts/Maps/MapManager";
 import {EnemyAvatar} from "./Scripts/Enemy/EnemyAvatar.js";
 import {TestStuff} from "./Scripts/TestingGround.js";
+import { InDialogue } from "./Scripts/Dialogue/DialogueMenu.js";
 
 export function containerSize() {
     return {
@@ -118,7 +119,6 @@ async function loadTestAvatar(){
 
     let clip = testAvatar2.animationsClips["Unbirth"];
     clip.play();
-    console.log(clip);
 }
 
 animate();
@@ -136,6 +136,10 @@ function animate() {
 
     // If a menu is open, pause everything below this point
     if (MenuManagerInstance.isOpen){
+        return;
+    }
+
+    if (InDialogue()){
         return;
     }
 
