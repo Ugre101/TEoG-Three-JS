@@ -1,12 +1,14 @@
 import {PlayerInventory} from "../Inventory.js";
 import {PlayerWallet} from "../Wallet.js";
 import {Player} from "../Player.js";
+import { ItemData } from "../Items/ItemData.js";
+import { ItemDictionary } from "../Items/ItemDictionary.js";
 
 class QuestReward{
     /**
      * @param {number} gold
      * @param {number} exp
-     * @param {Item[]} items
+     * @param {ItemData[]} items
      */
     constructor(gold, exp, items = []) {
         this.gold = gold;
@@ -42,7 +44,7 @@ class Quest {
 }
 
 const QuestDict = {
-    1: new Quest(1, "Test Quest", "Test Quest Description", () => true, new QuestReward(100, 100))
+    1: new Quest(1, "Test Quest", "Test Quest Description", () => true, new QuestReward(100, 100, [ItemDictionary["Growth Potion"]]), 1),
 };
 
 
@@ -82,3 +84,4 @@ class QuestManager{
 
 }
 
+export const PlayerQuestManager = new QuestManager();

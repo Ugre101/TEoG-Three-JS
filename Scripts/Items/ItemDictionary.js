@@ -1,6 +1,9 @@
 import {ItemData} from "./ItemData.js";
 import {PlayerWallet} from "../Wallet.js";
 
+/**
+ * @type {Object<string, ItemData>} ItemDictionary
+ */
 export const ItemDictionary = {
     "Growth Potion": new ItemData("Growth Potion", "A potion that makes you grow.", character => {
         character.BodyStats.height.baseValue += 5;
