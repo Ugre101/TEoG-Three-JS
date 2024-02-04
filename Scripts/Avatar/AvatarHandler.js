@@ -43,6 +43,7 @@ class Avatar{
     }
 }
 
+
 class AvatarHandler{
     constructor(avatars) {
         this.default = new Avatar(Race.Humanoid,Genders.Doll,"/Resources/Characters/Doll.glb");
@@ -81,5 +82,7 @@ class AvatarHandler{
 
 }
 
-export const AvatarManager = new AvatarHandler([new Avatar(Race.Human,Genders.Futanari,'/Resources/Characters/HumanFemaleFuta.glb')]);
+import humanUrl from '/Resources/Characters/HumanFemaleFuta.glb?url';
+
+export const AvatarManager = new AvatarHandler([new Avatar(Race.Human,Genders.Futanari, humanUrl)]);
 

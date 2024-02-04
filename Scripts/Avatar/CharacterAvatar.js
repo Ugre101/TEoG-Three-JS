@@ -6,6 +6,7 @@ import * as THREE from "three";
 import {AvatarMorphs, Morphs} from "./Morphs";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
 
+import animationUrl from '/Resources/Animations/VoreAnimations2.glb?url';
 
 export class CharacterAvatar {
     /**
@@ -40,7 +41,7 @@ export class CharacterAvatar {
     }
     async findAnimations() {
         const loader = new GLTFLoader();
-        let res = await loader.loadAsync("/Resources/Animations/VoreAnimations2.glb");    
+        let res = await loader.loadAsync(animationUrl);    
         return res;
     }
 

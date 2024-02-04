@@ -3,10 +3,11 @@ import {addMiniMapObject} from "../MiniMap";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
 
 
+import grassUrl from '/Resources/Forest Grass.glb?url';
 
 class MapManager{
     constructor() {
-        this.firstMap = new Map("Forest Grass.glb",[{x:0,y:0},{x:1,y:0},{x:2,y:0},{x:-1,y:0},{x:0,y:1},{x:0,y:-1}]);
+        this.firstMap = new Map(grassUrl,[{x:0,y:0},{x:1,y:0},{x:2,y:0},{x:-1,y:0},{x:0,y:1},{x:0,y:-1}]);
     }
 }
 const scale = 5;
@@ -19,7 +20,7 @@ class Map{
      * @param {{x:number,y:number}[]} cords
      */
     constructor(textureFile, cords){
-        this.texturePath =  `/Resources/${textureFile}`;
+        this.texturePath =  textureFile;
         this.cords = cords;
     }
 

@@ -68,8 +68,19 @@ const backUrls = [
     backPath + "pz" + backFormat,
     backPath + "nz" + backFormat,
 ];
+import px from '/Resources/ForestBackground/px.jpg';
+import nx from '/Resources/ForestBackground/nx.jpg';
+import py from '/Resources/ForestBackground/py.jpg';
+import ny from '/Resources/ForestBackground/ny.jpg';
+import pz from '/Resources/ForestBackground/pz.jpg';
+import nz from '/Resources/ForestBackground/nz.jpg';
 
-const backTextureCube = new THREE.CubeTextureLoader().load(backUrls);
+const testUrls = [px, nx, py, ny, pz, nz];
+const backTextureCube = new THREE.CubeTextureLoader().load(testUrls, (onLoad) => {
+    onLoad.images.forEach((image) => {
+        image.crossOrigin = "anonymous";
+    });    
+});
 scene.background = backTextureCube;
 
 scene.fog = new THREE.Fog(0x686868, 0, 75);
@@ -103,7 +114,7 @@ console.log(MapManagerInstance.firstMap);
 MapManagerInstance.firstMap.loadTexture();
 
 
-await TestStuff();
+// await TestStuff();
 
 const testAvatar = new EnemyAvatar(new Character(Race.Human));
 const testAvatar2 = new CharacterAvatar(new Character(Race.Human));
