@@ -19,6 +19,10 @@ export class Perk {
         this.requisites = requisites;
         this.exclusives = exclusives;
     }
+
+    get title () {
+        return this.name.replace(/(?<!^)([A-Z])/g, ' $1');
+    }
 }
 
 export const TierOnePerks = {
@@ -59,22 +63,22 @@ export const TierOnePerks = {
     }),
 
     //Essence Perks
-    EssenceFlow: new Perk("Essence Flow", "You have a sense for the flow of essence.", 1, "Essence", character => {
+    EssenceFlow: new Perk("EssenceFlow", "You have a sense for the flow of essence.", 1, "Essence", character => {
         character.EssenceDrain.drainMods.push(new Mod(10, "Essence Flow", ModType.Flat));
         character.EssenceDrain.drainMods.push(new Mod(5, "Essence Flow", ModType.Percent));
     }),
-    EssenceHoarder: new Perk("Essence Hoarder", "You're a hoarder of essence.", 1, "Essence", character => {
+    EssenceHoarder: new Perk("EssenceHoarder", "You're a hoarder of essence.", 1, "Essence", character => {
         character.StableEssence.mods.push(new Mod(10, "Essence Hoarder", ModType.Flat));
         character.StableEssence.mods.push(new Mod(10, "Essence Hoarder", ModType.Percent));
     }),
-    EssenceThief: new Perk("Essence Thief", "You're a thief of essence.", 1, "Essence", character => {
+    EssenceThief: new Perk("EssenceThief", "You're a thief of essence.", 1, "Essence", character => {
         character.EssenceDrain.drainMods.push(new Mod(5, "Essence Flow", ModType.Flat));
         character.EssenceDrain.drainMods.push(new Mod(15, "Essence Flow", ModType.Percent));
     }),
 };
 
 export const TierTwoPerks = {
-    FitnessFreak: new Perk("Fitness Freak", "You're a fitness freak.", 1, "Stat", character => {
+    FitnessFreak: new Perk("FitnessFreak", "You're a fitness freak.", 1, "Stat", character => {
         character.BodyStats.muscle.mods.push(new Mod(10, "Fitness Freak", ModType.Percent));
         character.BodyStats.fat.mods.push(new Mod(-10, "Fitness Freak", ModType.Percent));
     }, [TierOnePerks.Muscular.name, TierOnePerks.Skinny.name]),
@@ -84,7 +88,7 @@ export const TierTwoPerks = {
     }, [TierOnePerks.Muscular.name, TierOnePerks.Fat.name]),
 
     // Essence
-    GenderBending: new Perk("Gender bending orgasms", "", 2, "Essence", character => {
+    GenderBending: new Perk("GenderBending", "", 2, "Essence", character => {
 
     },[],[TierOnePerks.EssenceFlow.name]),
 

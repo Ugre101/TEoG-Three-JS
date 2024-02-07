@@ -114,7 +114,7 @@ console.log(MapManagerInstance.firstMap);
 MapManagerInstance.firstMap.loadTexture();
 
 
-// await TestStuff();
+await TestStuff();
 
 const testAvatar = new EnemyAvatar(new Character(Race.Human));
 const testAvatar2 = new CharacterAvatar(new Character(Race.Human));

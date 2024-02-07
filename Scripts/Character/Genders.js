@@ -1,5 +1,7 @@
 import { Character } from "./Character";
-
+/**
+ * @enum {string} Genders
+ */
 export const Genders = {
     Doll: "Doll",
     Male: "Male",
@@ -17,15 +19,21 @@ export const Genders = {
  * @returns {string} gender
  */
 export function CheckGender(character) {
-    let hasDick = character.Dicks.List.length > 0;
-    let hasBreasts = character.Boobs.List.length > 0;
+    const hasDick = character.Dicks.List.length > 0;
+    const hasBreasts = character.Boobs.List.length > 0;
+    const hasPussy = false;
+
     if (hasDick) {
-        if (hasBreasts) return Genders.Dickgirl;
-        return Genders.Male;
+        if (hasPussy){
+            return hasBreasts ? Genders.Futanari : Genders.Malefuta;
+        }
+        return hasBreasts ? Genders.Dickgirl : Genders.Male;
     }
     if (hasBreasts) {
         return Genders.Female;
     }
+    if (hasPussy)
+        return Genders.Cuntboy;
     return Genders.Doll;
 }
 export const FemGenders = [Genders.Dickgirl,Genders.Female,Genders.Futanari];

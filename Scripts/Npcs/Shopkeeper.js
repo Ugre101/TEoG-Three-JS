@@ -1,10 +1,11 @@
+import { ItemData } from "../Items/ItemData.js";
 import {ItemDictionary} from "../Items/ItemDictionary.js";
 
 export class Shopkeeper{
     /**
      *
      * @param {String} title
-     * @param {[ItemData]} salesItems
+     * @param {ItemData[]} salesItems
      * @param {String} description
      */
     constructor(title,salesItems,description){
