@@ -1,9 +1,10 @@
+import { BaseOrgan } from "./BaseOrgan.js";
 import { BaseOrgans } from "./BaseOrgans.js";
 import { SexualFluids } from "./SexualFluids/SexualFluid.js";
 
-class Boob {
-    constructor(size){
-        this.size = size;
+class Boob extends BaseOrgan{
+    constructor(size: number){
+        super(size);
     }
 
 }

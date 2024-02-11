@@ -1,17 +1,12 @@
 
-/**
- * @enum {string}
- * @readonly
- */
-export const SexualFluids = {
-    Cum: "Cum",
-    Milk: "Milk",
-    VaginalDischarge: "Vaginal discharge",
+export enum SexualFluids {
+    Cum = "Cum",
+    Milk = "Milk",
+    VaginalDischarge = "Vaginal discharge",
 }
 
 
-
-function SexualFluidsDesc(name) {
+function SexualFluidsDesc(name: SexualFluids) {
     switch (name) {
         case SexualFluids.Cum:
             return "Cum";
@@ -22,25 +17,22 @@ function SexualFluidsDesc(name) {
 }
 
 export class SexualFluid {
-    /**
-     * 
-     * @param {SexualFluids} name 
-     */
-    constructor(name) {
+    name:SexualFluids;
+    amount: number = 0;
+    maxAmount: number = 100;
+    regenRate: number = 1;
+    constructor(name: SexualFluids) {
         this.name = name;
-        this.amount = 0;
-        this.maxAmount = 100;
-        this.regenRate = 1;
     }
     getDesc() {
         return SexualFluidsDesc(this.name);
     }
-    tick(ticks) {
+    tick(ticks: number) {
         if (this.amount < this.maxAmount) {
             this.amount += this.regenRate * ticks;
         }
     }
-    refill(amount){
+    refill(amount:number) : number{
         let overflow = 0;
         this.amount += amount;
         if (this.amount > this.maxAmount){
@@ -49,7 +41,7 @@ export class SexualFluid {
         }
         return overflow;
     }
-    release(percent){
+    release(percent: number) : number {
         let tryRelease = this.maxAmount * percent;
         if (tryRelease > this.amount){
             tryRelease = this.amount;

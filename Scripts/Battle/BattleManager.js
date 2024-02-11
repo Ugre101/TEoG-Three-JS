@@ -1,4 +1,4 @@
-import { Character } from "../Character/Character.js";
+import { Character } from "../Character/Character.ts";
 import {Player} from "../Player.js";
 export let inBattle = false;
 

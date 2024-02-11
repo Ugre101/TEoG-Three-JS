@@ -1,33 +1,24 @@
-/**
- * @enum {string}
- */
-export const ModType = {
-    Flat: "Flat",
-    Percent: "Percent",
+
+export enum ModType {
+    Flat = "Flat",
+    Percent = "Percent",
 };
 
+export enum StatType {
+    Str = "Strength",
+    Dex = "Dexterity",
+    Con = "Constitution",
+    Int = "Intelligence",
+    Wis = "Wisdom",
+    Cha = "Charisma",
+}
 
-/**
- * @enum {string}
- */
-export const StatType = {
-    Str: "Strength",
-    Dex: "Dexterity",
-    Con: "Constitution",
-    Int: "Intelligence",
-    Wis: "Wisdom",
-    Cha: "Charisma",
-};
-
-
-/**
- * @class Mod
- * @property {number} value
- * @property {string} from
- * @property {ModType} type
- */
 export class Mod {
-    constructor(value = 1, from, type = ModType.Flat) {
+    value: number;
+    from: string;
+    type: ModType;
+
+    constructor(value = 1, from: string, type = ModType.Flat) {
         this.value = value;
         this.from = from;
         this.type = type;
@@ -35,78 +26,57 @@ export class Mod {
 }
 
 export class StatMod extends Mod {
-    /**
-     *
-     * @param {number} value
-     * @param {string} from
-     * @param {StatType} statType
-     */
-    constructor(value = 1, from, statType) {
+    stat: StatType;
+    constructor(value: number = 1, from: string, statType: StatType) {
         super(value, from);
         this.stat = statType;
     }
 }
 
-/**
- * @class Stat
- * @property {number} baseValue
- * @property {Mod[]} mods
- */
 export class Stat {
-    #_lastValue;
-    #_dirty;
-    constructor(value = 5) {
+    private _lastValue: number;
+    private _dirty: boolean;
+    public baseValue: number;
+    public mods: Mod[] = [];
+
+    constructor(value: number = 5) {
         this.baseValue = value;
-        this.mods = [];
     }
 
-    Value() {
-        if (this.#_dirty) {
-            this.#_lastValue = this.baseValue;
+    Value() : number {
+        if (this._dirty) {
+            this._lastValue = this.baseValue;
             let flatMods = this.mods.filter(mod => mod.type === ModType.Flat);
-            this.#_lastValue += flatMods.reduce((acc, mod) => acc + mod.value, 0);
+            this._lastValue += flatMods.reduce((acc, mod) => acc + mod.value, 0);
             let percentMods = this.mods.filter(mod => mod.type === ModType.Percent);
-            this.#_lastValue *= 1 + percentMods.reduce((acc, mod) => acc + (this.baseValue * mod.value) / 100, 0);
-            this.#_dirty = false;
+            this._lastValue *= 1 + percentMods.reduce((acc, mod) => acc + (this.baseValue * mod.value) / 100, 0);
+            this._dirty = false;
         }
-        return this.#_lastValue;
+        return this._lastValue;
     }
 
-    /**
-     * @param {number} value
-     */
-    increase(value = 1) {
+    increase(value: number = 1) {
         this.baseValue += value;
-        this.dirty = true;
+        this._dirty = true;
     }
 
-    /**
-     * @param {number} value
-     */
-    decrease(value) {
+    decrease(value: number) {
         this.baseValue -= value;
-        this.dirty = true;
+        this._dirty = true;
     }
 
-    /**
-     * @param {Mod} mod
-     */
-    addMod(mod) {
+    addMod(mod: Mod) {
         if (mod instanceof Mod) {
             this.mods.push(mod);
-            this.dirty = true;
+            this._dirty = true;
         } else console.error("Not a mod");
     }
 
-    /**
-     * @param {string} from
-     * @returns {boolean}
-     */
-    removeMod(from) {
+    removeMod(from: string): boolean {
         for (let mod of this.mods) {
             if (mod.from === from) {
                 this.mods.splice(this.mods.indexOf(mod), 1);
-                this.dirty = true;
+                this._dirty = true;
                 return true;
             }
         }
@@ -116,6 +86,13 @@ export class Stat {
 
 
 export class Stats {
+    str: Stat;
+    dex: Stat;
+    con: Stat;
+    int: Stat;
+    wis: Stat;
+    cha: Stat;
+
     constructor(str = 5, dex = 5, con = 5, int = 5, wis = 5, cha = 5) {
         this.str = new Stat(str);
         this.dex = new Stat(dex);
@@ -125,11 +102,7 @@ export class Stats {
         this.cha = new Stat(cha);
     }
 
-    /**
-     * @param {StatType} statType
-     * @returns {Stat}
-     */
-    getStatByType(statType) {
+    getStatByType(statType: StatType): Stat {
         switch (statType) {
             case StatType.Str:
                 return this.str;
@@ -148,10 +121,7 @@ export class Stats {
         }
     }
 
-    /**
-     * @param {Mod} mod
-     */
-    addStatMod(mod) {
+    addStatMod(mod: Mod) {
         if (mod instanceof StatMod) {
             this.getStatByType(mod.stat).addMod(mod);
         } else {

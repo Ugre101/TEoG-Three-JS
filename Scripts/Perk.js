@@ -1,5 +1,5 @@
-import {Mod, ModType, StatType} from "./Character/Stats.js";
-import { Character } from "./Character/Character.js";
+import {Mod, ModType, StatType} from "./Character/Stats.ts";
+import { Character } from "./Character/Character.ts";
 export class Perk {
     /**
      * @param {string} name

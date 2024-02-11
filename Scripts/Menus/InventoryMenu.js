@@ -1,4 +1,4 @@
-import { Character } from "../Character/Character.js";
+import { Character } from "../Character/Character.ts";
 import { controls } from "../../main.js";
 import { Menu, MenuManagerInstance } from "../Menu";
 import { PlayerInventory } from "../Inventory";

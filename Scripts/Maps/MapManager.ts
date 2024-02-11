@@ -1,24 +1,20 @@
 import {scene} from "../../main.js";
-import {addMiniMapObject} from "../MiniMap";
+import {addMiniMapObject} from "../MiniMap.js";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
 
 
 import grassUrl from '/Resources/Forest Grass.glb?url';
 
 class MapManager{
-    constructor() {
-        this.firstMap = new Map(grassUrl,[{x:0,y:0},{x:1,y:0},{x:2,y:0},{x:-1,y:0},{x:0,y:1},{x:0,y:-1}]);
-    }
+    firstMap:Map = new Map(grassUrl,[{x:0,y:0},{x:1,y:0},{x:2,y:0},{x:-1,y:0},{x:0,y:1},{x:0,y:-1}]);
 }
 const scale = 5;
 const dist = scale * 20;
 
 class Map{
-    /**
-     *
-     * @param {string} textureFile
-     * @param {{x:number,y:number}[]} cords
-     */
+    texturePath:string;
+    cords:{x:number,y:number}[];
+
     constructor(textureFile, cords){
         this.texturePath =  textureFile;
         this.cords = cords;

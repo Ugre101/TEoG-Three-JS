@@ -1,10 +1,11 @@
-import {CharacterAvatar} from "../Avatar/CharacterAvatar.js";
+import {CharacterAvatar} from "../Avatar/CharacterAvatar.ts";
 import {controls} from "../../main.js";
 import {SetupBattle} from "../Battle/SetupBattle.js";
 
 export class EnemyAvatar extends CharacterAvatar{
-    interact(){
+    interact() {
         controls.unlock();
         SetupBattle( [this.character]);
-        this.obj.position.x += 3;    }
+        this.obj.position.x += 3;    
+    }
 }

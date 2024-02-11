@@ -1,24 +1,15 @@
-import { BaseOrgan } from "./BaseOrgan";
-import { SexualFluid,SexualFluids } from "./SexualFluids/SexualFluid";
+import { BaseOrgan } from "./BaseOrgan.js";
+import { SexualFluid,SexualFluids } from "./SexualFluids/SexualFluid.js";
 
 
 export class BaseOrgans {
-    /**
-     * @param {SexualFluids} sexualFluid
-     */
-    constructor(sexualFluid) {
-        /**
-         * @property {BaseOrgan[]} List
-         */
-        this.List = [];
+    List: BaseOrgan[] = [];
+    Fluid: SexualFluid;
+    constructor(sexualFluid: SexualFluids) {
         this.Fluid = new SexualFluid(sexualFluid);
     }
    
-    /**
-     * @param {number} index
-     * @returns {boolean} if an organ was removed
-     */
-    remove(index) {
+    remove(index: number): boolean {
         if (this.List.length > index) {
             this.List.splice(index, 1);
             return true;
@@ -28,7 +19,7 @@ export class BaseOrgans {
     removeSmallest() {
         let indexSmallest = -1;
         for (let i = 0; i < this.List.length; i++) {
-            if (indexSmallest === -1 || this.List[i].size < this.List[indexSmallest].size) {
+            if (indexSmallest === -1 || this.List[i].Value() < this.List[indexSmallest].Value()) {
                 indexSmallest = i;
             }
         }
@@ -38,18 +29,18 @@ export class BaseOrgans {
     }
     getBiggest() {
         return this.List.reduce((prev, current) => {
-            return (prev && prev.size > current.size) ? prev : current;
+            return (prev && prev.Value() > current.Value()) ? prev : current;
         });
     }
     getTotalSize() {
         return this.List.reduce((prev, current) => {
-            return prev + current.size;
+            return prev + current.Value();
         }, 0);
     }
     getFuidPercent() {
         return this.Fluid.amount / this.Fluid.maxAmount;
     }
-    releaseFluid(percent) {
+    releaseFluid(percent: number) {
         return this.Fluid.release(percent) * this.getTotalSize();
     }
 }

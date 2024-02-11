@@ -1,3 +1,4 @@
+import { Perk } from "../Perk";
 
 /**
  * @class LevelSystem
@@ -21,6 +22,9 @@ export class LevelSystem {
         return 100 * this.level;
     }
 
+    /**
+     * @param {number} exp 
+     */
     gainExp(exp) {
         this.exp += exp;
         while (this.exp >= this.neededExp()) {
@@ -50,10 +54,5 @@ export class LevelSystem {
         }
         return false;
     }
-
-    addPerk(perk) {
-        this.perks.push(perk);
-    }
-
 }
 

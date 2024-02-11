@@ -1,5 +1,5 @@
 import {Race} from "./Character/RaceSystem.js";
-import {Character} from "./Character/Character.js";
+import {Character} from "./Character/Character.ts";
 import {VoreSystem} from "./Vore/VoreSystem.js";
 
 

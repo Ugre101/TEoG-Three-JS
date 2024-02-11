@@ -2,16 +2,13 @@ import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
 import {CheckGender, FemGenders, Genders, IsFeminine, MascGenders} from "../Character/Genders.js";
 import {Race} from "../Character/RaceSystem.js";
 import * as THREE from "three";
-import { Character } from "../Character/Character.js";
+import { Character } from "../Character/Character.ts";
 
-class Avatar{
-    /**
-     *
-     * @param {Race} race
-     * @param gender
-     * @param path
-     */
-    constructor(race,gender,path) {
+export class Avatar{
+    public race: Race;
+    public gender: Genders;
+    public path: string;
+    constructor(race: Race,gender: Genders,path: string) {
         this.race = race;
         this.gender = gender;
         this.path = path;
@@ -45,28 +42,27 @@ class Avatar{
 
 
 class AvatarHandler{
-    constructor(avatars) {
-        this.default = new Avatar(Race.Humanoid,Genders.Doll,"/Resources/Characters/Doll.glb");
+    public default: Avatar = new Avatar(Race.Humanoid,Genders.Doll,"/Resources/Characters/Doll.glb");
+    public avatars: Avatar[];
+    constructor(avatars: Avatar[]) {
         this.avatars = avatars;
     }
 
-    /**
-     *
-     * @param {Character} character
-     * @returns {Avatar} closest avatar to the character
-     */
-    getAvatar(character){
+    getAvatar(character: Character): Avatar{
         const race = character.RaceSystem.Race;
         const gender = CheckGender(character);
-        const bestMatches = this.avatars.filter(a => a.race === race);
+        let bestMatches = this.avatars.filter(a => a.race === race);
         if (bestMatches.length <= 0) {
             return this.default;
         }
         if (bestMatches.length === 1) {
             return bestMatches[0];
-        } else if (bestMatches.includes(c => c.gender === gender)) {
-            return bestMatches.find(c => c.gender === gender);
+        } 
+        let bestGenderMatches = bestMatches.filter(a => a.gender === gender);
+        if (bestGenderMatches.length === 1) {
+            return bestGenderMatches[0];
         }
+
         const isFem = IsFeminine(character);
         if (isFem) {
             const fems =  bestMatches.filter(a => FemGenders.includes(a.gender));

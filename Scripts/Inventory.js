@@ -2,7 +2,7 @@ import {Player} from "./Player.js";
 import {InventoryItem} from "./Items/InventoryItem.js";
 import {ItemData} from "./Items/ItemData.js";
 import {ItemDictionary} from "./Items/ItemDictionary.js";
-import { Character } from "./Character/Character.js";
+import { Character } from "./Character/Character.ts";
 
 class Inventory {
     constructor() {

@@ -1,4 +1,4 @@
-import { StatType } from "../Character/Stats.js";
+import { StatType } from "../Character/Stats.ts";
 import { MenuManagerInstance, Menu } from "../Menu";
 import {Player} from "../Player.js";
 

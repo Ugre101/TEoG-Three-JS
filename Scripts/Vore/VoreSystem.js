@@ -1,4 +1,4 @@
-import {Stat} from "../Character/Stats.js";
+import {Stat} from "../Character/Stats.ts";
 
 class VoreSettings {
     constructor() {

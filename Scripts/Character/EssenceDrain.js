@@ -1,4 +1,4 @@
-import { Mod } from "./Stats.js";
+import { Mod } from "./Stats.ts";
 
 export class EssenceDrain {
     constructor(baseDrain) {

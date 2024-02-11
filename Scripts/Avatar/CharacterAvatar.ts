@@ -1,43 +1,39 @@
-import {AvatarManager} from "./AvatarHandler";
-import {Character} from "../Character/Character.js";
-import {SetupBattle} from "../Battle/SetupBattle";
-import {controls} from "../../main.js";
+import {Avatar, AvatarManager} from "./AvatarHandler.ts";
 import * as THREE from "three";
-import {AvatarMorphs, Morphs} from "./Morphs";
+import {AvatarMorphs, Morphs} from "./Morphs.js";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
 
 import animationUrl from '/Resources/Animations/VoreAnimations2.glb?url';
+import { Character } from "../Character/Character.ts";
 
 export class CharacterAvatar {
-    /**
-     *
-     * @param {Character} character
-     */
-    constructor(character) {
+    public character: Character;
+    public obj: any;
+    public loaded: boolean = false;
+    public avatar: Avatar;
+    public morphs: AvatarMorphs = new AvatarMorphs();
+    public mixer: THREE.AnimationMixer;
+    public animationsClips: THREE.AnimationClip[] = [];
+    constructor(character: Character) {
         this.character = character;
-        this.obj = null;
-        this.loaded = false;
-        this.avatar = null;
         this.morphs = new AvatarMorphs();
-        this.mixer = null;
-        this.animationsClips = [];
 
     }
     interact(){
         console.log("Interacting with character");
     }
-    async LoadAndSetPos(position) {
+    async LoadAndSetPos(position: { x: number; y: number; z: number}) {
         this.avatar = AvatarManager.getAvatar(this.character);
-        let loaded = await this.avatar.load();
-        loaded.position.set(position.x, position.y, position.z);
-        this.obj = loaded;
-        this.mixer = new THREE.AnimationMixer(loaded);
+        let loadedAvatar = await this.avatar.load();
+        loadedAvatar.position.set(position.x, position.y, position.z);
+        this.obj = loadedAvatar;
+        this.mixer = new THREE.AnimationMixer(loadedAvatar);
         console.log(this.mixer);
         this.findMorphs();
         let res = await this.findAnimations();
         this.sortAnimations(res);
         this.loaded = true;
-        return loaded;
+        return loadedAvatar;
     }
     async findAnimations() {
         const loader = new GLTFLoader();
@@ -46,7 +42,7 @@ export class CharacterAvatar {
     }
 
     sortAnimations(gltf){
-        gltf.animations.forEach((clip) => {
+        gltf.animations.forEach((clip:THREE.AnimationClip) => {
             const animationsClip = this.mixer.clipAction(clip);
             this.animationsClips[clip.name] = animationsClip;
         });

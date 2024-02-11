@@ -1,16 +1,14 @@
 import { Stat } from "../Stats";
 import { SexualFluids } from "./SexualFluids/SexualFluid";
 
+
 export class BaseOrgan extends Stat{
-    constructor(size){
+    
+    constructor(size: number){
         super(size);
     }
-
-    /**
-     * @param {number} by
-     * @returns {boolean} if value is zero or less
-     */
-    decrease(by){
+    
+    decrease(by: number): boolean{
         super.decrease(by);
         return this.baseValue <= 0;
     }

@@ -1,4 +1,4 @@
-import {Character} from "../Character/Character.js";
+import {Character} from "../Character/Character.ts";
 import { BuildingsManagerInstance } from "./DormBuildings/BuildingsManager.js";
 import { DormMate } from "./DormMate.js";
 

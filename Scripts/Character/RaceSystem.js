@@ -1,4 +1,4 @@
-import {StatMod, StatType} from "./Stats.js";
+import {StatMod, StatType} from "./Stats.ts";
 
 export class Race {
     static Humanoid = new Race("Humanoid", []);

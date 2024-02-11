@@ -1,12 +1,12 @@
-import {Character} from "./Character/Character.js";
+import {Character} from "./Character/Character.ts";
 import {Race} from "./Character/RaceSystem.js";
 import {Player} from "./Player.js";
 import * as THREE from "three";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
 import {scene} from "../main.js";
 import { DormManagerInstance } from "./Dorm/DormManager.js";
-import { Enemy } from "./Enemy/Enemy.js";
-import { EnemyAvatar } from "./Enemy/EnemyAvatar.js";
+import { Enemy } from "./Enemy/Enemy.ts";
+import { EnemyAvatar } from "./Enemy/EnemyAvatar.ts";
 import { startDialogue } from "./Dialogue/DialogueMenu.js";
 import { testDialogue } from "./Dialogue/TestDialogue.js";
 import { TierOnePerks } from "./Perk.js";
@@ -19,6 +19,7 @@ export async function TestStuff(){
     console.log(Player.VoreSystem);
 
     const loader = new GLTFLoader();
+
 
     let key = TierOnePerks.EssenceThief.title;
     console.log(key);

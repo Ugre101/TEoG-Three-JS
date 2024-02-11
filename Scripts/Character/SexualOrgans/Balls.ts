@@ -1,21 +1,18 @@
-
 import { BaseOrgan } from "./BaseOrgan.js";
 import { BaseOrgans } from "./BaseOrgans.js";
 import { SexualFluids } from "./SexualFluids/SexualFluid.js";
 
-class Vagina extends BaseOrgan{
-    constructor(size){
+class Ball extends BaseOrgan{
+    constructor(size: number){
         super(size);
     }
 }
 
-class Vaginas extends BaseOrgans{
+export class Balls extends BaseOrgans{
     constructor(){
-        super(SexualFluids.VaginalDischarge);
+        super(SexualFluids.Cum);
     }
-    addPussy(size = 1){
-        this.List.push(new Vagina(size));
+    addBall(size = 1){
+        this.List.push(new Ball(size));
     }
-
-
 }
