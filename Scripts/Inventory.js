@@ -1,8 +1,8 @@
-import {Player} from "./Player.js";
-import {InventoryItem} from "./Items/InventoryItem.js";
-import {ItemData} from "./Items/ItemData.js";
-import {ItemDictionary} from "./Items/ItemDictionary.js";
-import { Character } from "./Character/Character.ts";
+import {Player} from "./Player";
+import {InventoryItem} from "./Items/InventoryItem";
+import {ItemData} from "./Items/ItemData";
+import {ItemDictionary} from "./Items/ItemDictionary";
+import { Character } from "./Character/Character";
 
 class Inventory {
     constructor() {

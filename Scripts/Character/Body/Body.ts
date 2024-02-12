@@ -1,7 +1,7 @@
 import {ModType, Mod} from "../Stats.ts";
 
 
-class BodyStat {
+export class BodyStat {
     private _value: number;
     private _dirty: boolean;
     public baseValue: number;

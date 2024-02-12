@@ -1,5 +1,5 @@
-import { BaseOrgan } from "./BaseOrgan.js";
-import { SexualFluid,SexualFluids } from "./SexualFluids/SexualFluid.js";
+import { BaseOrgan } from "./BaseOrgan";
+import { SexualFluid,SexualFluids } from "./SexualFluids/SexualFluid";
 
 
 export class BaseOrgans {

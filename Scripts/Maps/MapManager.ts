@@ -1,6 +1,6 @@
-import {scene} from "../../main.js";
-import {addMiniMapObject} from "../MiniMap.js";
-import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
+import {scene} from "../../main";
+import {addMiniMapObject} from "../MiniMap";
+import {GLTFLoader} from "three/addons/loaders/GLTFLoader";
 
 
 import grassUrl from '/Resources/Forest Grass.glb?url';

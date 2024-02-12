@@ -1,15 +1,15 @@
-import {Character} from "./Character/Character.ts";
-import {Race} from "./Character/RaceSystem.js";
-import {Player} from "./Player.js";
+import {Character} from "./Character/Character";
+import {Race} from "./Character/RaceSystem";
+import {Player} from "./Player";
 import * as THREE from "three";
-import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
-import {scene} from "../main.js";
-import { DormManagerInstance } from "./Dorm/DormManager.js";
-import { Enemy } from "./Enemy/Enemy.ts";
-import { EnemyAvatar } from "./Enemy/EnemyAvatar.ts";
-import { startDialogue } from "./Dialogue/DialogueMenu.js";
-import { testDialogue } from "./Dialogue/TestDialogue.js";
-import { TierOnePerks } from "./Perk.js";
+import {GLTFLoader} from "three/addons/loaders/GLTFLoader";
+import {scene} from "../main";
+import { DormManagerInstance } from "./Dorm/DormManager";
+import { Enemy } from "./Enemy/Enemy";
+import { EnemyAvatar } from "./Enemy/EnemyAvatar";
+import { startDialogue } from "./Dialogue/DialogueMenu";
+import { testDialogue } from "./Dialogue/TestDialogue";
+import { TierOnePerks } from "./Perk";
 
 export async function TestStuff(){
     let enemy = new Character(Race.Human);

@@ -1,6 +1,6 @@
-import {Race} from "./Character/RaceSystem.js";
-import {Character} from "./Character/Character.ts";
-import {VoreSystem} from "./Vore/VoreSystem.js";
+import {Race} from "./Character/RaceSystem";
+import {Character} from "./Character/Character";
+import {VoreSystem} from "./Vore/VoreSystem";
 
 
 export class PlayerClass extends Character{

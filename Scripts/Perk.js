@@ -7,8 +7,8 @@ export class Perk {
     * @param {number} cost
     * @param {string} type
     * @param {function(Character) : void} onGain
-    * @param {string[]} requisites
-    * @param {string[]} exclusives
+    * @param {Perk[]} requisites
+    * @param {Perk[]} exclusives
     */
     constructor(name, description, cost, type, onGain,requisites = [], exclusives = []) {
         this.name = name;
@@ -81,16 +81,16 @@ export const TierTwoPerks = {
     FitnessFreak: new Perk("FitnessFreak", "You're a fitness freak.", 1, "Stat", character => {
         character.BodyStats.muscle.mods.push(new Mod(10, "Fitness Freak", ModType.Percent));
         character.BodyStats.fat.mods.push(new Mod(-10, "Fitness Freak", ModType.Percent));
-    }, [TierOnePerks.Muscular.name, TierOnePerks.Skinny.name]),
+    }, [TierOnePerks.Muscular, TierOnePerks.Skinny]),
     Powerlifter: new Perk("Powerlifter", "You're a built like a powerlifter.", 1, "Stat", character => {
         character.BodyStats.muscle.mods.push(new Mod(15, "Powerlifter", ModType.Percent));
         character.BodyStats.fat.mods.push(new Mod(10, "Powerlifter", ModType.Percent));
-    }, [TierOnePerks.Muscular.name, TierOnePerks.Fat.name]),
+    }, [TierOnePerks.Muscular, TierOnePerks.Fat]),
 
     // Essence
     GenderBending: new Perk("GenderBending", "", 2, "Essence", character => {
 
-    },[],[TierOnePerks.EssenceFlow.name]),
+    },[],[TierOnePerks.EssenceFlow]),
 
 };
 

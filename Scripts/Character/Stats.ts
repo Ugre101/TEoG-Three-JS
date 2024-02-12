@@ -35,7 +35,7 @@ export class StatMod extends Mod {
 
 export class Stat {
     private _lastValue: number;
-    private _dirty: boolean;
+    private _dirty: boolean = true;
     public baseValue: number;
     public mods: Mod[] = [];
 

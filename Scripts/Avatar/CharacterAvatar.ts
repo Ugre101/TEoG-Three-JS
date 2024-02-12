@@ -1,10 +1,10 @@
-import {Avatar, AvatarManager} from "./AvatarHandler.ts";
+import {Avatar, AvatarManager} from "./AvatarHandler";
 import * as THREE from "three";
-import {AvatarMorphs, Morphs} from "./Morphs.js";
-import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
+import {AvatarMorphs, Morphs} from "./Morphs";
+import {GLTFLoader} from "three/addons/loaders/GLTFLoader";
 
 import animationUrl from '/Resources/Animations/VoreAnimations2.glb?url';
-import { Character } from "../Character/Character.ts";
+import { Character } from "../Character/Character";
 
 export class CharacterAvatar {
     public character: Character;

@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import { PointerLockControls } from "three/addons/controls/PointerLockControls.js";
+import { PointerLockControls } from "three/addons/controls/PointerLockControls";
 import { Move, playerCollisions } from "./Scripts/Move";
-import { Character } from "./Scripts/Character/Character.ts";
-import { Mod } from "./Scripts/Character/Stats.ts";
+import { Character } from "./Scripts/Character/Character";
+import { Mod } from "./Scripts/Character/Stats";
 import { Race } from "./Scripts/Character/RaceSystem";
 import * as SaveMenu from "./Scripts/Menus/SaveMenu";
 import * as InventoryMenu from "./Scripts/Menus/InventoryMenu";
@@ -20,10 +20,10 @@ import {AvatarManager} from "./Scripts/Avatar/AvatarHandler";
 import {CharacterAvatar} from "./Scripts/Avatar/CharacterAvatar";
 import {MenuManagerInstance} from "./Scripts/Menu";
 import {Morphs} from "./Scripts/Avatar/Morphs";
-import {MapManagerInstance} from "./Scripts/Maps/MapManager.ts";
+import {MapManagerInstance} from "./Scripts/Maps/MapManager";
 import {EnemyAvatar} from "./Scripts/Enemy/EnemyAvatar";
-import {TestStuff} from "./Scripts/TestingGround.js";
-import { InDialogue } from "./Scripts/Dialogue/DialogueMenu.js";
+import {TestStuff} from "./Scripts/TestingGround";
+import { InDialogue } from "./Scripts/Dialogue/DialogueMenu";
 
 export function containerSize() {
     return {

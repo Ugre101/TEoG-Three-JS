@@ -9,6 +9,7 @@ import { Perk } from "../Perk.js";
 import { Age } from "./Age.js";
 import { Essence } from "./Essence.js";
 import { Health } from "./Health.js";
+import { VoreSystem } from "../Vore/VoreSystem.js";
 
 export class Character {
     public firstName: string;
@@ -25,6 +26,7 @@ export class Character {
     public Stats: Stats;
     public RaceSystem: RaceSystem;
     public BodyStats: BodyStats;
+    public VoreSystem: VoreSystem = new VoreSystem();
     
     constructor(startRace: Race) {
         this.firstName = "Steve";
@@ -58,7 +60,7 @@ export class Character {
     }
 
     canGainPerk(perk: Perk): boolean {
-        if (this.LevelSystem.perks.includes(perk.name)) {
+        if (this.LevelSystem.perks.includes(perk)) {
             return false;
         }
         for (let req of perk.requisites) {
@@ -81,7 +83,7 @@ export class Character {
         if (!this.LevelSystem.usePerkPoint(perk.cost)) {
             return false;
         }
-        this.LevelSystem.perks.push(perk.name);
+        this.LevelSystem.perks.push(perk);
         perk.onGain(this);
         return true;
     }

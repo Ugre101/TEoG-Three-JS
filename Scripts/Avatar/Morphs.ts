@@ -1,5 +1,3 @@
-import {exp} from "three/nodes";
-
 export class Morphs {
     static Muscle = "Muscle";
     static Fat = "Fat";

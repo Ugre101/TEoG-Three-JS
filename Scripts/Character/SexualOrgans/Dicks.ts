@@ -1,6 +1,6 @@
-import { BaseOrgan } from "./BaseOrgan.js";
-import { BaseOrgans } from "./BaseOrgans.js";
-import { SexualFluids } from "./SexualFluids/SexualFluid.js";
+import { BaseOrgan } from "./BaseOrgan";
+import { BaseOrgans } from "./BaseOrgans";
+import { SexualFluids } from "./SexualFluids/SexualFluid";
 
 class Dick extends BaseOrgan {
     constructor(size: number) {
