@@ -4,7 +4,7 @@ import {VoreSystem} from "./Vore/VoreSystem";
 
 
 export class PlayerClass extends Character{
-    constructor(Race){
+    constructor(Race: Race){
         super(Race);
         this.VoreSystem = new VoreSystem();
     }
@@ -13,6 +13,6 @@ export class PlayerClass extends Character{
 export let Player = new PlayerClass(Race.Human);
 
 
-export function LoadPlayer(newPlayer) {
+export function LoadPlayer(newPlayer: PlayerClass) {
     Player = newPlayer;
 }

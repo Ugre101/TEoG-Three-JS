@@ -1,8 +1,9 @@
 import { InDialogue } from "./Dialogue/DialogueMenu";
 
 export class Menu{
-    constructor(id){
-        this.obj = document.getElementById(id);
+    private obj: HTMLElement;
+    constructor(id: string){
+        this.obj = document.getElementById(id)!;
     }
     open(){
         this.obj.style.display = 'block';
@@ -13,17 +14,19 @@ export class Menu{
 }
 
 class MenuManager{
+    private currentMenu: Menu | null;
+    public isOpen: boolean;
     constructor(){
         this.currentMenu = null;
         this.isOpen = false;
     }
-    open(menu){
+    open(menu: Menu){
 
         if (InDialogue()){
             return false;
         }
 
-        if (this.isOpen)
+        if (this.isOpen && this.currentMenu)
             this.currentMenu.close();
         this.currentMenu = menu;
         this.isOpen = true;
@@ -31,6 +34,7 @@ class MenuManager{
         return true;
     }
     close(){
+        if (this.isOpen && this.currentMenu)
         this.currentMenu.close();
         this.isOpen = false;
     }

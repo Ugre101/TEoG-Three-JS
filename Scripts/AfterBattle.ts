@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
-const afterBattle = document.getElementById("AfterBattle");
-const freePlay = document.getElementById("FreePlay");
+const afterBattle = document.getElementById("AfterBattle")!;
+const freePlay = document.getElementById("FreePlay")!;
 
 export let inAfterBattle = false;
 export function StartAfterBattle() {

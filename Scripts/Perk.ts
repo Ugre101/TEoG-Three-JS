@@ -1,23 +1,20 @@
 import {Mod, ModType, StatType} from "./Character/Stats.ts";
 import { Character } from "./Character/Character.ts";
 export class Perk {
-    /**
-     * @param {string} name
-    * @param {string} description
-    * @param {number} cost
-    * @param {string} type
-    * @param {function(Character) : void} onGain
-    * @param {Perk[]} requisites
-    * @param {Perk[]} exclusives
-    */
-    constructor(name, description, cost, type, onGain,requisites = [], exclusives = []) {
+    name: string;
+    description: string;
+    cost: number;
+    type: string;
+    onGain: (arg0: Character) => void;
+    requisites: Perk[] = [];
+    exclusives: Perk[] = [];
+
+    constructor(name: string, description: string, cost: number, type: string, onGain: (arg0: Character) => void) {
         this.name = name;
         this.description = description;
         this.cost = cost;
         this.type = type;
         this.onGain = onGain;
-        this.requisites = requisites;
-        this.exclusives = exclusives;
     }
 
     get title () {
@@ -81,18 +78,22 @@ export const TierTwoPerks = {
     FitnessFreak: new Perk("FitnessFreak", "You're a fitness freak.", 1, "Stat", character => {
         character.BodyStats.muscle.mods.push(new Mod(10, "Fitness Freak", ModType.Percent));
         character.BodyStats.fat.mods.push(new Mod(-10, "Fitness Freak", ModType.Percent));
-    }, [TierOnePerks.Muscular, TierOnePerks.Skinny]),
+    }),
     Powerlifter: new Perk("Powerlifter", "You're a built like a powerlifter.", 1, "Stat", character => {
         character.BodyStats.muscle.mods.push(new Mod(15, "Powerlifter", ModType.Percent));
         character.BodyStats.fat.mods.push(new Mod(10, "Powerlifter", ModType.Percent));
-    }, [TierOnePerks.Muscular, TierOnePerks.Fat]),
+    }),
 
     // Essence
     GenderBending: new Perk("GenderBending", "", 2, "Essence", character => {
 
-    },[],[TierOnePerks.EssenceFlow]),
-
+    }),
 };
+TierTwoPerks.FitnessFreak.requisites.push(TierOnePerks.Muscular);
+TierTwoPerks.FitnessFreak.requisites.push(TierOnePerks.Skinny);
 
+TierTwoPerks.Powerlifter.requisites.push(TierOnePerks.Muscular);
+TierTwoPerks.Powerlifter.requisites.push(TierOnePerks.Fat);
 
+TierTwoPerks.GenderBending.requisites.push(TierOnePerks.EssenceFlow);
 

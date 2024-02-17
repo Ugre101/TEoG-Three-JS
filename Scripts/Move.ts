@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import {controls} from "../main.js";
+import {controls} from "../main";
 
 let moveForward = false,
     moveBackward = false;
@@ -9,7 +9,7 @@ let canJump = true;
 let sprinting = false;
 const direction = new THREE.Vector3();
 const velocity = new THREE.Vector3();
-const onKeyDown = function (event) {
+const onKeyDown = function (event: { code: string; }) {
     switch (event.code) {
         case "ArrowUp":
         case "KeyW":
@@ -82,12 +82,11 @@ function Jump() {
     canJump = false;
 }
 
-export function playerCollisions(intractables,auto) {
+export function playerCollisions(intractables: any[],auto: boolean) {
     intractables.forEach(intractable => {
         let distanceTo = controls.getObject()
             .position.distanceTo(intractable.obj.position);
-        if (distanceTo < 2)
-        {
+        if (distanceTo < 2) {
             if (auto)
                 intractable.interact();
             else{
@@ -97,7 +96,7 @@ export function playerCollisions(intractables,auto) {
     });
 }
 
-export function Move(delta) {
+export function Move(delta: number) {
     const decAccSpeed = 10 * delta;
     velocity.x -= velocity.x * decAccSpeed;
     velocity.z -= velocity.z * decAccSpeed;

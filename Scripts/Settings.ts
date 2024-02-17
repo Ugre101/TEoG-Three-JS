@@ -1,4 +1,6 @@
 class MetricsOrImperials {
+    metric: boolean;
+    decimalPrecision: number;
     constructor() {
         this.metric = true;
         this.decimalPrecision = 1;
@@ -7,13 +9,8 @@ class MetricsOrImperials {
         this.metric = !this.metric;
         return this.metric;
     }
-    /**
-     * 
-     * @param {Number} value 
-     * @param {Boolean} addText 
-     * @returns 
-     */
-    kgOrLbs(value, addText = true) {
+  
+    kgOrLbs(value: number, addText: boolean = true) {
         if (this.metric) {
             if (!addText) {
                 return value;
@@ -33,29 +30,23 @@ class MetricsOrImperials {
                 return value.toFixed(this.decimalPrecision) + "kg";
             }
             return value.toFixed() + "kg";
-        } else {
-            value *= 2.2;
-            if (!addText) {
-                return value.toFixed();
-            }
-            if (value < 1) {
-                const ounces = value * 16;
-                return `${ounces.toFixed()}oz`;
-            }
-            let left = value % 1;
-            if (left > 0.1) {
-                return value.toFixed(this.decimalPrecision) + "lbs";
-            }
-            return value.toFixed() + "lbs";
         }
+        value *= 2.2;
+        if (!addText) {
+            return value.toFixed();
+        }
+        if (value < 1) {
+            const ounces = value * 16;
+            return `${ounces.toFixed()}oz`;
+        }
+        let left = value % 1;
+        if (left > 0.1) {
+            return value.toFixed(this.decimalPrecision) + "lbs";
+        }
+        return value.toFixed() + "lbs";
     }
-    /**
-     * 
-     * @param {Number} value 
-     * @param {Boolean} addText 
-     * @returns 
-     */
-    cmOrInches(value, addText = true) {
+   
+    cmOrInches(value: number, addText: boolean = true) {
         if (this.metric) {
             if (!addText) {
                 return value;
@@ -88,25 +79,19 @@ class MetricsOrImperials {
         }
         return `${value}in`;
     }
-    /**
-     * 
-     * @param {Number} value 
-     * @param {Boolean} addText 
-     * @returns 
-     */
-    lOrG(value, addText = true) {
+    
+    lOrG(value: number, addText: boolean = true) {
         if (this.metric) {
             if (!addText) {
                 return value;
             }
             return value + "l";
-        } else {
-            value *= 0.26;
-            if (!addText) {
-                return value;
-            }
-            return value + "g";
+        } 
+        value *= 0.26;
+        if (!addText) {
+            return value;
         }
+        return value + "g";
     }
 }
 

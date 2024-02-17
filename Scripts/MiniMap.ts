@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-const container = document.getElementById("MiniMap");
+const container = document.getElementById("MiniMap")!;
 function containerSize() {
     return {
         width: container.offsetWidth,

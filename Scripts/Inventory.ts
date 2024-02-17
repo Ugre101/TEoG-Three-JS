@@ -5,45 +5,32 @@ import {ItemDictionary} from "./Items/ItemDictionary";
 import { Character } from "./Character/Character";
 
 class Inventory {
-    constructor() {
-        this.invItems = [];
-    }
-
-    /**
-     *
-     * @param {ItemData} item
-     */
-    addItem(item) {
+    public invItems: InventoryItem[] = [];
+    
+    addItem(item: ItemData) {
         if (this.hasItem(item)) {
-            this.invItems.find(i => i.name === item.name).amount++;
+            this.invItems.find(i => i.name === item.name)!.amount++;
         } else this.invItems.push(new InventoryItem(item.name));
     }
 
-    /**
-     * @param{ItemData|InventoryItem} item
-     */
-    removeItem(item) {
-        if (item instanceof InventoryItem)
+    removeItem(item: ItemData | InventoryItem) {
+        if (item instanceof InventoryItem){
             this.invItems.splice(this.invItems.indexOf(item), 1);
+        }
+        else if (item instanceof ItemData) {
+            let invItem = this.invItems.find(i => i.name === item.name);
+            if (invItem) {
+                this.invItems.splice(this.invItems.indexOf(invItem), 1);
+            }
+        }
         else console.error("Not an item");
     }
 
-    /**
-     * @param {ItemData|InventoryItem} item
-     * @returns {boolean}
-     */
-    hasItem(item) {
-        for (let i of this.invItems) {
-            if (i.name === item.name) return true;
-        }
-        return false;
+    hasItem(item: ItemData | InventoryItem): boolean {
+        return this.invItems.some(i => i.name === item.name);
     }
 
-    /**
-     * @param {InventoryItem} item
-     * @param {Character} onCharacter
-     */
-    useItem(item, onCharacter = Player) {
+    useItem(item: InventoryItem, onCharacter: Character = Player) {
         if (this.hasItem(item)) {
             if (ItemDictionary.hasOwnProperty(item.name)) {
                 ItemDictionary[item.name].onUse(onCharacter);

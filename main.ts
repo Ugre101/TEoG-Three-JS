@@ -11,9 +11,11 @@ import * as LooksMenu from "./Scripts/Menus/LooksMenu";
 import * as MiniMap from "./Scripts/MiniMap";
 import * as OptionsMenu from "./Scripts/Menus/OptionsMenu";
 
-export const autoIntractable = [];
-export const interactable = [];
-export const container = document.getElementById("container");
+import { Interactable } from "./Scripts/Interactable";
+
+export const autoIntractable: Interactable[] = [];
+export const interactable:Interactable[] = [];
+export const container = document.getElementById("container")!;
 import { AnimateBattle } from "./Scripts/Battle/SetupBattle";
 import { inBattle } from "./Scripts/Battle/BattleManager";
 import {AvatarManager} from "./Scripts/Avatar/AvatarHandler";
@@ -124,7 +126,6 @@ async function loadTestAvatar(){
     testAvatar.obj.scale.set(1.5,1.5,1.5);
     testAvatar2.obj.scale.set(1.5,1.5,1.5);
     autoIntractable.push(testAvatar);
-    autoIntractable.push(testAvatar2);
     scene.add(testAvatar.obj);
     scene.add(testAvatar2.obj);
 

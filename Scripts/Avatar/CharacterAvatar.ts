@@ -19,9 +19,7 @@ export class CharacterAvatar {
         this.morphs = new AvatarMorphs();
 
     }
-    interact(){
-        console.log("Interacting with character");
-    }
+   
     async LoadAndSetPos(position: { x: number; y: number; z: number}) {
         this.avatar = AvatarManager.getAvatar(this.character);
         let loadedAvatar = await this.avatar.load();
