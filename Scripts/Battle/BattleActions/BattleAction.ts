@@ -2,6 +2,7 @@ import { Character } from "../../Character/Character";
 
 export enum ActionType {
     Attack,
+    LustAttack,
     Heal,
     Buff,
     Debuff,
@@ -27,10 +28,9 @@ export class BattleAction {
 }
 
 export const ActionDictionary = {
-    0: new BattleAction(0, "Basic Attack", "A basic attack", ActionType.Attack),
-    1: new BattleAction(1, "Heal", "Heal an ally", ActionType.Heal),
-    2: new BattleAction(2, "Buff", "Buff an ally", ActionType.Buff),
-    3: new BattleAction(3, "Debuff", "Debuff an enemy", ActionType.Debuff)
+    0: new BattleAction(0, "Hit", "A physical basic attack", ActionType.Attack),
+    1: new BattleAction(1, "Tease", "Tease the enemy", ActionType.LustAttack),
+    2: new BattleAction(2, "Flee", "Run away", ActionType.Misc),
 }
 
 function rng() {
@@ -42,4 +42,15 @@ ActionDictionary[0].OnUse = function(caster: Character, target: Character){
     let dmg = caster.Stats.str.Value() * rng();
     target.Health.damage(dmg);
     console.log("Enemy health: " + target.Health.current);
+}
+
+ActionDictionary[1].OnUse = function(caster: Character, target: Character){
+    console.log("Tease");
+    let dmg = caster.Stats.cha.Value() * rng();
+    target.Health.damage(dmg);
+    console.log("Enemy health: " + target.Health.current);
+}
+
+ActionDictionary[2].OnUse = function(caster: Character, target: Character){
+    console.log("Flee");
 }

@@ -10,12 +10,14 @@ import { Age } from "./Age.js";
 import { Essence } from "./Essence.js";
 import { Health } from "./Health.js";
 import { VoreSystem } from "../Vore/VoreSystem.js";
+import { BattleAction } from "../Battle/BattleActions/BattleAction.ts";
 
 export class Character {
     public firstName: string;
     public lastName: string;
     public Age: Age;
     public Health: Health;
+    public WillPower: Health;
     public Dicks: Dicks;
     public Boobs: Boobs;
     public LevelSystem: LevelSystem = new LevelSystem();
@@ -27,12 +29,14 @@ export class Character {
     public RaceSystem: RaceSystem;
     public BodyStats: BodyStats;
     public VoreSystem: VoreSystem = new VoreSystem();
+    public KnownBattleActions: number[] = [0,1,2];
     
     constructor(startRace: Race) {
         this.firstName = "Steve";
         this.lastName = "Testsson";
         this.Age = new Age(18);
         this.Health = new Health(100);
+        this.WillPower = new Health(100);
         this.Dicks = new Dicks();
         this.Boobs = new Boobs();
         this.LevelSystem = new LevelSystem();

@@ -14,7 +14,7 @@ export function startBattle(combatEmemies: Character[], playerAvatar: BattleAvat
     inBattle = true;
 }
 
-function targetedEnemy(){
+export function targetedEnemy(){
     if (enemies.length < 1){
         console.log("No enemies");
         leaveCombat();
