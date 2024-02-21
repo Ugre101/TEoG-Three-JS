@@ -1,6 +1,8 @@
+import { StartAfterBattle } from "../AfterBattle/SetupAfterBattle";
 import { Character } from "../Character/Character";
 import {Player} from "../Player";
 import { BattleAvatar } from "./BattleAvatar";
+import { refreshBtns } from "./BattleBtns";
 export let inBattle = false;
 
 
@@ -12,6 +14,7 @@ export function startBattle(combatEmemies: Character[], playerAvatar: BattleAvat
     pAvatar = playerAvatar;
     eAvatar = enemyAvatar;
     inBattle = true;
+    refreshBtns(Player);
 }
 
 export function targetedEnemy(){
@@ -23,10 +26,13 @@ export function targetedEnemy(){
     return enemies[0];
 }
 
-function nextTurn(){
+export function nextTurn(){
+    updateStats();
     enemyAttack();
+    refreshBtns(Player);
 }
 
+/*
 const attack = document.getElementById("attack")!;
 attack.addEventListener("click", function () {
     console.log("Attack");
@@ -40,10 +46,9 @@ attack.addEventListener("click", function () {
     eAvatar.updateHp(enemy.Health.current, enemy.Health.max);
     nextTurn();
 });
-
+*/
 const battleDoc = document.getElementById("Battle")!;
 const freePlay = document.getElementById("FreePlay")!;
-const runFromBattle = document.getElementById("run")!;
 
 function leaveCombat() {
     battleDoc.style.display = "none";
@@ -51,9 +56,6 @@ function leaveCombat() {
     inBattle = false;
 }
 
-runFromBattle.addEventListener("click", function () {
-    leaveCombat();
-});
 
 function basicAttack(Character: Character){
     let str = Character.Stats.str.Value();
@@ -81,5 +83,25 @@ function enemyAttack(){
 function WinBattle() {
     battleDoc.style.display = "none";
    // inBattle = false;
-    StartAfterBattle();
+    
+   StartAfterBattle();
+
+}
+
+function updateStats() {
+    if (Player.Health.current <= 0) {
+        console.log("Player died");
+        leaveCombat();
+        return;
+    }
+    if (enemies.every(enemy => enemy.Health.current <= 0)) {
+        console.log("Enemies died");
+        WinBattle();
+        return;
+    }
+
+    pAvatar.updateHp(Player.Health.current, Player.Health.max);
+    enemies.forEach(enemy => {
+        eAvatar.updateHp(enemy.Health.current, enemy.Health.max);
+    });
 }

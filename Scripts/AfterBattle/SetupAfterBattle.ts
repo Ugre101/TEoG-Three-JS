@@ -1,2 +1,6 @@
 
-const afterBattleDoc = document.getElementById("AfterBattle");
+const afterBattleDoc = document.getElementById("AfterBattle")!;
+
+export function StartAfterBattle(){
+    afterBattleDoc.style.display = "block";
+}

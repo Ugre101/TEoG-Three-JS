@@ -1,7 +1,7 @@
 import { Character } from "../Character/Character";
 import { Player } from "../Player";
 import { ActionDictionary, BattleAction } from "./BattleActions/BattleAction";
-import { targetedEnemy } from "./BattleManager";
+import { nextTurn, targetedEnemy } from "./BattleManager";
 
 class BattleBtn {
     public action : BattleAction;
@@ -14,6 +14,7 @@ class BattleBtn {
             let enemy = targetedEnemy();
             if (enemy)
                 this.OnClick(Player, enemy);
+            nextTurn();
         });
     }
 
@@ -23,12 +24,26 @@ class BattleBtn {
 }
 
 const btns = document.getElementById("BattleBtns")!;
+const addedBtns: BattleBtn[] = [];
 
 export function refreshBtns(caster: Character){
     let knownActions = caster.KnownBattleActions;
-    btns.innerHTML = "";
-    knownActions.forEach(id => {
+    let newActions = knownActions.filter(id => !addedBtns.some(btn => btn.action.id == id));
+    let removedActions = addedBtns.filter(btn => !knownActions.some(id => btn.action.id == id));
+    if (newActions.length <= 0 && removedActions.length <= 0)
+        return;
+
+    removedActions.forEach(btn => {
+        btns.removeChild(btn.btn);
+        addedBtns.splice(addedBtns.indexOf(btn), 1);
+    });
+    newActions.forEach(id => {
         let btn = new BattleBtn(id);
+        console.log(btns);
+        
         btns.appendChild(btn.btn);
+        addedBtns.push(btn);
     });
 }
+
+
