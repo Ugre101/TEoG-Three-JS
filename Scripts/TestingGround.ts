@@ -10,6 +10,7 @@ import { EnemyAvatar } from "./Enemy/EnemyAvatar";
 import { startDialogue } from "./Dialogue/DialogueMenu";
 import { testDialogue } from "./Dialogue/TestDialogue";
 import { TierOnePerks } from "./Perk";
+import { ReqNeedDick } from "./AfterBattle/AfterBattleActions/AfterAction";
 
 export async function TestStuff(){
     let enemy = new Character(Race.Human);
@@ -23,6 +24,7 @@ export async function TestStuff(){
 
     let key = TierOnePerks.EssenceThief.title;
     console.log(key);
+
  //    startDialogue(testDialogue);
     /*
     let mixer;

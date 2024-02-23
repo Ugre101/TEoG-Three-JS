@@ -9,6 +9,9 @@ export class BaseOrgans {
         this.Fluid = new SexualFluid(sexualFluid);
     }
    
+    has() : boolean {
+        return this.List.length > 0;
+    }
     remove(index: number): boolean {
         if (this.List.length > index) {
             this.List.splice(index, 1);

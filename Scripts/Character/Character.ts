@@ -11,6 +11,9 @@ import { Essence } from "./Essence.js";
 import { Health } from "./Health.js";
 import { VoreSystem } from "../Vore/VoreSystem.js";
 import { BattleAction } from "../Battle/BattleActions/BattleAction.ts";
+import { SexStats } from "./SexStats.ts";
+import { Vaginas } from "./SexualOrgans/Vaginas.ts";
+import { Balls } from "./SexualOrgans/Balls.ts";
 
 export class Character {
     public firstName: string;
@@ -18,16 +21,19 @@ export class Character {
     public Age: Age;
     public Health: Health;
     public WillPower: Health;
-    public Dicks: Dicks;
-    public Boobs: Boobs;
+    public Dicks: Dicks = new Dicks();
+    public Balls: Balls = new Balls();
+    public Boobs: Boobs = new Boobs();
+    public Vaginas: Vaginas = new Vaginas();
     public LevelSystem: LevelSystem = new LevelSystem();
     public Masc: Essence;
     public Femi: Essence;
     public StableEssence: Stat;
     public EssenceDrain: EssenceDrain;
-    public Stats: Stats;
+    public Stats: Stats = new Stats();
     public RaceSystem: RaceSystem;
     public BodyStats: BodyStats;
+    public SexStats: SexStats = new SexStats();
     public VoreSystem: VoreSystem = new VoreSystem();
     public KnownBattleActions: number[] = [0,1,2];
     
@@ -37,14 +43,10 @@ export class Character {
         this.Age = new Age(18);
         this.Health = new Health(100);
         this.WillPower = new Health(100);
-        this.Dicks = new Dicks();
-        this.Boobs = new Boobs();
-        this.LevelSystem = new LevelSystem();
         this.Masc = new Essence(0);
         this.Femi = new Essence(0);
         this.StableEssence = new Stat(30);
         this.EssenceDrain = new EssenceDrain(30);
-        this.Stats = new Stats();
         this.RaceSystem = new RaceSystem(startRace);
         this.BodyStats = new BodyStats(20, 30, 160);
     }
