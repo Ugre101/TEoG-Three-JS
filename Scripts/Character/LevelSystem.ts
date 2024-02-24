@@ -5,7 +5,7 @@ export class LevelSystem {
     public exp: number = 0;
     public statPoints: number = 0;
     public perkPoints: number = 0;
-    public perks: Perk[] = [];
+    public perks: string[] = [];
 
     neededExp() {
         return 100 * this.level;

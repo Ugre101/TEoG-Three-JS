@@ -66,16 +66,16 @@ export class Character {
     }
 
     canGainPerk(perk: Perk): boolean {
-        if (this.LevelSystem.perks.includes(perk)) {
+        if (this.LevelSystem.perks.includes(perk.stringId)) {
             return false;
         }
         for (let req of perk.requisites) {
-            if (!this.LevelSystem.perks.includes(req)) {
+            if (!this.LevelSystem.perks.includes(req.stringId)) {
                 return false;
             }
         }
         for (let exclusive of perk.exclusives) {
-            if (this.LevelSystem.perks.includes(exclusive)) {
+            if (this.LevelSystem.perks.includes(exclusive.stringId)) {
                 return false;
             }
         }
@@ -89,7 +89,7 @@ export class Character {
         if (!this.LevelSystem.usePerkPoint(perk.cost)) {
             return false;
         }
-        this.LevelSystem.perks.push(perk);
+        this.LevelSystem.perks.push(perk.stringId);
         perk.onGain(this);
         return true;
     }

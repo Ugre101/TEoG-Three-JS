@@ -9,8 +9,8 @@ import { Enemy } from "./Enemy/Enemy";
 import { EnemyAvatar } from "./Enemy/EnemyAvatar";
 import { startDialogue } from "./Dialogue/DialogueMenu";
 import { testDialogue } from "./Dialogue/TestDialogue";
-import { TierOnePerks } from "./Perk";
 import { ReqNeedDick } from "./AfterBattle/AfterBattleActions/AfterAction";
+import { PerksDict } from "./Perk";
 
 export async function TestStuff(){
     let enemy = new Character(Race.Human);
@@ -22,7 +22,7 @@ export async function TestStuff(){
     const loader = new GLTFLoader();
 
 
-    let key = TierOnePerks.EssenceThief.title;
+    let key = PerksDict.get("Sturdy");
     console.log(key);
 
  //    startDialogue(testDialogue);
