@@ -1,3 +1,4 @@
+import { controls } from "../main";
 import { InDialogue } from "./Dialogue/DialogueMenu";
 
 export class Menu{
@@ -21,7 +22,6 @@ class MenuManager{
         this.isOpen = false;
     }
     open(menu: Menu){
-
         if (InDialogue()){
             return false;
         }
@@ -31,6 +31,7 @@ class MenuManager{
         this.currentMenu = menu;
         this.isOpen = true;
         this.currentMenu.open();
+        controls.unlock();
         return true;
     }
     close(){

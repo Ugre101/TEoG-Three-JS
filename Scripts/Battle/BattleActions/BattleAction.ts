@@ -1,4 +1,5 @@
 import { Character } from "../../Character/Character";
+import { leaveCombat } from "../BattleManager";
 
 export enum ActionType {
     Attack,
@@ -22,8 +23,9 @@ export class BattleAction {
         this.type = type;
     }
 
-    public OnUse(caster: Character, target: Character){
+    public OnUse(caster: Character, target: Character) : string {
         console.log("Action used: " + this.name);
+        return "Action used: " + this.name;
     }
 }
 
@@ -41,16 +43,26 @@ ActionDictionary[0].OnUse = function(caster: Character, target: Character){
     console.log("Attack");
     let dmg = caster.Stats.str.Value() * rng();
     target.Health.damage(dmg);
-    console.log("Enemy health: " + target.Health.current);
+    return "You hit the enemy for " + dmg + " damage";
 }
 
 ActionDictionary[1].OnUse = function(caster: Character, target: Character){
     console.log("Tease");
     let dmg = caster.Stats.cha.Value() * rng();
     target.Health.damage(dmg);
-    console.log("Enemy health: " + target.Health.current);
+    return "You tease the enemy for " + dmg + " damage";
 }
 
 ActionDictionary[2].OnUse = function(caster: Character, target: Character){
     console.log("Flee");
+    let roll = Math.random() * 100;
+    if (roll < 50){
+        console.log("Flee successful");
+        leaveCombat();
+    }
+    else{
+        console.log("Flee failed");
+        
+    }
+    return "You try to flee";
 }

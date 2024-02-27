@@ -59,12 +59,31 @@ export function SetupBattle(enemies: Character[]) {
 
     playerRenderer.setSize(playerCanvas.offsetWidth, playerCanvas.offsetHeight);
     enemyRenderer.setSize(enemyCanvas.offsetWidth, enemyCanvas.offsetHeight);
+
+    window.addEventListener('resize', ReSizeBattle);
+
     
     let playerAvatar = new BattleAvatar(true,playerScene);
     let enemyAvatar = new BattleAvatar(false,enemyScene);
 
     startBattle(enemies, playerAvatar, enemyAvatar);
 }
+
+export function OnLeaveCombat() {
+    window.removeEventListener('resize', ReSizeBattle);
+}
+
+function ReSizeBattle() {
+    playerCam.aspect = playerCanvas.offsetWidth / playerCanvas.offsetHeight;
+    playerCam.updateProjectionMatrix();
+    playerRenderer.setSize(playerCanvas.offsetWidth, playerCanvas.offsetHeight);
+
+    enemyCam.aspect = enemyCanvas.offsetWidth / enemyCanvas.offsetHeight;
+    enemyCam.updateProjectionMatrix();
+    enemyRenderer.setSize(enemyCanvas.offsetWidth, enemyCanvas.offsetHeight);
+
+}
+
 
 export function AnimateBattle() {
     playerRenderer.render(playerScene, playerCam);

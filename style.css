@@ -3,6 +3,12 @@
     -moz-box-sizing: border-box;
 }
 
+html {
+    font-family: 'Arial', sans-serif;
+    font-size: 1vw;
+    overflow-x: hidden;
+}
+
 body {
     background-color: #fff;
     color: #444;
@@ -101,7 +107,7 @@ h1 {
 }
 
 
-#battleLog {
+#battleLogDiv {
     margin-left: auto;
     margin-right: auto;
     width: 40%;
@@ -112,6 +118,12 @@ h1 {
     text-align: center;
     padding: 0.5em;
     flex-grow: 1;
+}
+
+#battleLog {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
 }
 
 .btnBar {

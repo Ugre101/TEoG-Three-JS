@@ -1,7 +1,7 @@
 import { Character } from "../Character/Character";
 import { Player } from "../Player";
 import { ActionDictionary, BattleAction } from "./BattleActions/BattleAction";
-import { nextTurn, targetedEnemy } from "./BattleManager";
+import { log, nextTurn, targetedEnemy } from "./BattleManager";
 
 class BattleBtn {
     public action : BattleAction;
@@ -19,7 +19,8 @@ class BattleBtn {
     }
 
     public OnClick(caster: Character, target: Character){
-            this.action.OnUse(caster, target);
+        let text = this.action.OnUse(caster, target);
+        log(text);
     }
 }
 

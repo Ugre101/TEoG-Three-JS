@@ -4,12 +4,8 @@ import { Move, playerCollisions } from "./Scripts/Move";
 import { Character } from "./Scripts/Character/Character";
 import { Mod } from "./Scripts/Character/Stats";
 import { Race } from "./Scripts/Character/RaceSystem";
-import * as SaveMenu from "./Scripts/Menus/SaveMenu";
-import * as InventoryMenu from "./Scripts/Menus/InventoryMenu";
-import * as LevelMenu from "./Scripts/Menus/LevelMenu";
-import * as LooksMenu from "./Scripts/Menus/LooksMenu";
 import * as MiniMap from "./Scripts/MiniMap";
-import * as OptionsMenu from "./Scripts/Menus/OptionsMenu";
+
 
 import { Interactable } from "./Scripts/Interactable";
 
@@ -76,6 +72,7 @@ import py from '/Resources/ForestBackground/py.jpg';
 import ny from '/Resources/ForestBackground/ny.jpg';
 import pz from '/Resources/ForestBackground/pz.jpg';
 import nz from '/Resources/ForestBackground/nz.jpg';
+import { HotKeyMenuBtns } from "./Scripts/Menus/SetupMenuBtns";
 
 const testUrls = [px, nx, py, ny, pz, nz];
 const backTextureCube = new THREE.CubeTextureLoader().load(testUrls, (onLoad) => {
@@ -137,6 +134,13 @@ animate();
 
 await loadTestAvatar();
 
+HotKeyMenuBtns.forEach(btn =>{
+    document.addEventListener("keydown", (e) => {
+        if (e.key === btn.hotKey){
+            btn.press();
+        }
+    });
+});
 
 
 function animate() {
