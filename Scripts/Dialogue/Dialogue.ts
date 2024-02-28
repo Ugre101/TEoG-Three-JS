@@ -1,15 +1,14 @@
 export class DialogueNode{
     title: string;
     text: string;
-    childNodes: DialogueNode[];
+    childNodes: DialogueNode[] = [];
     isEndNode: boolean;
     onEnter: () => void = () => {};
     onExit: () => void = () => {};
 
-    constructor(title: string, text: string, childNodes: DialogueNode[], isEndNode: boolean = false){
+    constructor(title: string, text: string, isEndNode: boolean = false){
         this.title = title;
         this.text = text;
-        this.childNodes = childNodes;
         this.isEndNode = isEndNode;
     }
 }

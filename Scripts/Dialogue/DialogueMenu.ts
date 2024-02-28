@@ -28,6 +28,17 @@ function PrintNode(currentNode: DialogueNode) {
     dialogueText.innerText = currentNode.text;
     currentNode.onEnter();
 
+    if (currentNode.childNodes.length === 0) {
+        let button = document.createElement("button");
+        button.innerText = "Exit";
+        button.onclick = () => {
+            currentNode.onExit();
+            stopTalking();
+        };
+        dialogueButtons.appendChild(button);
+        return;
+    }
+
     currentNode.childNodes.forEach(node => {
         let button = document.createElement("button");
         button.innerText = node.title;

@@ -18,6 +18,6 @@ class AfterBattleAvatar{
     }
 
     updateTimesCummed(timesCummed: number){
-        this.timesCummed.innerHTML = timesCummed;
+        this.timesCummed.innerHTML = "Orgasms: " + timesCummed;
     }
 }

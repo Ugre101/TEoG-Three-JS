@@ -56,16 +56,6 @@ camera.position.set(0, 1.5, 5);
 const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
 scene.add(ambientLight);
 
-const backPath = "/Resources/ForestBackground/";
-const backFormat = ".jpg";
-const backUrls = [
-    backPath + "px" + backFormat,
-    backPath + "nx" + backFormat,
-    backPath + "py" + backFormat,
-    backPath + "ny" + backFormat,
-    backPath + "pz" + backFormat,
-    backPath + "nz" + backFormat,
-];
 import px from '/Resources/ForestBackground/px.jpg';
 import nx from '/Resources/ForestBackground/nx.jpg';
 import py from '/Resources/ForestBackground/py.jpg';
@@ -132,7 +122,7 @@ async function loadTestAvatar(){
 
 animate();
 
-await loadTestAvatar();
+// await loadTestAvatar();
 
 HotKeyMenuBtns.forEach(btn =>{
     document.addEventListener("keydown", (e) => {

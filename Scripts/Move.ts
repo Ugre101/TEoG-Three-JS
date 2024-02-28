@@ -96,6 +96,8 @@ export function playerCollisions(intractables: any[],auto: boolean) {
     });
 }
 
+
+
 export function Move(delta: number) {
     const decAccSpeed = 10 * delta;
     velocity.x -= velocity.x * decAccSpeed;
@@ -114,6 +116,7 @@ export function Move(delta: number) {
         velocity.z -= direction.z * accSpeed;
     if (moveLeft || moveRight) velocity.x -= direction.x * accSpeed;
 
+    console.log(controls.getObject().position);
     // Move the player forard/backward/left/right
     controls.moveRight(velocity.x * delta);
     controls.moveForward(-velocity.z * delta);

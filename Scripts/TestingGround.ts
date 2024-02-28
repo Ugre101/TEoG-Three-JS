@@ -25,7 +25,7 @@ export async function TestStuff(){
     let key = PerksDict.get("Sturdy");
     console.log(key);
 
- //    startDialogue(testDialogue);
+    startDialogue(testDialogue);
     /*
     let mixer;
     const AnimationClips = [];
