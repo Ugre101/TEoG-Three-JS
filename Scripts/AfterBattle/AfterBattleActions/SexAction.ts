@@ -10,12 +10,18 @@ GetBlowJob.reqs.push(ReqNeedDick.Caster);
 GetBlowJob.OnUse = (caster, target) => {
     return "";
 };
+GetBlowJob.OnContinueUse = (caster, target) => {
+    return "";
+}
 
 const GiveBlowJob = new SexAction("Suck dick", "Give your partner a blowjob.")
 GiveBlowJob.reqs.push(ReqNeedDick.Target);
 GiveBlowJob.OnUse = (caster,target) => {
     return "";
 };
+GiveBlowJob.OnContinueUse = (caster,target) => {
+    return "";
+}
 
 export const SexActions: SexAction[] = [
     GetBlowJob, GiveBlowJob
