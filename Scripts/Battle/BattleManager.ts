@@ -59,7 +59,7 @@ function enemyAttack(){
 }
 function WinBattle() {
     leaveCombat();
-    StartAfterBattle();    
+    StartAfterBattle(enemies);    
 }
 
 function updateStats() {

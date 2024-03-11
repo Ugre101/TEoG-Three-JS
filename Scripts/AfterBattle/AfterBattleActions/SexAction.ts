@@ -1,5 +1,6 @@
 import { AfterAction, AfterActionType, ReqNeedDick } from "./AfterAction";
 
+
 class SexAction extends AfterAction {
     constructor(name: string, description: string) {
         super(name, description, AfterActionType.Sex);
