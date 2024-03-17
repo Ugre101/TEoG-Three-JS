@@ -6,3 +6,11 @@ export class VoreAction extends AfterAction {
     }
 
 }
+
+const oralVore = new VoreAction("Oral Vore","Oral Vore");
+oralVore.canUse = (player,enemy) => {
+    return true;
+}
+oralVore.OnUse = (player,enemy) => {
+    return "Oral Vore";
+}

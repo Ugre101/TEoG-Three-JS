@@ -14,6 +14,7 @@ import { BattleAction } from "../Battle/BattleActions/BattleAction.ts";
 import { SexStats } from "./SexStats.ts";
 import { Vaginas } from "./SexualOrgans/Vaginas.ts";
 import { Balls } from "./SexualOrgans/Balls.ts";
+import { Stomach } from "./Body/Stomach.ts";
 
 export class Character {
     public firstName: string;
@@ -36,6 +37,7 @@ export class Character {
     public SexStats: SexStats = new SexStats();
     public VoreSystem: VoreSystem = new VoreSystem();
     public KnownBattleActions: number[] = [0,1,2];
+    public Stomach: Stomach = new Stomach();
     
     constructor(startRace: Race) {
         this.firstName = "Steve";

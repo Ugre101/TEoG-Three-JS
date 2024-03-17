@@ -24,11 +24,16 @@ export class VoreSystem {
     public voreStrengths: {
         digestionStrength: VoreStat;
         transformStrength: VoreStat;
+        capacityMultiplier: VoreStat;
+        capacityFlatBonus: VoreStat;
+
     };
     constructor() {
         this.voreStrengths = {
             digestionStrength:  new VoreStat(1),
             transformStrength:  new VoreStat(1),
+            capacityMultiplier: new VoreStat(1),
+            capacityFlatBonus: new VoreStat(0)
         };
     }
 

@@ -46,7 +46,7 @@ export const controls = new PointerLockControls(camera, document.body);
 
 scene.add(camera);
 
-const renderer = new THREE.WebGLRenderer({ container });
+const renderer = new THREE.WebGLRenderer();
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.setSize(containerSize().width, containerSize().height);
 container.appendChild(renderer.domElement);
@@ -122,7 +122,7 @@ async function loadTestAvatar(){
 
 animate();
 
-// await loadTestAvatar();
+await loadTestAvatar();
 
 HotKeyMenuBtns.forEach(btn =>{
     document.addEventListener("keydown", (e) => {

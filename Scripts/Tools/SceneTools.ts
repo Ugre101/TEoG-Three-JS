@@ -1,16 +1,17 @@
 import * as THREE from 'three';
 
-export class CreateCharacterScene {
-    private scene: THREE.Scene;
+export class CharacterPortraitRenderer {
+    public scene: THREE.Scene;
     private renderer: THREE.WebGLRenderer;
-    private canvas: HTMLCanvasElement;
+    private canvas: HTMLElement;
     private cam: THREE.PerspectiveCamera;
-    constructor(canvas: HTMLCanvasElement, background: THREE.Color) 
+    constructor(canvas: HTMLElement, background: THREE.Color) 
     {
         this.canvas = canvas;
         this.scene = new THREE.Scene();
-        this.renderer = new THREE.WebGLRenderer({ canvas });
+        this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+        this.canvas.appendChild(this.renderer.domElement);
         this.cam = new THREE.PerspectiveCamera(
             75,
             canvas.offsetWidth / canvas.offsetHeight,
@@ -23,9 +24,25 @@ export class CreateCharacterScene {
         this.scene.fog = new THREE.Fog(background, 0, 75);
         this.scene.add(ambientLight);
     }
-    ReSize() {
+    public ReSize() {
         this.cam.aspect = this.canvas.offsetWidth / this.canvas.offsetHeight;
         this.cam.updateProjectionMatrix();
         this.renderer.setSize(this.canvas.offsetWidth, this.canvas.offsetHeight);
     }
+
+    public Render() {
+        this.renderer.render(this.scene, this.cam);
+    }
+
+    public SubscribeToResize() {
+        window.addEventListener('resize', () => {
+            this.ReSize();
+        });
+    }
+    public UnsubscribeToResize() {
+        window.removeEventListener('resize', () => {
+            this.ReSize();
+        });
+    }
+        
 }
