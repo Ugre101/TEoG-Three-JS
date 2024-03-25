@@ -8,7 +8,9 @@ export class BaseOrgans {
     constructor(sexualFluid: SexualFluids) {
         this.Fluid = new SexualFluid(sexualFluid);
     }
-   
+    tick(ticks: number) {
+        this.Fluid.tick(ticks);
+    }
     has() : boolean {
         return this.List.length > 0;
     }
@@ -47,3 +49,4 @@ export class BaseOrgans {
         return this.Fluid.release(percent) * this.getTotalSize();
     }
 }
+

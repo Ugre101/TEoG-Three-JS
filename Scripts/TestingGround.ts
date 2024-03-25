@@ -25,7 +25,11 @@ export async function TestStuff(){
     let key = PerksDict.get("Sturdy");
     console.log(key);
 
-    startDialogue(testDialogue);
+
+    Player.Dicks.Vore.addPrey(enemy);
+    console.log(Player.Dicks);
+
+    //startDialogue(testDialogue);
     /*
     let mixer;
     const AnimationClips = [];

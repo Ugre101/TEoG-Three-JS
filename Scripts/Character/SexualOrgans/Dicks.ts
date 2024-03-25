@@ -1,3 +1,4 @@
+import { CockVore } from "../../Vore/VoreOrgans/VoreOrgan";
 import { BaseOrgan } from "./BaseOrgan";
 import { BaseOrgans } from "./BaseOrgans";
 import { SexualFluids } from "./SexualFluids/SexualFluid";
@@ -8,6 +9,7 @@ class Dick extends BaseOrgan {
     }
 }
 export class Dicks extends BaseOrgans {
+    public Vore:CockVore = new CockVore();
     constructor() {
         super(SexualFluids.Cum);
     }

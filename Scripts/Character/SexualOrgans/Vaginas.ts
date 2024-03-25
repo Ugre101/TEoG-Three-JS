@@ -1,4 +1,5 @@
 
+import { VaginaVore } from "../../Vore/VoreOrgans/VoreOrgan";
 import { BaseOrgan } from "./BaseOrgan";
 import { BaseOrgans } from "./BaseOrgans";
 import { SexualFluids } from "./SexualFluids/SexualFluid";
@@ -10,6 +11,7 @@ class Vagina extends BaseOrgan{
 }
 
 export class Vaginas extends BaseOrgans{
+    public Vore: VaginaVore = new VaginaVore();
     constructor(){
         super(SexualFluids.VaginalDischarge);
     }

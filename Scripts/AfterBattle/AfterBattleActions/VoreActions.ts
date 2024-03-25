@@ -1,3 +1,4 @@
+import { StomachVoreCapacity } from "../../Vore/VoreFunctions";
 import { AfterAction, AfterActionType } from "./AfterAction";
 
 export class VoreAction extends AfterAction {

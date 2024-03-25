@@ -14,7 +14,8 @@ import { BattleAction } from "../Battle/BattleActions/BattleAction.ts";
 import { SexStats } from "./SexStats.ts";
 import { Vaginas } from "./SexualOrgans/Vaginas.ts";
 import { Balls } from "./SexualOrgans/Balls.ts";
-import { Stomach } from "./Body/Stomach.ts";
+import { OrganType } from "./SexualOrgans/OrganType.ts";
+import { Stomach } from "../Vore/VoreOrgans/VoreOrgan.ts";
 
 export class Character {
     public firstName: string;
@@ -37,7 +38,7 @@ export class Character {
     public SexStats: SexStats = new SexStats();
     public VoreSystem: VoreSystem = new VoreSystem();
     public KnownBattleActions: number[] = [0,1,2];
-    public Stomach: Stomach = new Stomach();
+    public Stomach: Stomach;
     
     constructor(startRace: Race) {
         this.firstName = "Steve";
@@ -51,9 +52,22 @@ export class Character {
         this.EssenceDrain = new EssenceDrain(30);
         this.RaceSystem = new RaceSystem(startRace);
         this.BodyStats = new BodyStats(20, 30, 160);
+        this.Stomach = new Stomach();
     }
     get fullName() {
         return `${this.firstName} ${this.lastName}`;
+    }
+
+    Tick(ticks: number) {
+        this.Dicks.tick(ticks);
+        this.Balls.tick(ticks);
+        this.Boobs.tick(ticks);
+        this.Vaginas.tick(ticks);
+        this.Stomach.tickPreys(ticks, this.VoreSystem.voreStrengths);
+        this.Dicks.Vore.tickPreys(ticks, this.VoreSystem.voreStrengths);
+        this.Balls.Vore.tickPreys(ticks, this.VoreSystem.voreStrengths);
+        this.Boobs.Vore.tickPreys(ticks, this.VoreSystem.voreStrengths);
+        this.Vaginas.Vore.tickPreys(ticks, this.VoreSystem.voreStrengths);
     }
 
     drainMasc(from: Character): number {
@@ -94,6 +108,19 @@ export class Character {
         this.LevelSystem.perks.push(perk.stringId);
         perk.onGain(this);
         return true;
+    }
+
+    getOrganOfType(type: OrganType){
+        switch(type){
+            case OrganType.Balls:
+                return this.Balls;
+            case OrganType.Boobs:
+                return this.Boobs;
+            case OrganType.Dick:
+                return this.Dicks;
+            case OrganType.Vagina:
+                return this.Vaginas;
+        }
     }
 }
 
