@@ -63,6 +63,7 @@ import ny from '/Resources/ForestBackground/ny.jpg';
 import pz from '/Resources/ForestBackground/pz.jpg';
 import nz from '/Resources/ForestBackground/nz.jpg';
 import { HotKeyMenuBtns } from "./Scripts/Menus/SetupMenuBtns";
+import { CheckGender } from "./Scripts/Character/Genders";
 
 const testUrls = [px, nx, py, ny, pz, nz];
 const backTextureCube = new THREE.CubeTextureLoader().load(testUrls, (onLoad) => {
@@ -106,7 +107,10 @@ MapManagerInstance.firstMap.loadTexture();
 await TestStuff();
 
 const testAvatar = new EnemyAvatar(new Character(Race.Human));
-const testAvatar2 = new CharacterAvatar(new Character(Race.Human));
+const newLocal = new Character(Race.Human);
+newLocal.Masc.gainEssence(100);
+console.log(CheckGender(newLocal));
+const testAvatar2 = new CharacterAvatar(newLocal);
 async function loadTestAvatar(){
     await testAvatar.LoadAndSetPos({x:2,y:-1,z:-4});
     await testAvatar2.LoadAndSetPos({x:4,y:-1,z:-4});
@@ -116,7 +120,7 @@ async function loadTestAvatar(){
     scene.add(testAvatar.obj);
     scene.add(testAvatar2.obj);
 
-    let clip = testAvatar2.animationsClips["Unbirth"];
+    let clip = testAvatar2.animationsClips["Idle"];
     clip.play();
 }
 

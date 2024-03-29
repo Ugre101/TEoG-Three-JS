@@ -35,7 +35,7 @@ export class Avatar{
         });
   
 
-        return res.scene;
+        return res;
 
     }
 }
@@ -79,6 +79,7 @@ class AvatarHandler{
 }
 
 import humanUrl from '/Resources/Characters/HumanFemaleFuta.glb?url';
+import humanMaleUrl from '/Resources/Characters/HumanMaleFuta.glb?url';
 
-export const AvatarManager = new AvatarHandler([new Avatar(Race.Human,Genders.Futanari, humanUrl)]);
+export const AvatarManager = new AvatarHandler([new Avatar(Race.Human,Genders.Futanari, humanUrl),new Avatar(Race.Human,Genders.Malefuta, humanMaleUrl)]);
 

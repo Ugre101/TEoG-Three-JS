@@ -23,22 +23,16 @@ export class CharacterAvatar {
     async LoadAndSetPos(position: { x: number; y: number; z: number}) {
         this.avatar = AvatarManager.getAvatar(this.character);
         let loadedAvatar = await this.avatar.load();
-        loadedAvatar.position.set(position.x, position.y, position.z);
-        this.obj = loadedAvatar;
-        this.mixer = new THREE.AnimationMixer(loadedAvatar);
+        loadedAvatar.scene.position.set(position.x, position.y, position.z);
+        this.obj = loadedAvatar.scene;
+        this.mixer = new THREE.AnimationMixer(loadedAvatar.scene);
         console.log(this.mixer);
         this.findMorphs();
-        let res = await this.findAnimations();
-        this.sortAnimations(res);
+        this.sortAnimations(loadedAvatar);
         this.loaded = true;
         return loadedAvatar;
     }
-    async findAnimations() {
-        const loader = new GLTFLoader();
-        let res = await loader.loadAsync(animationUrl);    
-        return res;
-    }
-
+    
     sortAnimations(gltf){
         gltf.animations.forEach((clip:THREE.AnimationClip) => {
             const animationsClip = this.mixer.clipAction(clip);
