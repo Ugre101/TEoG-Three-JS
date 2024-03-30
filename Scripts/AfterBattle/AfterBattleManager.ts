@@ -1,7 +1,8 @@
 import { Character } from "../Character/Character";
 import { AfterAction } from "./AfterBattleActions/AfterAction";
 import { refreshAfterBattleBtns } from "./AfterBattleBtns";
-
+const freePlay = document.getElementById("FreePlay")!;
+export let inAfterBattle = false;
 class AfterBattleManager{
     public lastAction: AfterAction | null = null;
     private player : Character;
@@ -25,5 +26,12 @@ class AfterBattleManager{
         this.lastAction = action;
         refreshAfterBattleBtns(this.player, this.enemy);
     }
+
+    public leaveAfterBattle(){
+        freePlay.style.display = "none";
+        freePlay.style.display = "block";
+        inAfterBattle = false;
+    }
 }
+
 export const afterBattleManager = new AfterBattleManager();
