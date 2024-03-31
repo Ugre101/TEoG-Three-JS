@@ -12,5 +12,9 @@ export class BaseOrgan extends Stat{
         super.decrease(by);
         return this.baseValue <= 0;
     }
+    growCost() : number{
+        let cost = this.baseValue * 10; //TODO make this more complex
+        return cost;
+    }
 }
 

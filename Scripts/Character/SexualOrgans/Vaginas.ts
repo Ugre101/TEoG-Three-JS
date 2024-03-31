@@ -18,6 +18,8 @@ export class Vaginas extends BaseOrgans{
     addPussy(size = 1){
         this.List.push(new Vagina(size));
     }
-
-
+    growNewCost() : number{
+        let cost = 30 + Math.pow(this.List.length, 2) * 30; // Exponential growth formula
+        return cost;
+    }
 }

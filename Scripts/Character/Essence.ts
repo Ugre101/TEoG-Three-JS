@@ -4,7 +4,7 @@ export class Essence {
         this.essence = startingEssence;
     }
 
-    spendEssence(essenceCost: number): boolean {
+    trySpendEssence(essenceCost: number): boolean {
         if (this.essence < essenceCost) {
             return false;
         }

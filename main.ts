@@ -64,6 +64,8 @@ import pz from '/Resources/ForestBackground/pz.jpg';
 import nz from '/Resources/ForestBackground/nz.jpg';
 import { HotKeyMenuBtns } from "./Scripts/Menus/SetupMenuBtns";
 import { CheckGender } from "./Scripts/Character/Genders";
+import { afterBattleManager } from "./Scripts/AfterBattle/AfterBattleManager";
+import { AnimateAfterBattle } from "./Scripts/AfterBattle/SetupAfterBattle";
 
 const testUrls = [px, nx, py, ny, pz, nz];
 const backTextureCube = new THREE.CubeTextureLoader().load(testUrls, (onLoad) => {
@@ -106,10 +108,10 @@ MapManagerInstance.firstMap.loadTexture();
 
 await TestStuff();
 
-const testAvatar = new EnemyAvatar(new Character(Race.Human));
+const testEnemy = new Character(Race.Human);
+testEnemy.gainFemi(100);
+const testAvatar = new EnemyAvatar(testEnemy);
 const newLocal = new Character(Race.Human);
-newLocal.Masc.gainEssence(100);
-console.log(CheckGender(newLocal));
 const testAvatar2 = new CharacterAvatar(newLocal);
 async function loadTestAvatar(){
     await testAvatar.LoadAndSetPos({x:2,y:-1,z:-4});
@@ -121,7 +123,8 @@ async function loadTestAvatar(){
     scene.add(testAvatar2.obj);
 
     let clip = testAvatar2.animationsClips["Idle"];
-    clip.play();
+    if (clip)
+        clip.play();
 }
 
 animate();
@@ -143,7 +146,10 @@ function animate() {
         AnimateBattle();
         return;
     }
-
+    if (afterBattleManager.inAfterBattle){
+        AnimateAfterBattle();
+        return;
+    }
     // If a menu is open, pause everything below this point
     if (MenuManagerInstance.isOpen){
         return;

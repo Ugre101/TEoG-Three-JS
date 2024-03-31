@@ -18,7 +18,8 @@ export class CharacterPortraitRenderer {
             0.1,
             1000
         );
-        const ambientLight = new THREE.AmbientLight(0x404040);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+        this.cam.position.set(0, 1.5, 2);
         this.scene.add(this.cam);
         this.scene.background = background;
         this.scene.fog = new THREE.Fog(background, 0, 75);

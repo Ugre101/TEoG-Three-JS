@@ -15,7 +15,7 @@ export class BattleAvatar{
     }
 
     updateHp(hp: number, maxHp: number){
-        this.hp.innerHTML = `${hp}/${maxHp}`;
+        this.hp.innerHTML = `${Math.round(hp)}/${maxHp}`;
         let percent = hp / maxHp;
         let color = () => {
             let r = percent < 0.5 ? 255 : Math.round(255 - (percent - 0.5) * 2 * 255);

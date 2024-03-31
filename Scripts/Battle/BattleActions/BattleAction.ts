@@ -41,14 +41,14 @@ function rng() {
 
 ActionDictionary[0].OnUse = function(caster: Character, target: Character){
     console.log("Attack");
-    let dmg = caster.Stats.str.Value() * rng();
+    let dmg = caster.Stats.str.Value() * 5 * rng();
     target.Health.damage(dmg);
     return "You hit the enemy for " + dmg + " damage";
 }
 
 ActionDictionary[1].OnUse = function(caster: Character, target: Character){
     console.log("Tease");
-    let dmg = caster.Stats.cha.Value() * rng();
+    let dmg = caster.Stats.cha.Value() * 5 * rng();
     target.Health.damage(dmg);
     return "You tease the enemy for " + dmg + " damage";
 }
