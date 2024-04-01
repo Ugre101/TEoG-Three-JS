@@ -7,3 +7,5 @@ dist.7z
 dist/html/
 
 dist/html/index.html
+dist/html/index.html
+/dist/html

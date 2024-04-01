@@ -32,6 +32,30 @@ export class BaseOrgans {
             this.List.splice(indexSmallest, 1);
         }
     }
+    growSmallestCost() : number{
+        let indexSmallest = -1;
+        for (let i = 0; i < this.List.length; i++) {
+            if (indexSmallest === -1 || this.List[i].baseValue < this.List[indexSmallest].baseValue) {
+                indexSmallest = i;
+            }
+        }
+        if (indexSmallest > -1) {
+           return this.List[indexSmallest].growCost();
+        }
+        return 0;
+    }
+    growSmallest() {
+        let indexSmallest = -1;
+        for (let i = 0; i < this.List.length; i++) {
+            if (indexSmallest === -1 || this.List[i].baseValue < this.List[indexSmallest].baseValue) {
+                indexSmallest = i;
+            }
+        }
+        if (indexSmallest > -1) {
+            this.List[indexSmallest].baseValue++;
+        }
+    }
+    
     getBiggest() {
         return this.List.reduce((prev, current) => {
             return (prev && prev.Value() > current.Value()) ? prev : current;

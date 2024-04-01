@@ -1,3 +1,5 @@
+import { Character } from "../../Character/Character";
+import { afterBattleManager } from "../AfterBattleManager";
 import { AfterAction, AfterActionType, ReqNeedDick } from "./AfterAction";
 
 
@@ -6,6 +8,15 @@ class SexAction extends AfterAction {
         super(name, description, AfterActionType.Sex);
     }
 }
+
+const Leave = new AfterAction("Leave", "Leave the area", AfterActionType.Misc);
+Leave.canUse = function(caster: Character, target: Character)  { return true;}
+Leave.OnUse = function(caster: Character, target: Character) {
+    console.log("Leaving");
+    afterBattleManager.LeaveAfterBattle();
+    return "Leaving";
+}
+
 const GetBlowJob = new SexAction("Get sucked", "Get a blowjob from your partner.");
 GetBlowJob.reqs.push(ReqNeedDick.Caster);
 GetBlowJob.OnUse = (caster, target) => {
@@ -25,5 +36,6 @@ GiveBlowJob.OnContinueUse = (caster,target) => {
 }
 
 export const SexActions: SexAction[] = [
+    Leave,
     GetBlowJob, GiveBlowJob
 ];

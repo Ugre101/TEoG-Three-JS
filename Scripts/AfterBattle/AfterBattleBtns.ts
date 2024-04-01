@@ -10,6 +10,7 @@ export function refreshAfterBattleBtns(caster: Character, target: Character){
             afterBattleBtns.removeChild(btn.btn);
     });
     SexActions.forEach(action => {
+        console.log(action.name);
         if (action.canUse(caster, target) && !addedBtns.some(btn => btn.action === action)){
             let btn = new AfterBattleBtn(action);
             addedBtns.push(btn);
@@ -19,7 +20,7 @@ export function refreshAfterBattleBtns(caster: Character, target: Character){
 
 }
 
-const afterBattleBtns = document.getElementById("AfterBattleBtns")!;
+const afterBattleBtns = document.getElementById("afterBattleBtns")!;
 const addedBtns: AfterBattleBtn[] = [];
 
 class AfterBattleBtn {

@@ -16,4 +16,8 @@ export class Dicks extends BaseOrgans {
     addDick(size = 1) {
         this.List.push(new Dick(size));
     }
+    growNewCost() : number{
+        let cost = 30 + Math.pow(this.List.length, 2) * 30; // Exponential growth formula
+        return cost;
+    }
 }

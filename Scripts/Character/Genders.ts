@@ -11,9 +11,10 @@ export enum Genders {
 };
 
 export function CheckGender(character: Character): Genders {
-    const hasDick = character.Dicks.List.length > 0;
-    const hasBreasts = character.Boobs.List.length > 0;
-    const hasPussy = false;
+    const hasDick = character.Dicks.has();
+    const hasBalls = character.Balls.has();
+    const hasBreasts = character.Boobs.has();
+    const hasPussy = character.Vaginas.has();
 
     if (hasDick) {
         if (hasPussy){

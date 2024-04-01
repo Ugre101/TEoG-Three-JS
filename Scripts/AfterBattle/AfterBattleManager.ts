@@ -1,19 +1,24 @@
 import { Character } from "../Character/Character";
 import { AfterAction } from "./AfterBattleActions/AfterAction";
+import { AfterBattleAvatar } from "./AfterBattleAvatar";
 import { refreshAfterBattleBtns } from "./AfterBattleBtns";
+
+const afterBattleDoc = document.getElementById("AfterBattle")!;
 const freePlay = document.getElementById("FreePlay")!;
-export let inAfterBattle = false;
+
 class AfterBattleManager{
     public lastAction: AfterAction | null = null;
     private player : Character;
     private enemy : Character;
+    public inAfterBattle: boolean = false;
     constructor() {
         
     }
 
-    public Setup(player: Character, enemy: Character){
+    public Setup(player: Character,playerAvatar: AfterBattleAvatar, enemy: Character, enemyAvatar: AfterBattleAvatar){
         this.player = player;
         this.enemy = enemy;
+        this.inAfterBattle = true;
         refreshAfterBattleBtns(this.player, this.enemy);
     }
 
@@ -27,11 +32,11 @@ class AfterBattleManager{
         refreshAfterBattleBtns(this.player, this.enemy);
     }
 
-    public leaveAfterBattle(){
-        freePlay.style.display = "none";
+    public LeaveAfterBattle(){
+        this.inAfterBattle = false;
+        afterBattleDoc.style.display = "none";
         freePlay.style.display = "block";
-        inAfterBattle = false;
+
     }
 }
-
 export const afterBattleManager = new AfterBattleManager();

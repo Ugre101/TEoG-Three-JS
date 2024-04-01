@@ -1,4 +1,5 @@
 import { Character } from "../../Character/Character";
+import { afterBattleManager } from "../AfterBattleManager";
 
 export enum AfterActionType {
     Sex,

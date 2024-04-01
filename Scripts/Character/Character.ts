@@ -122,5 +122,70 @@ export class Character {
                 return this.Vaginas;
         }
     }
+
+    gainMasc(amount: number) : boolean {
+        this.Masc.gainEssence(amount);
+        let tryGrow = true;
+        let passes = 0;
+        while(tryGrow){
+            if (this.Masc.essence <= this.StableEssence.Value()){
+                return passes > 0;
+            }
+            let dickTot = this.Dicks.getTotalSize() * 1.25;
+            let ballTot = this.Balls.getTotalSize();
+            if (dickTot <= ballTot){
+                if (this.Dicks.has() && this.Masc.trySpendEssence(this.Dicks.growSmallestCost())){
+                    this.Dicks.growSmallest();
+                }else if (this.Masc.trySpendEssence(this.Dicks.growNewCost())){
+                    this.Dicks.addDick();
+                }else {
+                    tryGrow = false;
+                }
+            } else {
+                if (this.Balls.has() && this.Masc.trySpendEssence(this.Balls.growSmallestCost())){
+                    this.Balls.growSmallest();
+                }else if (this.Masc.trySpendEssence(this.Balls.growNewCost())){
+                    this.Balls.addBall();
+                }else {
+                    tryGrow = false;
+                }
+            }
+            passes++;
+        }
+        return passes > 1;
+    }
+
+    gainFemi(amount: number) : boolean {
+        this.Femi.gainEssence(amount);
+        let tryGrow = true;
+        let passes = 0;
+        while(tryGrow){
+            if (this.Femi.essence <= this.StableEssence.Value()){
+                return passes > 0;
+            }
+            let boobTot = this.Boobs.getTotalSize() * 1.25;
+            let vaginaTot = this.Vaginas.getTotalSize();
+            if (boobTot <= vaginaTot){
+                if (this.Boobs.has() && this.Femi.trySpendEssence(this.Boobs.growSmallestCost())){
+                    this.Boobs.growSmallest();
+                }else if (this.Femi.trySpendEssence(this.Boobs.growNewCost())){
+                    this.Boobs.addBoob();
+                }else {
+                    tryGrow = false;
+                }
+            } else {
+                if (this.Vaginas.has() && this.Femi.trySpendEssence(this.Vaginas.growSmallestCost())){
+                    this.Vaginas.growSmallest();
+                }else if (this.Femi.trySpendEssence(this.Vaginas.growNewCost())){
+                    this.Vaginas.addPussy();
+                }else {
+                    tryGrow = false;
+                }
+            }
+            passes++;
+        }
+        return passes > 1;
+    }
+
 }
 

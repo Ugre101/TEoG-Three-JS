@@ -8,7 +8,8 @@ export let inBattle = false;
 
 const battleLog = document.getElementById("battleLog")!;
 
-let battleLogText: string[] = [];
+let battleLogText: string = "";
+let turn : number = 1;
 
 let enemies: Character[] = [];
 let pAvatar: BattleAvatar, eAvatar: BattleAvatar;
@@ -20,12 +21,13 @@ export function startBattle(combatEmemies: Character[], playerAvatar: BattleAvat
     inBattle = true;
     refreshBtns(Player);
     battleLog.innerHTML = "";
-    battleLogText = [];
+    battleLogText = "";
+    turn = 1;
 }
 
 export function log(text: string){
-    battleLogText.push(text);
-    battleLog.innerHTML = battleLogText.join("<br>");
+    battleLogText = `Turn: ${turn}<br>${text}<br><br>${battleLogText}`;
+    battleLog.innerHTML = battleLogText;
 }
 
 export function targetedEnemy(){
@@ -38,6 +40,7 @@ export function targetedEnemy(){
 }
 
 export function nextTurn(){
+    turn++;
     updateStats();
     enemyAttack();
     refreshBtns(Player);
@@ -58,7 +61,9 @@ function enemyAttack(){
 
 }
 function WinBattle() {
-    leaveCombat();
+    OnLeaveCombat();
+    battleDoc.style.display = "none";
+    inBattle = false;
     StartAfterBattle(enemies);    
 }
 
