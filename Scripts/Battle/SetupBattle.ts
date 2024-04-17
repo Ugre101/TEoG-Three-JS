@@ -45,14 +45,7 @@ export function OnLeaveCombat() {
     enemyPortrait.UnsubscribeToResize();
 }
 
-
-
-
 export function AnimateBattle() {
     playerPortrait.Render();
     enemyPortrait.Render();
 }
-
-
-
-

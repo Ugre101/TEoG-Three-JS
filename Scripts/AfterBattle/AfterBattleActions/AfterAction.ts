@@ -44,8 +44,7 @@ export class AfterAction {
         return "";
     }
     OnContinueUse(caster: Character, target: Character) : string{
-        console.log("Action used: " + this.name + " on " + target.firstName);
-        return "";
+       return this.OnUse(caster, target);
     }
     canUse(caster: Character, target: Character) : boolean{
         if (this.reqs.length == 0)

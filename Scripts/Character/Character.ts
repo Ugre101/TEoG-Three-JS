@@ -81,6 +81,17 @@ export class Character {
         return drainAmount;
     }
 
+    drainFemi(from: Character): number {
+        let drain = this.EssenceDrain.drainAmount();
+        let drainAmount = Math.min(drain, from.Femi.essence);
+        if (drainAmount < drain) {
+            let dAmount = from.Boobs.List.reduce((a, b) => a + b.Value(), 0);
+        }
+        from.Femi.essence -= drainAmount;
+        this.Femi.essence += drainAmount;
+        return drainAmount;
+    }
+
     canGainPerk(perk: Perk): boolean {
         if (this.LevelSystem.perks.includes(perk.stringId)) {
             return false;
@@ -186,6 +197,5 @@ export class Character {
         }
         return passes > 1;
     }
-
 }
 
