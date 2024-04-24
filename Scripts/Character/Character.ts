@@ -7,7 +7,7 @@ import {BodyStats} from "./Body/Body.ts";
 import {LevelSystem} from "./LevelSystem.js";
 import { Perk } from "../Perk.js";
 import { Age } from "./Age.js";
-import { Essence } from "./Essence.js";
+import { Essence, drainSelf } from "./Essence.js";
 import { Health } from "./Health.js";
 import { VoreSystem } from "../Vore/VoreSystem.js";
 import { BattleAction } from "../Battle/BattleActions/BattleAction.ts";
@@ -32,6 +32,7 @@ export class Character {
     public Femi: Essence;
     public StableEssence: Stat;
     public EssenceDrain: EssenceDrain;
+    public EssenceGive: EssenceDrain;
     public Stats: Stats = new Stats();
     public RaceSystem: RaceSystem;
     public BodyStats: BodyStats;
@@ -50,6 +51,7 @@ export class Character {
         this.Femi = new Essence(0);
         this.StableEssence = new Stat(30);
         this.EssenceDrain = new EssenceDrain(30);
+        this.EssenceGive = new EssenceDrain(0);
         this.RaceSystem = new RaceSystem(startRace);
         this.BodyStats = new BodyStats(20, 30, 160);
         this.Stomach = new Stomach();
@@ -71,7 +73,7 @@ export class Character {
     }
 
     drainMasc(from: Character): number {
-        let drain = this.EssenceDrain.drainAmount();
+        let drain = this.EssenceDrain.value;
         let drainAmount = Math.min(drain, from.Masc.essence);
         if (drainAmount < drain) {
             let dAmount = from.Dicks.List.reduce((a, b) => a + b.Value(), 0);
@@ -82,7 +84,7 @@ export class Character {
     }
 
     drainFemi(from: Character): number {
-        let drain = this.EssenceDrain.drainAmount();
+        let drain = this.EssenceDrain.value;
         let drainAmount = Math.min(drain, from.Femi.essence);
         if (drainAmount < drain) {
             let dAmount = from.Boobs.List.reduce((a, b) => a + b.Value(), 0);
@@ -90,6 +92,33 @@ export class Character {
         from.Femi.essence -= drainAmount;
         this.Femi.essence += drainAmount;
         return drainAmount;
+    }
+
+    giveMasc(to: Character) : void {
+        if (this.EssenceGive.value <= 0) {
+            return;
+        }
+        let give = this.EssenceGive.value;
+        let giveAmount = Math.min(give, this.Masc.essence);
+        this.Masc.essence -= giveAmount;
+        if (drainSelf.IsOn && giveAmount < give) {
+            let dAmount = this.Dicks.List.reduce((a, b) => a + b.Value(), 0);
+
+        }
+        to.Masc.essence += giveAmount;
+    }
+
+    giveFemi(to: Character) : void {
+        if (this.EssenceGive.value <= 0) {
+            return;
+        }
+        let give = this.EssenceGive.value;
+        let giveAmount = Math.min(give, this.Femi.essence);
+        this.Femi.essence -= giveAmount;
+        if (drainSelf.IsOn && giveAmount < give) {
+            let dAmount = this.Boobs.List.reduce((a, b) => a + b.Value(), 0);
+        }
+        to.Femi.essence += giveAmount;
     }
 
     canGainPerk(perk: Perk): boolean {

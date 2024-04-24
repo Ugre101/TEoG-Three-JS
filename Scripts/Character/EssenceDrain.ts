@@ -1,13 +1,32 @@
 import { Mod } from "./Stats";
 
 export class EssenceDrain {
-    public baseDrain: number;
+    private _dirty: boolean = true;
+    private _value: number = 0;
+    private baseDrain: number;
     public drainMods: Mod[] = [];
     constructor(baseDrain: number) {
         this.baseDrain = baseDrain;
     }
 
-    drainAmount() {
+
+    get baseValue() {
+        return this.baseDrain;
+    }
+    set baseValue(value: number) {
+        this.baseDrain = value;
+        this._dirty = true;
+    }
+
+    get value() {
+        if (this._dirty) {
+            this._value = this.drainAmount();
+            this._dirty = false;
+        }
+        return this._value;
+    }
+
+    private drainAmount() {
         let drain = this.baseDrain;
         for (let mod of this.drainMods) {
             drain += mod.value;
@@ -17,6 +36,7 @@ export class EssenceDrain {
 
     addDrainMod(mod: Mod) {
         this.drainMods.push(mod);
+        this._dirty = true;
     }
 
     removeDrainMod(from: string) {

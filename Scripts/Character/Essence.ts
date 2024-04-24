@@ -1,3 +1,5 @@
+import { ToogleOption } from "../ToogleOptions";
+
 export class Essence {
     public essence: number;
     constructor(startingEssence: number) {
@@ -16,3 +18,5 @@ export class Essence {
         this.essence += essenceGain;
     }
 }
+
+export const drainSelf = new ToogleOption();

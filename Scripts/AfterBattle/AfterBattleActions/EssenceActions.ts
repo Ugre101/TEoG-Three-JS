@@ -1,4 +1,5 @@
 import { Character } from "../../Character/Character";
+import { drainSelf } from "../../Character/Essence";
 import { AfterAction, AfterActionType } from "./AfterAction";
 
 class EssenceAction extends AfterAction{
@@ -62,12 +63,44 @@ drainBoth.OnUse = (caster: Character, target: Character) => {
 
 const giveMasc = new EssenceAction("Give Masc", "Gives masculinity to your partner");
 giveMasc.canUse = (caster: Character, target: Character) => {
+    if (caster.EssenceGive.value <= 0){
+        return false;
+    }
     if (caster.Masc.essence > 0){
         return true;
     }
-    if (caster.Dicks.has() || caster.Balls.has()){
-        return true;
+    if (drainSelf.IsOn){
+        if (caster.Dicks.has() || caster.Balls.has()){
+            return true;
+        }   
     }
     return false;
 }
+giveMasc.OnUse = (caster: Character, target: Character) => {
+    let given = caster.giveMasc(target);
+    return `${caster.firstName} gave ${given} masculinity essence to ${target.firstName}`;
+}
+
+const giveFem = new EssenceAction("Give Fem", "Gives femininity to your partner");
+giveFem.canUse = (caster: Character, target: Character) => {
+    if (caster.EssenceGive.value <= 0){
+        return false;
+    }
+    if (caster.Femi.essence > 0){
+        return true;
+    }
+    if (drainSelf.IsOn){
+        if (caster.Boobs.has() || caster.Vaginas.has()){
+            return true;
+        }   
+    }
+    return false;
+}
+giveFem.OnUse = (caster: Character, target: Character) => {
+    let given = caster.giveFemi(target);
+    return `${caster.firstName} gave ${given} femininity essence to ${target.firstName}`;
+}
+
+
+export {drainMasc, drainFem, drainBoth, giveMasc, giveFem};
 
