@@ -1,5 +1,6 @@
 import { Character } from "../../Character/Character";
-import { drainSelf } from "../../Character/Essence";
+import { drainSelf } from "../../Character/Essence/Essence";
+import { FutaDrain } from "../../Perk";
 import { AfterAction, AfterActionType } from "./AfterAction";
 
 class EssenceAction extends AfterAction{
@@ -40,6 +41,9 @@ drainFem.OnUse = (caster: Character, target: Character) => {
 
 const drainBoth = new EssenceAction("Drain Both", "Drains both masculinity and femininity from your partner");
 drainBoth.canUse = (caster: Character, target: Character) => {
+    if (caster.LevelSystem.perks.includes(FutaDrain.stringId) == false){
+        return false;
+    }
     if (target.Masc.essence > 0 && target.Femi.essence > 0){
         return true;
     }

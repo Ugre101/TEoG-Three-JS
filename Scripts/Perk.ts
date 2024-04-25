@@ -98,6 +98,24 @@ const EssenceThief = new Perk("EssenceThief", "You're a thief of essence.", 1, "
 });
 PerksDict.set(EssenceThief.stringId, EssenceThief);
 
+const MascDrain = new Perk("MascDrain", "You're a drainer of masc essence.", 1, "Essence", character => {
+    character.EssenceDrain.drainMods.push(new Mod(10, "Masc Drain", ModType.Flat));
+    character.EssenceDrain.drainMods.push(new Mod(5, "Masc Drain", ModType.Percent));
+});
+PerksDict.set(MascDrain.stringId, MascDrain);
+
+const FemiDrain = new Perk("FemiDrain", "You're a drainer of fem essence.", 1, "Essence", character => {
+    character.EssenceDrain.drainMods.push(new Mod(5, "Femi Drain", ModType.Flat));
+    character.EssenceDrain.drainMods.push(new Mod(10, "Femi Drain", ModType.Percent));
+});
+PerksDict.set(FemiDrain.stringId, FemiDrain);
+
+export const FutaDrain = new Perk("FutaDrain", "You're a drainer of futa essence.", 1, "Essence", character => {
+    character.EssenceDrain.drainMods.push(new Mod(7.5, "Futa Drain", ModType.Flat));
+    character.EssenceDrain.drainMods.push(new Mod(7.5, "Futa Drain", ModType.Percent));
+});
+PerksDict.set(FutaDrain.stringId, FutaDrain);
+
 const FitnessFreak = new Perk("FitnessFreak", "You're a fitness freak.", 1, "Stat", character => {
     character.BodyStats.muscle.mods.push(new Mod(10, "Fitness Freak", ModType.Percent));
     character.BodyStats.fat.mods.push(new Mod(-10, "Fitness Freak", ModType.Percent));

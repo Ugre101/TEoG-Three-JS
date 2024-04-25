@@ -1,4 +1,4 @@
-import { Mod } from "./Stats";
+import { Mod } from "../Stats";
 
 export class EssenceDrain {
     private _dirty: boolean = true;

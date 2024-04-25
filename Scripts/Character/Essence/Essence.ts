@@ -1,4 +1,4 @@
-import { ToogleOption } from "../ToogleOptions";
+import { ToogleOption } from "../../ToogleOptions";
 
 export class Essence {
     public essence: number;
