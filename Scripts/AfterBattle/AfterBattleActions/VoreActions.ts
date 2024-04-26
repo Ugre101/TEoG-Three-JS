@@ -15,3 +15,14 @@ oralVore.canUse = (player,enemy) => {
 oralVore.OnUse = (player,enemy) => {
     return "Oral Vore";
 }
+
+
+
+
+
+
+
+
+
+
+export const VoreActions: VoreAction[] = [ oralVore ];

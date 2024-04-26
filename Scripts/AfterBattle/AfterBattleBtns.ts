@@ -1,7 +1,13 @@
 import { Character } from "../Character/Character";
+import { voreSettings } from "../Vore/VoreSystem";
 import { AfterAction } from "./AfterBattleActions/AfterAction";
+import { EssenceActions } from "./AfterBattleActions/EssenceActions";
 import { SexActions } from "./AfterBattleActions/SexAction";
+import { VoreActions } from "./AfterBattleActions/VoreActions";
 import { afterBattleManager } from "./AfterBattleManager";
+
+const afterBattleBtns = document.getElementById("afterBattleBtns")!;
+
 
 export function refreshAfterBattleBtns(caster: Character, target: Character){
     console.log("Refreshing after battle buttons");
@@ -17,10 +23,26 @@ export function refreshAfterBattleBtns(caster: Character, target: Character){
             afterBattleBtns.appendChild(btn.btn);
         }
     });
-
+    EssenceActions.forEach(action => {
+        console.log(action.name);
+        if (action.canUse(caster, target) && !addedBtns.some(btn => btn.action === action)){
+            let btn = new AfterBattleBtn(action);
+            addedBtns.push(btn);
+            afterBattleBtns.appendChild(btn.btn);
+        }
+    });
+    if (voreSettings.enabled){
+        VoreActions.forEach(action => { 
+            console.log(action.name);
+            if (action.canUse(caster, target) && !addedBtns.some(btn => btn.action === action)){
+                let btn = new AfterBattleBtn(action);
+                addedBtns.push(btn);
+                afterBattleBtns.appendChild(btn.btn);
+            }
+        });
+    }
 }
 
-const afterBattleBtns = document.getElementById("afterBattleBtns")!;
 const addedBtns: AfterBattleBtn[] = [];
 
 class AfterBattleBtn {

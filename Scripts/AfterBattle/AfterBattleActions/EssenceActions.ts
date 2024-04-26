@@ -106,5 +106,5 @@ giveFem.OnUse = (caster: Character, target: Character) => {
 }
 
 
-export {drainMasc, drainFem, drainBoth, giveMasc, giveFem};
+export const EssenceActions: EssenceAction[] = [drainMasc, drainFem, drainBoth, giveMasc, giveFem];
 
