@@ -1,5 +1,4 @@
 import { Character } from "../../Character/Character";
-import { afterBattleManager } from "../AfterBattleManager";
 
 export enum AfterActionType {
     Sex,
@@ -13,8 +12,6 @@ export interface Requirement {
      Meets(caster: Character, target: Character) : boolean;
 }
 
-
-
 export const ReqNeedDick: {[key: string]: Requirement} = {
     Caster: {Meets(caster, target) {
         return caster.Dicks.has();
@@ -27,7 +24,6 @@ export const ReqNeedDick: {[key: string]: Requirement} = {
     },}
 
 }
-
 
 export class AfterAction {
     public name: string;
@@ -52,4 +48,3 @@ export class AfterAction {
         return this.reqs.every((r) => r.Meets(caster,target));
     }
 }
-

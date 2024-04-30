@@ -9,13 +9,12 @@ class SexAction extends AfterAction {
     }
 }
 
-const Leave = new AfterAction("Leave", "Leave the area", AfterActionType.Misc);
-Leave.canUse = function(caster: Character, target: Character)  { return true;}
-Leave.OnUse = function(caster: Character, target: Character) {
-    console.log("Leaving");
-    afterBattleManager.LeaveAfterBattle();
-    return "Leaving";
-}
+const Kiss = new SexAction("Kiss", "Kiss your partner.");
+Kiss.OnUse = (caster, target) => {
+    caster.SexStats.GainArusal(20 * (target.Stats.cha.Value() / 10));
+    target.SexStats.GainArusal(20 * (caster.Stats.cha.Value() / 10));
+    return "You make out with your partner.";
+};
 
 const GetBlowJob = new SexAction("Get sucked", "Get a blowjob from your partner.");
 GetBlowJob.reqs.push(ReqNeedDick.Caster);
@@ -36,6 +35,5 @@ GiveBlowJob.OnContinueUse = (caster,target) => {
 }
 
 export const SexActions: SexAction[] = [
-    Leave,
-    GetBlowJob, GiveBlowJob
+    Kiss, GetBlowJob, GiveBlowJob
 ];
