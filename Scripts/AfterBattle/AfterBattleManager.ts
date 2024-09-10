@@ -1,7 +1,7 @@
 import { Character } from "../Character/Character";
 import { AfterAction } from "./AfterBattleActions/AfterAction";
 import { AfterBattleAvatar } from "./AfterBattleAvatar";
-import { refreshAfterBattleBtns } from "./AfterBattleBtns";
+import { refreshAfterBattleBtns,clearAfterBattleBtnsExecptLeave } from "./AfterBattleBtns";
 
 const afterBattleDoc = document.getElementById("AfterBattle")!;
 const freePlay = document.getElementById("FreePlay")!;
@@ -36,7 +36,10 @@ class AfterBattleManager{
         this.inAfterBattle = false;
         afterBattleDoc.style.display = "none";
         freePlay.style.display = "block";
+    }
 
+    public prepareToLeave(){
+        clearAfterBattleBtnsExecptLeave();
     }
 }
 export const afterBattleManager = new AfterBattleManager();

@@ -2,7 +2,7 @@ import { DormManagerInstance } from "../../Dorm/DormManager";
 import { afterBattleManager } from "../AfterBattleManager";
 import { AfterAction, AfterActionType } from "./AfterAction";
 
-const LeaveAction = new AfterAction("Leave", "Leave the battle", AfterActionType.Misc);
+export const LeaveAction = new AfterAction("Leave", "Leave the battle", AfterActionType.Misc);
 LeaveAction.canUse = (caster, target) => true;
 LeaveAction.OnUse = (caster, target) => {
     console.log("Action used: " + LeaveAction.name);
@@ -20,7 +20,7 @@ TakeToDorm.OnUse = (caster, target) => {
     console.log("Action used: " + TakeToDorm.name);
     DormManagerInstance.addDormMate(target);
     // TODO Check if there is more than one enemy
-    afterBattleManager.LeaveAfterBattle();
+    afterBattleManager.prepareToLeave();
     return "";
 }
 export const MiscActions = [ LeaveAction ];

@@ -2,7 +2,7 @@ import { Character } from "../Character/Character";
 import { voreSettings } from "../Vore/VoreSystem";
 import { AfterAction } from "./AfterBattleActions/AfterAction";
 import { EssenceActions } from "./AfterBattleActions/EssenceActions";
-import { MiscActions } from "./AfterBattleActions/MiscActions";
+import { LeaveAction, MiscActions } from "./AfterBattleActions/MiscActions";
 import { SexActions } from "./AfterBattleActions/SexAction";
 import { VoreActions } from "./AfterBattleActions/VoreActions";
 import { afterBattleManager } from "./AfterBattleManager";
@@ -63,6 +63,19 @@ export function refreshAfterBattleBtns(caster: Character, target: Character){
             }
         });
     }
+}
+
+export function clearAfterBattleBtnsExecptLeave(){
+    addedBtns.forEach(btn => {
+        miscBtns.removeChild(btn.btn);
+        sexBtns.removeChild(btn.btn);
+        essenceBtns.removeChild(btn.btn);
+        voreBtns.removeChild(btn.btn);
+    });
+    addedBtns = [];
+    let btnLeave = new AfterBattleBtn(LeaveAction);
+    addedBtns.push(btnLeave);
+    miscBtns.appendChild(btnLeave.btn);
 }
 
 let addedBtns: AfterBattleBtn[] = [];
