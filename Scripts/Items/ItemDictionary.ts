@@ -1,5 +1,6 @@
 import {ItemData} from "./ItemData";
 import {PlayerWallet} from "../Wallet";
+import { randomPotion } from "./ItemsDatas/RandomPotion";
 
 export const ItemDictionary = {
     "Growth Potion": new ItemData("Growth Potion", "A potion that makes you grow.", 100, character => {
@@ -25,4 +26,5 @@ export const ItemDictionary = {
     "Whole Roasted Pig": new ItemData("Whole Roasted Pig", "A whole roasted pig.", 200 , character => {
         character.BodyStats.fat.baseValue += 50;
     }),
+    "Random Potion": randomPotion
 };

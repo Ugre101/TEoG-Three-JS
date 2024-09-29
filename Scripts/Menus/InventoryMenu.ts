@@ -26,7 +26,7 @@ function PrintInventory() {
         let ItemData = ItemDictionary[item.name];
         const itemDiv = document.createElement("div");
         itemDiv.classList.add("Item");
-        itemDiv.innerHTML = `<h3>${ItemData.name}</h3><p>${ItemData.description}</p><p class="UpperRightNumber">${item.amount}</p>`;
+        itemDiv.innerHTML = `<h3>${ItemData.name}</h3><p class="ItemDesc">${ItemData.description}</p><p class="UpperRightNumber">${item.amount}</p>`;
         const useButton = document.createElement("button");
         useButton.innerHTML = "Use";
         useButton.addEventListener("click", () => {

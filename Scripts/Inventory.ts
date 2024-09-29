@@ -48,3 +48,4 @@ export const PlayerInventory = new Inventory();
 
 PlayerInventory.addItem(ItemDictionary["Coin Purse"]);
 PlayerInventory.addItem(ItemDictionary["Basic Meal"]);
+PlayerInventory.addItem(ItemDictionary["Random Potion"]);

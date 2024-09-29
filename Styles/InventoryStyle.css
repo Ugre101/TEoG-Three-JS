@@ -17,25 +17,45 @@
     top: 45%;
 }
 .Item {
+    position: relative;
     border: solid 0.5em;
     border-color: #925839;
     background-color: #d69e78;
     width: 100%;
     height: 100%;
 }
+.Item h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.25em;
+    color: black;
+    text-align: center;
+    background-color: #ac6332;
+    border-bottom: solid 0.25em;
+    border-color: #925839;
+    padding: 0.25em;
+}
 .Item button {
-    width: 96%;
-    height: 12%;
-    margin-bottom: 0.4em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2.2em;
     background-color: #ac6332;
     cursor: pointer;
 }
+.ItemDesc {
+    margin: 0.1em;
+    padding: 0.2em 0 1.7em 0;
+    font-size: 1.4em;
+    color: black;
+}
 .UpperRightNumber {
-    position: relative;
-    bottom: 50%;
-    left: 75%;
+    position: absolute;
+    top: 0;
+    right: 0;
     font-size: 1.5em;
     color: #000000;
-    height: 2em;
-    width: 2em;
+    padding: 0;
+    margin: 0;
 }
