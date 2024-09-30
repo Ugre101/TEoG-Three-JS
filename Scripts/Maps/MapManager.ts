@@ -8,7 +8,7 @@ import grassUrl from '/Resources/Forest Grass.glb?url';
 class MapManager{
     firstMap:Map = new Map(grassUrl,[{x:0,y:0},{x:1,y:0},{x:2,y:0},{x:-1,y:0},{x:0,y:1},{x:0,y:-1}]);
 }
-const scale = 5;
+const scale = 50;
 const dist = scale * 20;
 
 class Map{

@@ -42,7 +42,7 @@ export function addMiniMapObject(clone, x, z) {
 }
 
 export function renderMiniMap(x, z) {
-    camera.position.set(x, 300, z);
+    camera.position.set(x, 600, z);
     testCube.position.set(x, 0, z);
     renderer.render(miniScene, camera);
 }

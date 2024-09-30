@@ -2,10 +2,10 @@ import {PlayerInventory} from "../Inventory";
 import {PlayerWallet} from "../Wallet";
 import {Player} from "../Player";
 import { ItemData } from "../Items/ItemData";
-import { ItemDictionary } from "../Items/ItemDictionary";
 import { Character } from "../Character/Character";
+import { QuestDict } from "./QuestDict";
 
-class QuestReward{
+export class QuestReward{
     gold: number;
     exp: number;
     items: ItemData[];
@@ -23,7 +23,7 @@ class QuestReward{
     }
 }
 
-class Quest {
+export class Quest {
     questId: number;
     questName: string;
     questDescription: string;
@@ -40,13 +40,6 @@ class Quest {
         this.maxProgress = maxProgress;
     }
 }
-
-const QuestDict = {
-    1: new Quest(1, "Test Quest", "Test Quest Description", () => true, new QuestReward(100, 100, [ItemDictionary["Growth Potion"]]), 1),
-};
-
-
-
 
 class QuestProgress {
     questId: number;
