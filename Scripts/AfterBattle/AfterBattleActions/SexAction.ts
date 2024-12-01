@@ -14,12 +14,17 @@ class SexAction extends AfterAction {
     }
 }
 
-const Kiss = new SexAction("Kiss", "Kiss your partner.");
+const Kiss = new SexAction("Make out", "Make out with your partner.");
 Kiss.OnUse = (caster, target) => {
     caster.SexStats.GainArusal(20 * (target.Stats.cha.Value() / 10));
     target.SexStats.GainArusal(20 * (caster.Stats.cha.Value() / 10));
-    return "You make out with your partner.";
+    return "You started make out with your partner.";
 };
+Kiss.OnContinueUse = (caster, target) => {
+    caster.SexStats.GainArusal(20 * (target.Stats.cha.Value() / 10));
+    target.SexStats.GainArusal(20 * (caster.Stats.cha.Value() / 15));
+    return "You continue to make out and let your hands wander over their body.";
+};  
 
 const GetBlowJob = new SexAction("Get sucked", "Get a blowjob from your partner.", SexRole.Top);
 GetBlowJob.reqs.push(ReqNeedDick.Caster);
